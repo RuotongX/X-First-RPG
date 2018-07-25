@@ -5,7 +5,6 @@ public class BoyNextDoor {
 		if (map.m1.isDefeat() == true && map.m2.isDefeat() == true && map.m3.isDefeat() == true) {
 			if (map.getFloor() == 0) {
 				map.setFloor(1);
-				map.display2();
 				map.p.setColumn(1);
 				map.p.setRow(8);
 			} else {
