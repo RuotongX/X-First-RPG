@@ -19,6 +19,7 @@ public class Battle {
 	    	     case 2:
 	    	    	 break;
 	    	     case 3:
+	    	    	 System.out.println("You escape from " +monster.getName());
 	    	    	 fighting = 1;
 	    	    	 break;
 	    	     }

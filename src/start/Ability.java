@@ -8,6 +8,7 @@ public abstract class Ability {
 	private int defenceboost;
 	private int healup;
 	private boolean block;
+	private String name;
 	public Ability(String name) {
 		
 	}
