@@ -1,4 +1,5 @@
 package start;
+import java.util.Random;
 
 public class Map {
 	private static int rowMax = 11;
@@ -6,23 +7,60 @@ public class Map {
 	private int floor = 0;
 	private static int level = 2;
 	private static String[][][] map = new String [rowMax][columnMax][level];
+	Random rand = new Random();
 	Player p = new Player();
 	Monster m1 = new Monster();
 	Monster m2 = new Monster();
 	Monster m3 = new Monster();
 	Monster boss = new Monster();
 	Shop shop = new Shop();
+	public void PlayerGenerator() {
+		p.setExp(0);
+		p.setHealth(50);
+		p.setAttack(15);
+		p.setDefence(5);
+		p.setLevel(1);
+		p.setMoney(0);
+	}
 	private void MonsterGenerator() {
 		m1.setRow(2);
 		m1.setColumn(2);
+		m1.setAttack(10);
+		m1.setDefence(5);
+		m1.setHealth(25);
+		m1.setExp(10);
+		m1.setLevel(1);
+		m1.setMoney(rand.nextInt(9) + 6);
+		m1.setName("Zombie");
 		m2.setRow(2);
 		m2.setColumn(8);
+		m2.setAttack(40);
+		m2.setDefence(20);
+		m2.setHealth(50);
+		m2.setExp(30);
+		m2.setLevel(4);
+		m2.setMoney(rand.nextInt(15)+12);
+		m2.setName("Knight");
 		m3.setRow(9);
 		m3.setColumn(5);
+		m3.setAttack(60);
+		m3.setDefence(30);
+		m3.setHealth(90);
+		m3.setExp(50);
+		m3.setLevel(7);
+		m3.setMoney(rand.nextInt(30)+25);
+		m3.setName("Dragon");
 	}
 	private void BossGenerator() {
-		boss.setRow(7);
-		boss.setColumn(2);
+		boss.setRow(8);
+		boss.setColumn(5);
+		boss.setAttack(100);
+		boss.setDefence(80);
+		boss.setHealth(200);
+		boss.setLevel(10);
+		boss.setExp(400);
+		boss.setMoney(214748364);
+		boss.setName("Demon");
 	}
 	private void ShopGenerator() {
 	    shop.setRow(8);
@@ -113,9 +151,7 @@ public class Map {
 		}
 	}
 	public void display2() {
-		Monster boss = new Monster();
-		boss.setRow(8);
-		boss.setColumn(5);
+		this.BossGenerator();
 		for(int i = 0;i<rowMax; i++) {
 			for(int j = 0;j<columnMax; j++) {
 				if(i == 0||j == 0||i== 10||j == 10) {

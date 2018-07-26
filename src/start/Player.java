@@ -4,6 +4,7 @@ public class Player {
 	private String name;
 	private int level;
 	private int money;
+	private double exp;
 	private static int levelmax = 11;
 	private int attack;
 	private int defence;
@@ -13,6 +14,35 @@ public class Player {
 	private AbilityList ablist;
 	private int row = 5;
 	private int column = 5;
+	
+	private boolean m1defeat = true;
+	private boolean m2defeat = true;
+	private boolean m3defeat = true;
+	
+
+	public boolean isM1defeat() {
+		return m1defeat;
+	}
+
+	public void setM1defeat(boolean m1defeat) {
+		this.m1defeat = m1defeat;
+	}
+
+	public boolean isM2defeat() {
+		return m2defeat;
+	}
+
+	public void setM2defeat(boolean m2defeat) {
+		this.m2defeat = m2defeat;
+	}
+
+	public boolean isM3defeat() {
+		return m3defeat;
+	}
+
+	public void setM3defeat(boolean m3defeat) {
+		this.m3defeat = m3defeat;
+	}
 
 	public int getRow() {
 		return row;
@@ -28,6 +58,70 @@ public class Player {
 
 	public void setColumn(int column) {
 		this.column = column;
+	}
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getLevel() {
+		return level;
+	}
+
+	public void setLevel(int level) {
+		this.level = level;
+	}
+
+	public int getMoney() {
+		return money;
+	}
+
+	public void setMoney(int money) {
+		this.money = money;
+	}
+
+	public double getExp() {
+		return exp;
+	}
+
+	public void setExp(double exp) {
+		this.exp = exp;
+	}
+
+	public int getAttack() {
+		return attack;
+	}
+
+	public void setAttack(int attack) {
+		this.attack = attack;
+	}
+
+	public int getDefence() {
+		return defence;
+	}
+
+	public void setDefence(int defence) {
+		this.defence = defence;
+	}
+
+	public int getHealth() {
+		return health;
+	}
+
+	public void setHealth(int health) {
+		this.health = health;
+	}
+
+	public int getHealthmax() {
+		return healthmax;
+	}
+
+	public void setHealthmax(int healthmax) {
+		this.healthmax = healthmax;
 	}
 
 	public void positionControler1(int row,int column) {

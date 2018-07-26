@@ -2,7 +2,7 @@ package start;
 
 public class BoyNextDoor {
 	public BoyNextDoor(Map map) {
-		if (map.m1.isDefeat() == true && map.m2.isDefeat() == true && map.m3.isDefeat() == true) {
+		if (map.p.isM1defeat() == true && map.p.isM2defeat() == true && map.p.isM3defeat() == true) {
 			if (map.getFloor() == 0) {
 				map.setFloor(1);
 				map.p.setColumn(1);
