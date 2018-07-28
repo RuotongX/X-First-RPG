@@ -1,8 +1,8 @@
 package start;
 
 public class Shop {
-	private EntityList enlist;
-	private AbilityList ablist;
+	private EntityList enlist = new EntityList();
+	private AbilityList ablist = new AbilityList();
 	private int row;
 	private int column;
 	public int getRow() {
@@ -17,5 +17,34 @@ public class Shop {
 	public void setColumn(int column) {
 		this.column = column;
 	}
-	
+	public Shop() {
+		Axe axe = new Axe();
+		ChickenThigth ct = new ChickenThigth();
+		ChocolateCake cc = new ChocolateCake();
+		Crowbar crowbar = new Crowbar();
+		DimondShield ds = new DimondShield();
+		GoldenShield gs = new GoldenShield();
+		Hammer hammer = new Hammer();
+		IronShield is = new IronShield();
+		Pan pan = new Pan();
+		PpPotion pp = new PpPotion();
+		RoastBeef rb = new RoastBeef();
+		SilveryShield ss = new SilveryShield();
+		Sword sword = new Sword();
+		WoodenShield ws = new WoodenShield();
+		enlist.addentity(ct);
+		enlist.addentity(cc);
+		enlist.addentity(crowbar);
+		enlist.addentity(ds);
+		enlist.addentity(gs);
+		enlist.addentity(hammer);
+		enlist.addentity(is);
+		enlist.addentity(pan);
+		enlist.addentity(pp);
+		enlist.addentity(rb);
+		enlist.addentity(ss);
+		enlist.addentity(sword);
+		enlist.addentity(ws);
+		
+	}
 }

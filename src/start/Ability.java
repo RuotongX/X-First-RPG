@@ -6,6 +6,28 @@ public abstract class Ability {
 	private String description;
 	private double attackboost;
 	private double defenceboost;
+	private double healupbyp;
+	private double healupbyv;
+	private double percentagehit;
+	
+	public double getPercentagehit() {
+		return percentagehit;
+	}
+	public void setPercentagehit(double percentagehit) {
+		this.percentagehit = percentagehit;
+	}
+	public double getHealupbyp() {
+		return healupbyp;
+	}
+	public void setHealupbyp(double healupbyp) {
+		this.healupbyp = healupbyp;
+	}
+	public double getHealupbyv() {
+		return healupbyv;
+	}
+	public void setHealupbyv(double healupbyv) {
+		this.healupbyv = healupbyv;
+	}
 	public int getPp() {
 		return pp;
 	}

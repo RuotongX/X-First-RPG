@@ -8,7 +8,14 @@ public abstract class Entity {
 	private int money;
 	private String name;
 	private String description;
+	private int pp;
 	
+	public int getPp() {
+		return pp;
+	}
+	public void setPp(int pp) {
+		this.pp = pp;
+	}
 	public String getDescription() {
 		return description;
 	}
