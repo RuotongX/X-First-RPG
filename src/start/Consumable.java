@@ -2,6 +2,10 @@ package start;
 
 public abstract class Consumable extends Entity{
 	
+	public Consumable(String name) {
+		super(name);
+	}
+
 	boolean consumed = false;
 	
 	public boolean isConsumed() {
