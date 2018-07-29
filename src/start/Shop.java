@@ -17,6 +17,13 @@ public class Shop {
 	public void setColumn(int column) {
 		this.column = column;
 	}
+	
+	public EntityList getEnlist() {
+		return enlist;
+	}
+	public AbilityList getAblist() {
+		return ablist;
+	}
 	public Shop() {
 		Axe axe = new Axe();
 		ChickenThigth ct = new ChickenThigth();
@@ -32,6 +39,11 @@ public class Shop {
 		SilveryShield ss = new SilveryShield();
 		Sword sword = new Sword();
 		WoodenShield ws = new WoodenShield();
+		AttackWithHard awh = new AttackWithHard();
+		BecomeHuge bh = new BecomeHuge();
+		HugeImpact hi = new HugeImpact();
+		LeechSeed ls = new LeechSeed();
+		enlist.addentity(axe);
 		enlist.addentity(ct);
 		enlist.addentity(cc);
 		enlist.addentity(crowbar);
@@ -45,6 +57,9 @@ public class Shop {
 		enlist.addentity(ss);
 		enlist.addentity(sword);
 		enlist.addentity(ws);
-		
+		ablist.addAbility(awh);
+		ablist.addAbility(bh);
+		ablist.addAbility(hi);
+		ablist.addAbility(ls);
 	}
 }

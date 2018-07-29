@@ -19,6 +19,9 @@ public class EntityList {
 		}
 		return array;
 	}
+	public int getTotalnumber() {
+		return this.entityItems.size();
+	}
 	public boolean hasEntity(Entity aentity) {
 		return this.entityItems.contains(aentity);
 	}

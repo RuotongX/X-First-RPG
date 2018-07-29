@@ -22,4 +22,7 @@ public class AbilityList {
 	public boolean hasAbility(Ability aAbility) {
 		return this.abilityi.contains(aAbility);
 	}
+	public int getTotalnumber() {
+		return this.abilityi.size();
+	}
 }

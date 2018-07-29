@@ -128,7 +128,12 @@ public class Player {
 			if (column == 0 || column == 10) {
 				this.column = this.getColumn();
 				this.row = this.getRow();
-			} else if (row < 3 && row > 0 && column == 5) {
+			}
+			else if(row == 0 || row == 10) {
+				this.column = this.getColumn();
+				this.row = this.getRow();
+			}
+			else if (row < 3 && row > 0 && column == 5) {
 				this.column = this.getColumn();
 				this.row = this.getRow();
 			} else if (row < 10 && row > 6 && column == 2) {

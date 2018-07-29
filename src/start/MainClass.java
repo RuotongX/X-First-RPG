@@ -53,7 +53,7 @@ public class MainClass {
 				Battle b = new Battle(m,m.m3);
 			}
 			else if(m.p.getRow() == m.shop.getRow() && m.p.getColumn() == m.shop.getColumn() && m.getFloor() == 0) {
-				Shopping s = new Shopping();
+				Shopping s = new Shopping(m);
 			}
 			else if(m.p.getRow() == 9 && m.p.getColumn() == 1) {
 				BoyNextDoor bnd = new BoyNextDoor(m);
