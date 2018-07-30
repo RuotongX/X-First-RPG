@@ -1,4 +1,6 @@
 package start;
+import Ability.*;
+import Entity.*;
 
 public class Shop {
 	private EntityList enlist = new EntityList();

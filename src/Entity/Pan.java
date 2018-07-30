@@ -1,4 +1,5 @@
-package start;
+package Entity;
+import start.*;
 
 public class Pan extends Entity{
 	public Pan() {

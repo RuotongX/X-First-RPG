@@ -1,4 +1,5 @@
-package start;
+package Entity;
+import start.*;
 
 public class SilveryShield extends Entity{
 	public SilveryShield() {

@@ -1,4 +1,5 @@
-package start;
+package Entity;
+import start.*;
 
 public class DimondShield extends Entity{
 	public DimondShield() {

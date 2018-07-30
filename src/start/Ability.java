@@ -9,7 +9,14 @@ public abstract class Ability {
 	private double healupbyp;
 	private double healupbyv;
 	private double percentagehit;
+	private int maxpp;
 	
+	public int getMaxpp() {
+		return maxpp;
+	}
+	public void setMaxpp(int maxpp) {
+		this.maxpp = maxpp;
+	}
 	public double getPercentagehit() {
 		return percentagehit;
 	}

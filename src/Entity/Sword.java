@@ -1,4 +1,5 @@
-package start;
+package Entity;
+import start.*;
 
 public class Sword extends Entity{
 	public Sword() {

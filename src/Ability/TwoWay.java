@@ -1,4 +1,5 @@
-package start;
+package Ability;
+import start.*;
 
 public class TwoWay extends Ability {
 
@@ -8,5 +9,6 @@ public class TwoWay extends Ability {
 		super.setDefenceboost(1.5);
 		super.setPp(5);
 		super.setDescription("This is a skill which can improve your attack and deffence.");
+		super.setMaxpp(5);
 	}
 }

@@ -1,18 +1,18 @@
 package start;
 import java.util.Scanner;
-import java.util.StringTokenizer;
 
 public class Shopping {
 	private enum Type{
-		Entity,Ability,Healing;
+		Entity,Ability,Healing,goback;
 	}
 	public Shopping(Map m) {
 		System.out.println("Welcome to CoNuTDoWn shop Warrior "+m.p.getName());
 		Scanner sc = new Scanner(System.in);
+		int temp = 0;
 		do {
 			System.out.println("Please tell me what you want.");
-			System.out.println("1. "+Type.Entity+" 2. "+Type.Ability+" 3. "+Type.Healing);
-			int temp = sc.nextInt();
+			System.out.println("1. "+Type.Entity+" 2. "+Type.Ability+" 3. "+Type.Healing+" 4. "+Type.goback);
+			temp = sc.nextInt();
 			switch(temp){
 			case 1:
 				TableDisplay td1 = new TableDisplay(m.shop.getEnlist());
@@ -31,7 +31,7 @@ public class Shopping {
 					}
 				}
 				if(searchlist.getTotalnumber() == 0) {
-					System.out.println("Sorry we do not hava "+token);
+					System.out.println("Sorry we do not have "+token);
 					break;
 				}
 				else {
@@ -44,24 +44,27 @@ public class Shopping {
 					break;
 				}
 				for(int i =0;i< searchlist.getTotalnumber(); i++) {
-					if(searchlist.getentityList()[i].getName().contains(token)) {
+					if(searchlist.getentityList()[i].getName().toLowerCase().contains(token)) {
 						if(searchlist.getentityList()[i].getMoney()<=m.p.getMoney()) {
 						    m.p.setMoney(m.p.getMoney() - searchlist.getentityList()[i].getMoney());
 						    m.p.enlist.addentity(searchlist.getentityList()[i]);
+						    System.out.println("You have bought the "+token);
+						    searchlist.clear();
 						}
-						else {
-							System.out.println("Sorry you do not have enough money");
+					    else {
+					    	System.out.println("player money is "+m.p.getMoney());
+							System.out.println("Sorry you do not have enough money.");
+							searchlist.clear();
 						}
 					}
-					else {
-					    System.out.println("Sorry we do not hava "+token);
-						break;
-						}
-					}
+				}
+				if(searchlist.getTotalnumber() != 0) {
+					System.out.println("Sorry we do not have "+token);
+				}
 				break;
 			case 2:
 				
 				}
-		} while (true);
+		} while (temp !=4);
 	}
 }

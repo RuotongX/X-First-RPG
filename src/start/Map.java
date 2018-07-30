@@ -14,13 +14,13 @@ public class Map {
 	Monster m3 = new Monster();
 	Monster boss = new Monster();
 	Shop shop = new Shop();
-	public void PlayerGenerator() {
+	private void PlayerGenerator() {
 		p.setExp(0);
 		p.setHealth(50);
 		p.setAttack(15);
 		p.setDefence(5);
 		p.setLevel(1);
-		p.setMoney(0);
+		p.setMoney(100);
 	}
 	private void MonsterGenerator() {
 		m1.setRow(2);
@@ -105,8 +105,6 @@ public class Map {
 		this.floor = floor;
 	}
 	public void display() {
-		this.MonsterGenerator();
-		this.ShopGenerator();
 		for(int i = 0;i<rowMax; i++) {
 			for(int j = 0;j<columnMax; j++) {
 				if(i == 0||j == 0||i== 10||j == 10) {
@@ -199,6 +197,9 @@ public class Map {
 			}
 		}	
 	public Map() {
+		this.PlayerGenerator();
+		this.MonsterGenerator();
+		this.ShopGenerator();
 	}
 }
 
