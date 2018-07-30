@@ -10,8 +10,8 @@ public class Player {
 	private int defence;
 	private int health;
 	private int healthmax;
-	private EntityList enlist;
-	private AbilityList ablist;
+	public EntityList enlist = new EntityList();
+	public AbilityList ablist = new AbilityList();
 	private int row = 5;
 	private int column = 5;
 	
