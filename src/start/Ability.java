@@ -10,7 +10,14 @@ public abstract class Ability {
 	private double healupbyv;
 	private double percentagehit;
 	private int maxpp;
+	private int money;
 	
+	public int getMoney() {
+		return money;
+	}
+	public void setMoney(int money) {
+		this.money = money;
+	}
 	public int getMaxpp() {
 		return maxpp;
 	}

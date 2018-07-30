@@ -25,4 +25,7 @@ public class AbilityList {
 	public int getTotalnumber() {
 		return this.abilityi.size();
 	}
+	public void clear() {
+		this.abilityi.clear();
+	}
 }

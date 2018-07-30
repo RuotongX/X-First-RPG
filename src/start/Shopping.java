@@ -15,7 +15,7 @@ public class Shopping {
 			temp = sc.nextInt();
 			switch(temp){
 			case 1:
-				TableDisplay td1 = new TableDisplay(m.shop.getEnlist());
+				EntityTableDisplay td1 = new EntityTableDisplay(m.shop.getEnlist());
 				System.out.println("You can search what type entity you want, the result will search from the entity name and description."
 						+ "type 'e' if you do not want to buy any things");
 				String token ;
@@ -35,7 +35,7 @@ public class Shopping {
 					break;
 				}
 				else {
-				    TableDisplay td2 = new TableDisplay(searchlist);
+				    EntityTableDisplay td2 = new EntityTableDisplay(searchlist);
 				}
 				System.out.println("Please choose which things you want to get, type the name below."
 						+ "type 'e' if you do not want to buy any things");
@@ -63,7 +63,35 @@ public class Shopping {
 				}
 				break;
 			case 2:
-				
+				AbilityTableList at = new AbilityTableList(m.shop.getAblist());
+				System.out.println("Please choose which things you want to get, type the name below."
+						+ "type 'e' if you do not want to buy any things");
+				String token2 ;
+				sc.nextLine();
+				token2 = sc.nextLine().toLowerCase();
+				if (token2.equals("e")) {
+					break;
+				}
+				AbilityList searchlist2 = new AbilityList();
+				for(int i =0;i< searchlist2.getTotalnumber(); i++) {
+					if(searchlist2.getAbilitylist()[i].getName().toLowerCase().contains(token2)) {
+						if(searchlist2.getAbilitylist()[i].getMoney()<=m.p.getMoney()) {
+						    m.p.setMoney(m.p.getMoney() - searchlist2.getAbilitylist()[i].getMoney());
+						    m.p.ablist.addAbility(searchlist2.getAbilitylist()[i]);
+						    System.out.println("You have bought the "+token2);
+						    searchlist2.clear();
+						}
+					    else {
+					    	System.out.println("player money is "+m.p.getMoney());
+							System.out.println("Sorry you do not have enough money.");
+							searchlist2.clear();
+						}
+					}
+				}
+				if(searchlist2.getTotalnumber() != 0) {
+					System.out.println("Sorry we do not have "+token2);
+				}
+				break;
 				}
 		} while (temp !=4);
 	}
