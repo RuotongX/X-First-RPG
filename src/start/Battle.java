@@ -32,9 +32,6 @@ public class Battle {
 					System.out.println(monster.getName()+" deals you "+damage2+" damages!");
 					System.out.println("Your heal is "+m.p.getHealth()+monster.getName()+"'s heal is "+monster.getHealth());
 				}
-//				else if(ability.getName().toLowerCase().equals("smash")) {
-//					m.p.setTempattack(tempattack);
-//				}
 			}
 	}
 	private void bh(Map m,Monster monster) {
@@ -76,6 +73,50 @@ public class Battle {
 					System.out.println("Your heal is "+m.p.getHealth()+monster.getName()+"'s heal is "+monster.getHealth());
 			 }
 	    }
+	}
+	private void sm(Map m,Monster monster) {
+		for(Ability ability:m.p.ablist.getAbilitylist()) {
+			if(ability.getName().toLowerCase().equals("smash")) {
+				m.p.setTempattack(attack*ability.getStrength());
+				ability.setPp(ability.getPp()-1);
+				System.out.println("You used the "+ability.getName());
+				double damage1 = (m.p.getTempattack()-monster.getDefence());
+				if(damage1 <= 0) {
+					damage1 = 1;
+				}
+				monster.setHealth(monster.getHealth()-damage1);
+				System.out.println("You have deal "+damage1+" to "+monster.getName());
+				double damage2 = (monster.getAttack()-m.p.getTempdefence());
+				if(damage2 <= 0) {
+					damage2 = 1;
+				}
+				m.p.setHealth(m.p.getHealth()-damage2);
+				System.out.println(monster.getName()+" deals you "+damage2+" damages!");
+				System.out.println("Your heal is "+m.p.getHealth()+monster.getName()+"'s heal is "+monster.getHealth());
+			}
+		}
+	}
+	private void tk(Map m,Monster monster) {
+		for(Ability ability:m.p.ablist.getAbilitylist()) {
+			if(ability.getName().toLowerCase().equals("tackle")) {
+				m.p.setTempattack(attack*ability.getStrength());
+				ability.setPp(ability.getPp()-1);
+				System.out.println("You used the "+ability.getName());
+				double damage1 = (m.p.getTempattack()-monster.getDefence());
+				if(damage1 <= 0) {
+					damage1 = 1;
+				}
+				monster.setHealth(monster.getHealth()-damage1);
+				System.out.println("You have deal "+damage1+" to "+monster.getName());
+				double damage2 = (monster.getAttack()-m.p.getTempdefence());
+				if(damage2 <= 0) {
+					damage2 = 1;
+				}
+				m.p.setHealth(m.p.getHealth()-damage2);
+				System.out.println(monster.getName()+" deals you "+damage2+" damages!");
+				System.out.println("Your heal is "+m.p.getHealth()+monster.getName()+"'s heal is "+monster.getHealth());
+			}
+		}
 	}
 	
 	public Battle(Map m,Monster monster) {	
