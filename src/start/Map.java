@@ -1,5 +1,6 @@
 package start;
 import java.util.Random;
+import Ability.*;
 
 public class Map {
 	private static int rowMax = 11;
@@ -14,6 +15,7 @@ public class Map {
 	Monster m3 = new Monster();
 	Monster boss = new Monster();
 	Shop shop = new Shop();
+	Tackle tackle = new Tackle();
 	private void PlayerGenerator() {
 		p.setExp(0);
 		p.setHealth(50);
@@ -21,6 +23,7 @@ public class Map {
 		p.setDefence(5);
 		p.setLevel(1);
 		p.setMoney(100);
+		p.ablist.addAbility(tackle);
 	}
 	private void MonsterGenerator() {
 		m1.setRow(2);

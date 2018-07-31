@@ -11,7 +11,7 @@ public class Shopping {
 		int temp = 0;
 		do {
 			System.out.println("Please tell me what you want.");
-			System.out.println("1. "+Type.Entity+" 2. "+Type.Ability+" 3. "+Type.Healing+" 4. "+Type.goback);
+			System.out.println("1. "+Type.Entity+" 2. "+Type.Ability+" 3. "+Type.Healing+"(costs 6 dollors) 4. "+Type.goback);
 			temp = sc.nextInt();
 			switch(temp){
 			case 1:
@@ -92,7 +92,24 @@ public class Shopping {
 					System.out.println("Sorry we do not have "+token2);
 				}
 				break;
+			case 3:
+				if(m.p.getMoney()>=6) {
+					m.p.setMoney(m.p.getMoney()-6);
+				    m.p.setHealth(m.p.getHealthmax());
+				    for(int i = 0;i<m.p.ablist.getTotalnumber();i++) {
+				        m.p.ablist.getAbilitylist()[i].setPp(m.p.ablist.getAbilitylist()[i].getMaxpp());
+				    }
+				System.out.println("Heal finished.");
+				break;
 				}
+				else {
+					System.out.println("Sorry your money is "+m.p.getMoney()+"which is not enough for healing.");
+					break;
+				}
+			case 4:
+				m.p.setRow(9);
+				break;
+			}
 		} while (temp !=4);
 	}
 }
