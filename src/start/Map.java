@@ -19,10 +19,13 @@ public class Map {
 	private void PlayerGenerator() {
 		p.setExp(0);
 		p.setHealth(50);
-		p.setAttack(15);
+		p.setHealthmax(50);
+		p.setAttack(25);
 		p.setDefence(5);
 		p.setLevel(1);
 		p.setMoney(100);
+		p.setTempattack(p.getAttack());
+		p.setTempdefence(p.getDefence());
 		p.ablist.addAbility(tackle);
 	}
 	private void MonsterGenerator() {

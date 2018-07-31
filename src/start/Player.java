@@ -8,7 +8,9 @@ public class Player {
 	private static int levelmax = 11;
 	private int attack;
 	private int defence;
-	private int health;
+	private double tempattack;
+	private double tempdefence;
+	private double health;
 	private int healthmax;
 	public EntityList enlist = new EntityList();
 	public AbilityList ablist = new AbilityList();
@@ -42,6 +44,26 @@ public class Player {
 
 	public void setM3defeat(boolean m3defeat) {
 		this.m3defeat = m3defeat;
+	}
+
+	public static int getLevelmax() {
+		return levelmax;
+	}
+
+	public double getTempattack() {
+		return tempattack;
+	}
+
+	public void setTempattack(double tempattack) {
+		this.tempattack = tempattack;
+	}
+
+	public double getTempdefence() {
+		return tempdefence;
+	}
+
+	public void setTempdefence(double tempdefence) {
+		this.tempdefence = tempdefence;
 	}
 
 	public int getRow() {
@@ -108,12 +130,12 @@ public class Player {
 		this.defence = defence;
 	}
 
-	public int getHealth() {
+	public double getHealth() {
 		return health;
 	}
 
-	public void setHealth(int health) {
-		this.health = health;
+	public void setHealth(double d) {
+		this.health = d;
 	}
 
 	public int getHealthmax() {

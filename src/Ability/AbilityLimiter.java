@@ -15,7 +15,7 @@ public class AbilityLimiter {
 	}
 
 	public AbilityLimiter(AbilityList al) {
-		if(al.getTotalnumber() >4) {
+		if(al.getTotalnumber() == 4) {
 			System.out.println("You can only master 4 ability , please delete one of your ability");
 			PlayerAbilityDisplay pad = new PlayerAbilityDisplay(al);
 			System.out.println("Type the name of the ability, if you do not want to forget any ablility just type 'e'.");

@@ -1,6 +1,8 @@
 package start;
 import java.util.Scanner;
 
+import Ability.AbilityLimiter;
+
 public class Shopping {
 	private enum Type{
 		Entity,Ability,Healing,goback;
@@ -76,6 +78,10 @@ public class Shopping {
 				for(int i =0;i< searchlist2.getTotalnumber(); i++) {
 					if(searchlist2.getAbilitylist()[i].getName().toLowerCase().contains(token2)) {
 						if(searchlist2.getAbilitylist()[i].getMoney()<=m.p.getMoney()) {
+							AbilityLimiter al = new AbilityLimiter(m.p.ablist);
+							if(al.isKeep() == true) {
+								return;
+							}
 						    m.p.setMoney(m.p.getMoney() - searchlist2.getAbilitylist()[i].getMoney());
 						    m.p.ablist.addAbility(searchlist2.getAbilitylist()[i]);
 						    System.out.println("You have bought the "+token2);
