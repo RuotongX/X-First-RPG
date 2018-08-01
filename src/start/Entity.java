@@ -9,7 +9,14 @@ public abstract class Entity {
 	private String name;
 	private String description;
 	private int pp;
+	private int num;
 	
+	public int getNum() {
+		return num;
+	}
+	public void setNum(int num) {
+		this.num = num;
+	}
 	public int getPp() {
 		return pp;
 	}

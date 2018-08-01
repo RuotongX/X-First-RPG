@@ -18,12 +18,12 @@ public class Shopping {
 			System.out.println("1. " + Type.Entity + " 2. " + Type.Ability + " 3. " + Type.Healing
 					+ "(costs 6 dollors) 4. " + Type.goback);
 			try {
-			  temp = sc.nextInt();
-			  if (temp>4) {
-				  temp =4;
-			  }
-			}catch(Exception e) {
-				System.err.println(e);
+				temp = sc.nextInt();
+				if (temp > 4) {
+					temp = 4;
+				}
+			} catch (Exception e) {
+
 				System.out.println("You must input a number less or equal than 4. You are kicked out from our shop!!");
 				temp = 4;
 			}
@@ -64,7 +64,19 @@ public class Shopping {
 						if (searchlist.getentityList()[i].getName().toLowerCase().contains(token)) {
 							if (searchlist.getentityList()[i].getMoney() <= m.p.getMoney()) {
 								m.p.setMoney(m.p.getMoney() - searchlist.getentityList()[i].getMoney());
-								m.p.enlist.addentity(searchlist.getentityList()[i]);
+								if (m.p.enlist.hasEntity(searchlist.getentityList()[i])) {
+
+									for (int j = 0; j < m.p.enlist.getTotalnumber(); j++) {
+										if (m.p.enlist.getentityList()[j].getName().toLowerCase().equals(token)) {
+											m.p.enlist.getentityList()[j].setNum(m.p.enlist.getentityList()[j].getNum());
+										} 
+									}
+								}
+									else {
+										m.p.enlist.addentity(searchlist.getentityList()[i]);
+									}
+
+								}
 								System.out.println("You have bought the " + input + ".Now back to main menu.");
 								searchlist.clear();
 								break;
@@ -77,19 +89,20 @@ public class Shopping {
 						}
 					}
 
-				}
+				
 				break;
 
 			case 2:
 				AbilityTableList at = new AbilityTableList(m.shop.getAblist());
 				System.out.println("Please choose which things you want to get, type the name below."
-						+ "type 'e' if you do not want to buy any things");
+						+ "Otherwise you will back to main menu.");
 				String token2;
 				sc.nextLine();
 				token2 = sc.nextLine().toLowerCase();
-				if (token2.equals("e")) {
-					break;
-				}
+				// if (token2.equals("e")) {
+				// break;
+				// }
+				// System.out.println("111");
 				for (int i = 0; i < m.shop.getAblist().getTotalnumber(); i++) {
 					if (m.shop.getAblist().getAbilitylist()[i].getName().toLowerCase().equals(token2)) {
 						if (m.shop.getAblist().getAbilitylist()[i].getMoney() <= m.p.getMoney()) {
@@ -100,12 +113,17 @@ public class Shopping {
 							m.p.setMoney(m.p.getMoney() - m.shop.getAblist().getAbilitylist()[i].getMoney());
 							m.p.ablist.addAbility(m.shop.getAblist().getAbilitylist()[i]);
 							System.out.println("You have bought the " + token2);
+							break;
 						} else {
 							System.out.println("player money is " + m.p.getMoney());
 							System.out.println("Sorry you do not have enough money.");
 						}
+					} else if (token2.equals("e")) {
+						break;
 					}
+
 				}
+				// System.out.println("111");
 				break;
 			case 3:
 				if (m.p.getMoney() >= 6) {
@@ -117,7 +135,7 @@ public class Shopping {
 					System.out.println("Heal finished.");
 					break;
 				} else {
-					System.out.println("Sorry your money is " + m.p.getMoney() + "which is not enough for healing.");
+					System.out.println("Sorry your money is " + m.p.getMoney() + " you can't get healed.");
 					break;
 				}
 			case 4:
