@@ -135,7 +135,12 @@ public class Player {
 	}
 
 	public void setHealth(double d) {
-		this.health = d;
+		if(this.health+d>this.healthmax) {
+			this.health = this.healthmax;
+		}
+		else {
+		    this.health = d;
+		}
 	}
 
 	public int getHealthmax() {

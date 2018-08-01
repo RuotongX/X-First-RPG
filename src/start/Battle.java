@@ -5,6 +5,8 @@ import Ability.*;
 public class Battle {
 	private double attack;
 	private double defence;
+	private int round;
+	Scanner sc = new Scanner(System.in);
 	public enum skill{
 		AttackWithHard,BecomeHuge,HugeImpact,LeechSeed,Reversal,Smash,Tackle,TwoWay;
 	}
@@ -118,12 +120,74 @@ public class Battle {
 			}
 		}
 	}
+	private void rs(Map m, Monster monster) {
+		for(Ability ability:m.p.ablist.getAbilitylist()) {
+			if(ability.getName().toLowerCase().equals("reversal")) {
+				this.round = 3;
+				ability.setPp(ability.getPp()-1);
+				System.out.println("You feel you are full of healing power.");
+				double damage2 = (monster.getAttack()-m.p.getTempdefence());
+				if(damage2 <= 0) {
+					damage2 = 1;
+				}
+				m.p.setHealth(m.p.getHealth()-damage2);
+				System.out.println(monster.getName()+" deals you "+damage2+" damages!");
+				System.out.println(monster.getName()+"'s heal is "+monster.getHealth());
+				m.p.setHealth(m.p.getHealth()+m.p.getHealthmax()*ability.getHealupbyp());
+				System.out.println("Your heal is "+m.p.getHealth()+m.p.getHealthmax()*ability.getHealupbyp());
+				System.out.println("Now you heal is "+m.p.getHealth());
+				this.round = 2;
+				while(this.round!=0) {
+					battle(m,monster);
+					System.out.println("Due to the Reversal you get "+m.p.getHealthmax()*ability.getHealupbyp());
+					System.out.println("Now you heal is "+m.p.getHealth());
+					this.round--;
+				}
+				System.out.println("Reversal effect disappear.");
+			}
+		}
+	}
+	private void ls(Map m, Monster monster) {
+		for(Ability ability:m.p.ablist.getAbilitylist()) {
+			if(ability.getName().toLowerCase().equals("leechseed")) {
+				this.round = 3;
+				ability.setPp(ability.getPp()-1);
+				System.out.println("Enemy got the leechseed and keep losing heal, you are healed by seed.");
+				double damage2 = (monster.getAttack()-m.p.getTempdefence());
+				if(damage2 <= 0) {
+					damage2 = 1;
+				}
+				m.p.setHealth(m.p.getHealth()-damage2);
+				System.out.println(monster.getName()+" deals you "+damage2+" damages!");
+				System.out.println(monster.getName()+"'s heal is "+monster.getHealth());
+				monster.setHealth(monster.getHealthmax()*ability.getPercentagehit());
+				m.p.setHealth(m.p.getHealth()+monster.getHealthmax()*ability.getPercentagehit());
+				m.p.setHealth(m.p.getHealth()+m.p.getHealthmax()*ability.getHealupbyp());
+				System.out.println("Due to the Reversal you get "+m.p.getHealthmax()*ability.getHealupbyp());
+				System.out.println("Now you heal is "+m.p.getHealth());
+				this.round = 2;
+				while(this.round!=0) {
+					battle(m,monster);
+					System.out.println("Due to the Reversal you get "+m.p.getHealthmax()*ability.getHealupbyp());
+					System.out.println("Now you heal is "+m.p.getHealth());
+					this.round--;
+				}
+				System.out.println("Reversal effect disappear.");
+			}
+		}
+	}
+	private void battle(Map m,Monster monster) {
+		do {
+    	    System.out.println("Please select your ability to attack. Type 1, 2, 3 or 4 to select.");
+    	    PlayerAbilityDisplay pad = new PlayerAbilityDisplay(m.p.ablist);
+    	    int order = sc.nextInt();
+    	 }while(true);
+	}
 	
 	public Battle(Map m,Monster monster) {	
 		int fighting = 0;
 		this.attack = m.p.getAttack();
 		this.defence = m.p.getDefence();
-		Scanner sc = new Scanner(System.in);
 		System.out.println(m.p.getName()+" you meet a "+monster.getName()+"!");
     	System.out.println("Please decide what you want to do: (Type the number)");
 	    do {
@@ -134,12 +198,8 @@ public class Battle {
 	    	     int order = sc.nextInt();
 	    	     switch(order) {
 	    	     case 1:
-	    	    	 do {
-	    	    	    System.out.println("Please select your ability to attack. Type 1, 2, 3 or 4 to select.");
-	    	    	    PlayerAbilityDisplay pad = new PlayerAbilityDisplay(m.p.ablist);
-	    	    	    order = sc.nextInt();
-	    	    	 }while(true);
-				case 2:
+	    	    	 break;
+				 case 2:
 	    	    	 break;
 	    	     case 3:
 	    	    	 System.out.println("You escape from " +monster.getName());
