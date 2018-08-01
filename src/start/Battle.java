@@ -5,15 +5,39 @@ import Ability.*;
 public class Battle {
 	private double attack;
 	private double defence;
-	private int round;
+	private int roundr;
+	private int roundl;
+	int fighting = 0;
 	Scanner sc = new Scanner(System.in);
-	public enum skill{
-		AttackWithHard,BecomeHuge,HugeImpact,LeechSeed,Reversal,Smash,Tackle,TwoWay;
+	private void skilldepender(String s,Map m,Monster monster) {
+		if(s.equals("Attack With Hard")) {
+			this.awh(m, monster);
+		}
+		else if(s.equals("Become Huge")) {
+			this.bh(m,monster);
+		}
+		else if(s.equals("Huge Impact")) {
+			this.hi(m, monster);
+		}
+		else if(s.equals("Leech Seed")) {
+			this.ls(m, monster);
+		}
+		else if(s.equals("Reversal")) {
+			this.rs(m,monster);
+		}
+		else if(s.equals("Smash")) {
+			this.sm(m, monster);
+		}
+		else if(s.equals("Tackle")) {
+			this.tk(m, monster);
+		}
+		else if(s.equals("TwoWay")) {
+			this.tw(m, monster);
+		}
 	}
-	private skill s;
 	private void awh(Map m,Monster monster) {
 			for(Ability ability:m.p.ablist.getAbilitylist()) {
-				if(ability.getName().toLowerCase().equals("attackwithhard")){
+				if(ability.getName().toLowerCase().equals("attack with hard")){
 					m.p.setTempattack(this.attack*ability.getStrength());
 					this.defence = m.p.getDefence()*ability.getDefenceboost();
 					m.p.setTempdefence(this.defence);
@@ -38,7 +62,7 @@ public class Battle {
 	}
 	private void bh(Map m,Monster monster) {
 		for(Ability ability:m.p.ablist.getAbilitylist()) {
-			if(ability.getName().toLowerCase().equals("becomehuge")) {
+			if(ability.getName().toLowerCase().equals("become huge")) {
 				m.p.setTempattack(m.p.getAttack()*ability.getAttackboost());
 				m.p.setTempdefence(m.p.getDefence()*ability.getDefenceboost());
 				ability.setPp(ability.getPp()-1);
@@ -56,7 +80,7 @@ public class Battle {
 	}	
 	private void hi(Map m,Monster monster) {
 		for(Ability ability:m.p.ablist.getAbilitylist()) {
-			 if(ability.getName().toLowerCase().equals("hugeImpact")) {
+			 if(ability.getName().toLowerCase().equals("huge Impact")) {
 					m.p.setTempattack(m.p.getAttack()*ability.getStrength());
 					ability.setPp(ability.getPp()-1);
 					System.out.println("You used the "+ability.getName());
@@ -123,7 +147,7 @@ public class Battle {
 	private void rs(Map m, Monster monster) {
 		for(Ability ability:m.p.ablist.getAbilitylist()) {
 			if(ability.getName().toLowerCase().equals("reversal")) {
-				this.round = 3;
+				this.roundr = 3;
 				ability.setPp(ability.getPp()-1);
 				System.out.println("You feel you are full of healing power.");
 				double damage2 = (monster.getAttack()-m.p.getTempdefence());
@@ -135,13 +159,13 @@ public class Battle {
 				System.out.println(monster.getName()+"'s heal is "+monster.getHealth());
 				m.p.setHealth(m.p.getHealth()+m.p.getHealthmax()*ability.getHealupbyp());
 				System.out.println("Your heal is "+m.p.getHealth()+m.p.getHealthmax()*ability.getHealupbyp());
-				System.out.println("Now you heal is "+m.p.getHealth());
-				this.round = 2;
-				while(this.round!=0) {
+				this.roundr = 2;
+				while(this.roundr!=0) {
 					battle(m,monster);
-					System.out.println("Due to the Reversal you get "+m.p.getHealthmax()*ability.getHealupbyp());
+					m.p.setHealth(m.p.getHealth()+m.p.getHealthmax()*ability.getHealupbyp());
+					System.out.println("Due to the Reversal you get "+m.p.getHealthmax()*ability.getHealupbyp()+" heals");
 					System.out.println("Now you heal is "+m.p.getHealth());
-					this.round--;
+					this.roundr--;
 				}
 				System.out.println("Reversal effect disappear.");
 			}
@@ -149,8 +173,8 @@ public class Battle {
 	}
 	private void ls(Map m, Monster monster) {
 		for(Ability ability:m.p.ablist.getAbilitylist()) {
-			if(ability.getName().toLowerCase().equals("leechseed")) {
-				this.round = 3;
+			if(ability.getName().toLowerCase().equals("leech seed")) {
+				this.roundl = 3;
 				ability.setPp(ability.getPp()-1);
 				System.out.println("Enemy got the leechseed and keep losing heal, you are healed by seed.");
 				double damage2 = (monster.getAttack()-m.p.getTempdefence());
@@ -159,33 +183,110 @@ public class Battle {
 				}
 				m.p.setHealth(m.p.getHealth()-damage2);
 				System.out.println(monster.getName()+" deals you "+damage2+" damages!");
-				System.out.println(monster.getName()+"'s heal is "+monster.getHealth());
-				monster.setHealth(monster.getHealthmax()*ability.getPercentagehit());
+				monster.setHealth(monster.getHealth()-monster.getHealthmax()*ability.getPercentagehit());
 				m.p.setHealth(m.p.getHealth()+monster.getHealthmax()*ability.getPercentagehit());
-				m.p.setHealth(m.p.getHealth()+m.p.getHealthmax()*ability.getHealupbyp());
-				System.out.println("Due to the Reversal you get "+m.p.getHealthmax()*ability.getHealupbyp());
+				this.roundl = 2;
+				System.out.println("Due to the Leech Seed enemy gets "+monster.getHealthmax()*ability.getPercentagehit()+" damages.");
+				System.out.println("And due to the Leech Seed you get "+monster.getHealthmax()*ability.getPercentagehit()+" heals.");
 				System.out.println("Now you heal is "+m.p.getHealth());
-				this.round = 2;
-				while(this.round!=0) {
+				System.out.println(monster.getName()+"'s heal is "+monster.getHealth());
+				this.roundl = 2;
+				while(this.roundl!=0) {
 					battle(m,monster);
-					System.out.println("Due to the Reversal you get "+m.p.getHealthmax()*ability.getHealupbyp());
+					monster.setHealth(monster.getHealth()-monster.getHealthmax()*ability.getPercentagehit());
+					m.p.setHealth(m.p.getHealth()+monster.getHealthmax()*ability.getPercentagehit());
+					System.out.println("Due to the Leech Seed enemy gets "+monster.getHealthmax()*ability.getPercentagehit()+" damages.");
+					System.out.println("And due to the Leech Seed you get "+monster.getHealthmax()*ability.getPercentagehit()+" heals.");
 					System.out.println("Now you heal is "+m.p.getHealth());
-					this.round--;
+					System.out.println(monster.getName()+"'s heal is "+monster.getHealth());
+					this.roundl--;
 				}
 				System.out.println("Reversal effect disappear.");
 			}
 		}
 	}
+	private void tw(Map m,Monster monster) {
+		for(Ability ability:m.p.ablist.getAbilitylist()) {
+			if(ability.getName().toLowerCase().equals("twoway")) {
+				m.p.setTempattack(m.p.getAttack()*ability.getAttackboost());
+				m.p.setTempdefence(m.p.getDefence()*ability.getDefenceboost());
+				ability.setPp(ability.getPp()-1);
+				System.out.println("You used the "+ability.getName());
+				System.out.println("You feel you attack and defence improved.");
+				double damage2 = (monster.getAttack()-m.p.getTempdefence());
+				if(damage2 <= 0) {
+					damage2 = 1;
+				}
+				m.p.setHealth(m.p.getHealth()-damage2);
+				System.out.println(monster.getName()+" deals you "+damage2+" damages!");
+				System.out.println("Your heal is "+m.p.getHealth()+monster.getName()+"'s heal is "+monster.getHealth());
+		   }
+		}
+	}
 	private void battle(Map m,Monster monster) {
-		do {
+		int temp =0;
     	    System.out.println("Please select your ability to attack. Type 1, 2, 3 or 4 to select.");
     	    PlayerAbilityDisplay pad = new PlayerAbilityDisplay(m.p.ablist);
     	    int order = sc.nextInt();
-    	 }while(true);
-	}
+    	    String s = m.p.ablist.getAbilitylist()[order-1].getName();
+    	    this.skilldepender(s, m, monster);
+    	    if(m.p.getHealth() <= 0) {
+    	    	m.p.setRow(9);
+    	    	m.p.setColumn(8);
+    	    	m.p.setMoney(m.p.getMoney()/2);
+    	    	m.p.setHealth(m.p.getHealthmax());
+    	    	for (int i = 0; i < m.p.ablist.getTotalnumber(); i++) {
+					m.p.ablist.getAbilitylist()[i].setPp(m.p.ablist.getAbilitylist()[i].getMaxpp());
+				}
+    	    	this.fighting =1;
+    	    	System.out.println("You have been defeated!!");
+    	    }
+    	    if(monster.getHealth() <= 0) {
+    	    	System.out.println("You have slain the monster! You have earned: "+monster.getMoney()+"$!");
+    	    	m.p.setMoney(monster.getMoney());
+    	    	
+    	    	m.p.setExp(m.p.getExp()+monster.getExp());
+    	    	if(m.p.getExp()>=10 && m.p.getExp()<14) {
+    	    		m.p.setLevel(2);
+    	    		System.out.println("Congrations! Level up! Your are lv2 now!");
+    	    	}
+    	    	else if(m.p.getExp()>=15 && m.p.getExp()<22) {
+    	    		m.p.setLevel(3);
+    	    		System.out.println("Congrations! Level up! Your are lv3 now!");
+    	    	}
+    	    	else if(m.p.getExp()>=22 && m.p.getExp()<32) {
+    	    		m.p.setLevel(4);
+    	    		System.out.println("Congrations! Level up! Your are lv4 now!");
+    	    	}
+    	    	else if(m.p.getExp()>=33 && m.p.getExp()<49) {
+    	    		m.p.setLevel(5);
+    	    		System.out.println("Congrations! Level up! Your are lv5 now!");
+    	    	}
+    	    	else if(m.p.getExp()>=50 && m.p.getExp()<74) {
+    	    		m.p.setLevel(6);
+    	    		System.out.println("Congrations! Level up! Your are lv6 now!");
+    	    	}
+    	    	else if(m.p.getExp()>=75 && m.p.getExp()<112) {
+    	    		m.p.setLevel(7);
+    	    		System.out.println("Congrations! Level up! Your are lv7 now!");
+    	    	}
+    	    	else if(m.p.getExp()>=113 && m.p.getExp()<169) {
+    	    		m.p.setLevel(8);
+    	    		System.out.println("Congrations! Level up! Your are lv8 now!");
+    	    	}
+    	    	else if(m.p.getExp()>=170 && m.p.getExp()<255) {
+    	    		m.p.setLevel(9);
+    	    		System.out.println("Congrations! Level up! Your are lv9 now!");
+    	    	}
+    	    	else if(m.p.getExp()>=256 && m.p.getExp()<384) {
+    	    		m.p.setLevel(10);
+    	    		System.out.println("Congrations! Level up! Your are lv10 now!");
+    	    	}
+    	    	this.fighting =1;
+    	    }
+    	 }
 	
 	public Battle(Map m,Monster monster) {	
-		int fighting = 0;
 		this.attack = m.p.getAttack();
 		this.defence = m.p.getDefence();
 		System.out.println(m.p.getName()+" you meet a "+monster.getName()+"!");
@@ -198,6 +299,7 @@ public class Battle {
 	    	     int order = sc.nextInt();
 	    	     switch(order) {
 	    	     case 1:
+	    	    	 this.battle(m,monster);
 	    	    	 break;
 				 case 2:
 	    	    	 break;

@@ -90,27 +90,21 @@ public class Shopping {
 				if (token2.equals("e")) {
 					break;
 				}
-				AbilityList searchlist2 = new AbilityList();
-				for (int i = 0; i < searchlist2.getTotalnumber(); i++) {
-					if (searchlist2.getAbilitylist()[i].getName().toLowerCase().contains(token2)) {
-						if (searchlist2.getAbilitylist()[i].getMoney() <= m.p.getMoney()) {
+				for (int i = 0; i < m.shop.getAblist().getTotalnumber(); i++) {
+					if (m.shop.getAblist().getAbilitylist()[i].getName().toLowerCase().equals(token2)) {
+						if (m.shop.getAblist().getAbilitylist()[i].getMoney() <= m.p.getMoney()) {
 							AbilityLimiter al = new AbilityLimiter(m.p.ablist);
 							if (al.isKeep() == true) {
 								return;
 							}
-							m.p.setMoney(m.p.getMoney() - searchlist2.getAbilitylist()[i].getMoney());
-							m.p.ablist.addAbility(searchlist2.getAbilitylist()[i]);
+							m.p.setMoney(m.p.getMoney() - m.shop.getAblist().getAbilitylist()[i].getMoney());
+							m.p.ablist.addAbility(m.shop.getAblist().getAbilitylist()[i]);
 							System.out.println("You have bought the " + token2);
-							searchlist2.clear();
 						} else {
 							System.out.println("player money is " + m.p.getMoney());
 							System.out.println("Sorry you do not have enough money.");
-							searchlist2.clear();
 						}
 					}
-				}
-				if (searchlist2.getTotalnumber() != 0) {
-					System.out.println("Sorry we do not have " + token2);
 				}
 				break;
 			case 3:

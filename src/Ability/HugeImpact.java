@@ -3,7 +3,7 @@ import start.*;
 
 public class HugeImpact extends Ability{
 	public HugeImpact() {
-		super("HugeImact");
+		super("Huge Impact");
 		super.setDescription("This is the strongest attack ability in this game");
 		super.setStrength(1);
 		super.setPp(4);

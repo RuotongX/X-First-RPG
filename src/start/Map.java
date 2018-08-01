@@ -15,17 +15,17 @@ public class Map {
 	Monster m3 = new Monster();
 	Monster boss = new Monster();
 	Shop shop = new Shop();
-	Tackle tackle = new Tackle();
 	private void PlayerGenerator() {
 		p.setExp(0);
-		p.setHealth(50);
-		p.setHealthmax(50);
-		p.setAttack(25);
+		p.setHealth(300);
+		p.setHealthmax(300);
+		p.setAttack(300);
 		p.setDefence(5);
 		p.setLevel(1);
 		p.setMoney(100);
 		p.setTempattack(p.getAttack());
 		p.setTempdefence(p.getDefence());
+		Tackle tackle = new Tackle();
 		p.ablist.addAbility(tackle);
 	}
 	private void MonsterGenerator() {
@@ -111,6 +111,7 @@ public class Map {
 		this.floor = floor;
 	}
 	public void display() {
+		this.MonsterGenerator();
 		for(int i = 0;i<rowMax; i++) {
 			for(int j = 0;j<columnMax; j++) {
 				if(i == 0||j == 0||i== 10||j == 10) {
@@ -204,7 +205,6 @@ public class Map {
 		}	
 	public Map() {
 		this.PlayerGenerator();
-		this.MonsterGenerator();
 		this.ShopGenerator();
 	}
 }
