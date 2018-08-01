@@ -9,7 +9,6 @@ public class Shopping {
 		Entity, Ability, Healing, goback;
 	}
 
-	@SuppressWarnings("unlikely-arg-type")
 	public Shopping(Map m) {
 		System.out.println("Welcome to CoNuTDoWn shop Warrior " + m.p.getName());
 		Scanner sc = new Scanner(System.in);
@@ -18,7 +17,16 @@ public class Shopping {
 			System.out.println("Please tell me what you want.");
 			System.out.println("1. " + Type.Entity + " 2. " + Type.Ability + " 3. " + Type.Healing
 					+ "(costs 6 dollors) 4. " + Type.goback);
-			temp = sc.nextInt();
+			try {
+			  temp = sc.nextInt();
+			  if (temp>4) {
+				  temp =4;
+			  }
+			}catch(Exception e) {
+				System.err.println(e);
+				System.out.println("You must input a number less or equal than 4. You are kicked out from our shop!!");
+				temp = 4;
+			}
 			switch (temp) {
 			case 1:
 				EntityTableDisplay td1 = new EntityTableDisplay(m.shop.getEnlist());
@@ -34,7 +42,7 @@ public class Shopping {
 				EntityList searchlist = new EntityList();
 				for (int i = 0; i < m.shop.getEnlist().getTotalnumber(); i++) {
 					if (m.shop.getEnlist().getentityList()[i].getName().contains(token)
-							|| m.shop.getEnlist().getentityList()[i].getDescription().contains(token)) {
+							|| m.shop.getEnlist().getentityList()[i].getDescription().toLowerCase().contains(token)) {
 						searchlist.addentity(m.shop.getEnlist().getentityList()[i]);
 					}
 				}
