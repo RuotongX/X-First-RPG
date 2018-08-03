@@ -13,7 +13,9 @@ public class UsingEntity {
 	    }
 	    else if(temp.equals("Axe")) {
 	    	for(Entity entity:p.enlist.getentityList()) {
-	    		
+	    		if(entity.getName().toLowerCase().equals("axe")) {
+	    			
+	    		}
 	    	}
 	    }
  }
