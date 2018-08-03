@@ -243,6 +243,15 @@ public class Battle {
     	    }
     	    if(monster.getHealth() <= 0) {
     	    	System.out.println("You have slain the monster! You have earned: "+monster.getMoney()+"$!");
+    	    	if(monster.getHealthmax()==25) {
+    	    		m.p.setM1defeat(true);
+    	    	}
+    	    	else if(monster.getHealthmax()==50) {
+    	    		m.p.setM2defeat(true);
+    	    	}
+    	    	else if(monster.getHealthmax() == 90) {
+    	    		m.p.setM3defeat(true);
+    	    	}
     	    	m.p.setMoney(monster.getMoney());
     	    	
     	    	m.p.setExp(m.p.getExp()+monster.getExp());

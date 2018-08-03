@@ -16,10 +16,11 @@ public class Player {
 	public AbilityList ablist = new AbilityList();
 	private int row = 5;
 	private int column = 5;
+	private Entity weapon;
 	
-	private boolean m1defeat = true;
-	private boolean m2defeat = true;
-	private boolean m3defeat = true;
+	private boolean m1defeat = false;
+	private boolean m2defeat = false;
+	private boolean m3defeat = false;
 	
 
 	public boolean isM1defeat() {
@@ -44,6 +45,14 @@ public class Player {
 
 	public void setM3defeat(boolean m3defeat) {
 		this.m3defeat = m3defeat;
+	}
+
+	public Entity getWeapon() {
+		return weapon;
+	}
+
+	public void setWeapon(Entity weapon) {
+		this.weapon = weapon;
 	}
 
 	public static int getLevelmax() {
@@ -219,4 +228,5 @@ public class Player {
 			this.row = row;
 		}
 	}
+
 }
