@@ -17,8 +17,8 @@ public class Map {
 	Shop shop = new Shop();
 	private void PlayerGenerator() {
 		p.setExp(0);
-		p.setHealth(300);
 		p.setHealthmax(300);
+		p.setHealth(300);
 		p.setAttack(300);
 		p.setDefence(5);
 		p.setLevel(1);
@@ -33,6 +33,7 @@ public class Map {
 		m1.setColumn(2);
 		m1.setAttack(10);
 		m1.setDefence(5);
+		m1.setHealthmax(25);
 		m1.setHealth(25);
 		m1.setExp(10);
 		m1.setLevel(1);
@@ -42,6 +43,7 @@ public class Map {
 		m2.setColumn(8);
 		m2.setAttack(40);
 		m2.setDefence(20);
+		m2.setHealthmax(50);
 		m2.setHealth(50);
 		m2.setExp(30);
 		m2.setLevel(4);
@@ -51,6 +53,7 @@ public class Map {
 		m3.setColumn(5);
 		m3.setAttack(60);
 		m3.setDefence(30);
+		m3.setHealthmax(90);
 		m3.setHealth(90);
 		m3.setExp(50);
 		m3.setLevel(7);
@@ -62,7 +65,7 @@ public class Map {
 		boss.setColumn(5);
 		boss.setAttack(100);
 		boss.setDefence(80);
-		boss.setHealth(200);
+		boss.setHealth(200.00);
 		boss.setLevel(10);
 		boss.setExp(400);
 		boss.setMoney(214748364);

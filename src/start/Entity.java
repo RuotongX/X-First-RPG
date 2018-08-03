@@ -9,7 +9,7 @@ public abstract class Entity {
 	private String name;
 	private String description;
 	private int pp;
-	private int num;
+	private int num = 1;
 	
 	public int getNum() {
 		return num;
