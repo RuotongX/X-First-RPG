@@ -6,8 +6,8 @@ public class HugeImpact extends Ability{
 		super("Huge Impact");
 		super.setDescription("This is the strongest attack ability in this game");
 		super.setStrength(1);
-		super.setPp(4);
 		super.setMaxpp(4);
+		super.setPp(4);
 		super.setMoney(150);
 	}
 }

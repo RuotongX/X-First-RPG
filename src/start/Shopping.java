@@ -99,10 +99,6 @@ public class Shopping {
 				String token2;
 				sc.nextLine();
 				token2 = sc.nextLine().toLowerCase();
-				// if (token2.equals("e")) {
-				// break;
-				// }
-				// System.out.println("111");
 				for (int i = 0; i < m.shop.getAblist().getTotalnumber(); i++) {
 					if (m.shop.getAblist().getAbilitylist()[i].getName().toLowerCase().equals(token2)) {
 						if (m.shop.getAblist().getAbilitylist()[i].getMoney() <= m.p.getMoney()) {
@@ -123,7 +119,6 @@ public class Shopping {
 					}
 
 				}
-				// System.out.println("111");
 				break;
 			case 3:
 				if (m.p.getMoney() >= 6) {

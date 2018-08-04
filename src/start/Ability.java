@@ -46,7 +46,12 @@ public abstract class Ability {
 		return pp;
 	}
 	public void setPp(int pp) {
-		this.pp = pp;
+		if(this.pp+pp>=this.maxpp) {
+			this.pp= this.maxpp;
+		}
+		else {
+		    this.pp = pp;
+		}
 	}
 	public double getStrength() {
 		return strength;

@@ -36,7 +36,7 @@ public class Shop {
 		Hammer hammer = new Hammer();
 		IronShield is = new IronShield();
 		Pan pan = new Pan();
-		PpPotion pp = new PpPotion();
+		PpDrink pp = new PpDrink();
 		RoastBeef rb = new RoastBeef();
 		SilveryShield ss = new SilveryShield();
 		Sword sword = new Sword();

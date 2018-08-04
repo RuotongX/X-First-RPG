@@ -17,6 +17,7 @@ public class Player {
 	private int row = 5;
 	private int column = 5;
 	private Entity weapon;
+	private Entity shield;
 	
 	private boolean m1defeat = false;
 	private boolean m2defeat = false;
@@ -53,6 +54,14 @@ public class Player {
 
 	public void setWeapon(Entity weapon) {
 		this.weapon = weapon;
+	}
+	
+	public Entity getShield() {
+		return shield;
+	}
+
+	public void setShield(Entity shield) {
+		this.shield = shield;
 	}
 
 	public static int getLevelmax() {

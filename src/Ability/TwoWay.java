@@ -7,8 +7,8 @@ public class TwoWay extends Ability {
 		super("TwoWay");
 		super.setAttackboost(2);
 		super.setDefenceboost(1.5);
+		super.setMaxpp(5);
 		super.setPp(5);
 		super.setDescription("This is a skill which can improve your attack and deffence.");
-		super.setMaxpp(5);
 	}
 }

@@ -6,7 +6,7 @@ public class Smash extends Ability {
 	   super("Smash");
 	   super.setStrength(0.65);
 	   super.setDescription("This is a epic attack ability which is used by a legendary hero.");
-	   super.setPp(7);
 	   super.setMaxpp(7);
+	   super.setPp(7);
 	}
 }

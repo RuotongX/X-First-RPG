@@ -6,7 +6,7 @@ public class Tackle extends Ability {
 		super("Tackle");
 		super.setStrength(0.35);
 		super.setDescription("This is a basic attack ability with a little damage.");
-		super.setPp(10);
 		super.setMaxpp(10);
+		super.setPp(10);
 	}
 }

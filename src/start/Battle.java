@@ -38,6 +38,7 @@ public class Battle {
 	private void awh(Map m,Monster monster) {
 			for(Ability ability:m.p.ablist.getAbilitylist()) {
 				if(ability.getName().toLowerCase().equals("attack with hard")){
+					if (ability.getPp() > 0) {
 					m.p.setTempattack(this.attack*ability.getStrength());
 					this.defence = m.p.getDefence()*ability.getDefenceboost();
 					m.p.setTempdefence(this.defence);
@@ -50,6 +51,10 @@ public class Battle {
 					}
 					monster.setHealth(monster.getHealth()-damage1);
 					System.out.println("You have deal "+damage1+" to "+monster.getName());
+					} else {
+						System.out.println("You do not have enough pp!");
+						sc.nextLine();
+					}
 					double damage2 = (monster.getAttack()-m.p.getTempdefence());
 					if(damage2 <= 0) {
 						damage2 = 1;
@@ -63,11 +68,16 @@ public class Battle {
 	private void bh(Map m,Monster monster) {
 		for(Ability ability:m.p.ablist.getAbilitylist()) {
 			if(ability.getName().toLowerCase().equals("become huge")) {
+			  if (ability.getPp() > 0) {
 				m.p.setTempattack(m.p.getAttack()*ability.getAttackboost());
 				m.p.setTempdefence(m.p.getDefence()*ability.getDefenceboost());
 				ability.setPp(ability.getPp()-1);
 				System.out.println("You used the "+ability.getName());
 				System.out.println("You feel you attack and defence improve a lot.");
+			  } else {
+					System.out.println("You do not have enough pp!");
+					sc.nextLine();
+				}
 				double damage2 = (monster.getAttack()-m.p.getTempdefence());
 				if(damage2 <= 0) {
 					damage2 = 1;
@@ -81,6 +91,7 @@ public class Battle {
 	private void hi(Map m,Monster monster) {
 		for(Ability ability:m.p.ablist.getAbilitylist()) {
 			 if(ability.getName().toLowerCase().equals("huge Impact")) {
+				 if (ability.getPp() > 0) {
 					m.p.setTempattack(m.p.getAttack()*ability.getStrength());
 					ability.setPp(ability.getPp()-1);
 					System.out.println("You used the "+ability.getName());
@@ -90,6 +101,10 @@ public class Battle {
 					}
 					monster.setHealth(monster.getHealth()-damage1);
 					System.out.println("You have deal "+damage1+" to "+monster.getName());
+				 } else {
+						System.out.println("You do not have enough pp!");
+						sc.nextLine();
+					}
 					double damage2 = (monster.getAttack()-m.p.getTempdefence());
 					if(damage2 <= 0) {
 						damage2 = 1;
@@ -102,16 +117,21 @@ public class Battle {
 	}
 	private void sm(Map m,Monster monster) {
 		for(Ability ability:m.p.ablist.getAbilitylist()) {
-			if(ability.getName().toLowerCase().equals("smash")) {
-				m.p.setTempattack(attack*ability.getStrength());
-				ability.setPp(ability.getPp()-1);
-				System.out.println("You used the "+ability.getName());
-				double damage1 = (m.p.getTempattack()-monster.getDefence());
-				if(damage1 <= 0) {
-					damage1 = 1;
+			if (ability.getName().toLowerCase().equals("smash")) {
+				if (ability.getPp() > 0) {
+					m.p.setTempattack(attack * ability.getStrength());
+					ability.setPp(ability.getPp() - 1);
+					System.out.println("You used the " + ability.getName());
+					double damage1 = (m.p.getTempattack() - monster.getDefence());
+					if (damage1 <= 0) {
+						damage1 = 1;
+					}
+					monster.setHealth(monster.getHealth() - damage1);
+					System.out.println("You have deal " + damage1 + " to " + monster.getName());
+				} else {
+					System.out.println("You do not have enough pp!");
+					sc.nextLine();
 				}
-				monster.setHealth(monster.getHealth()-damage1);
-				System.out.println("You have deal "+damage1+" to "+monster.getName());
 				double damage2 = (monster.getAttack()-m.p.getTempdefence());
 				if(damage2 <= 0) {
 					damage2 = 1;
@@ -125,6 +145,7 @@ public class Battle {
 	private void tk(Map m,Monster monster) {
 		for(Ability ability:m.p.ablist.getAbilitylist()) {
 			if(ability.getName().toLowerCase().equals("tackle")) {
+				if (ability.getPp() > 0) {
 				m.p.setTempattack(attack*ability.getStrength());
 				ability.setPp(ability.getPp()-1);
 				System.out.println("You used the "+ability.getName());
@@ -134,6 +155,10 @@ public class Battle {
 				}
 				monster.setHealth(monster.getHealth()-damage1);
 				System.out.println("You have deal "+damage1+" to "+monster.getName());
+				} else {
+					System.out.println("You do not have enough pp!");
+					sc.nextLine();
+				}
 				double damage2 = (monster.getAttack()-m.p.getTempdefence());
 				if(damage2 <= 0) {
 					damage2 = 1;
@@ -147,6 +172,7 @@ public class Battle {
 	private void rs(Map m, Monster monster) {
 		for(Ability ability:m.p.ablist.getAbilitylist()) {
 			if(ability.getName().toLowerCase().equals("reversal")) {
+				if (ability.getPp() > 0) {
 				this.roundr = 3;
 				ability.setPp(ability.getPp()-1);
 				System.out.println("You feel you are full of healing power.");
@@ -161,19 +187,34 @@ public class Battle {
 				System.out.println("Your heal is "+m.p.getHealth()+m.p.getHealthmax()*ability.getHealupbyp());
 				this.roundr = 2;
 				while(this.roundr!=0) {
-					battle(m,monster);
+					this.typedepender(m, monster);
 					m.p.setHealth(m.p.getHealth()+m.p.getHealthmax()*ability.getHealupbyp());
 					System.out.println("Due to the Reversal you get "+m.p.getHealthmax()*ability.getHealupbyp()+" heals");
 					System.out.println("Now you heal is "+m.p.getHealth());
+					if(monster.getHealth() <= 0) {
+						this.roundr=0;
+					}
 					this.roundr--;
 				}
 				System.out.println("Reversal effect disappear.");
+				} else {
+					System.out.println("Sorry you have not enough pp");
+					sc.nextLine();
+					double damage2 = (monster.getAttack()-m.p.getTempdefence());
+					if(damage2 <= 0) {
+						damage2 = 1;
+					}
+					m.p.setHealth(m.p.getHealth()-damage2);
+					System.out.println(monster.getName()+" deals you "+damage2+" damages!");
+					System.out.println("Your heal is "+m.p.getHealth()+monster.getName()+"'s heal is "+monster.getHealth());
+				}
 			}
 		}
 	}
 	private void ls(Map m, Monster monster) {
 		for(Ability ability:m.p.ablist.getAbilitylist()) {
 			if(ability.getName().toLowerCase().equals("leech seed")) {
+				if (ability.getPp() > 0) {
 				this.roundl = 3;
 				ability.setPp(ability.getPp()-1);
 				System.out.println("Enemy got the leechseed and keep losing heal, you are healed by seed.");
@@ -192,27 +233,46 @@ public class Battle {
 				System.out.println(monster.getName()+"'s heal is "+monster.getHealth());
 				this.roundl = 2;
 				while(this.roundl!=0) {
-					battle(m,monster);
+					this.typedepender(m, monster);
 					monster.setHealth(monster.getHealth()-monster.getHealthmax()*ability.getPercentagehit());
 					m.p.setHealth(m.p.getHealth()+monster.getHealthmax()*ability.getPercentagehit());
 					System.out.println("Due to the Leech Seed enemy gets "+monster.getHealthmax()*ability.getPercentagehit()+" damages.");
 					System.out.println("And due to the Leech Seed you get "+monster.getHealthmax()*ability.getPercentagehit()+" heals.");
 					System.out.println("Now you heal is "+m.p.getHealth());
 					System.out.println(monster.getName()+"'s heal is "+monster.getHealth());
+					if(monster.getHealth() <= 0) {
+						this.roundl=0;
+					}
 					this.roundl--;
 				}
 				System.out.println("Reversal effect disappear.");
+				} else {
+					System.out.println("Sorry you have not enough pp");
+					sc.nextLine();
+					double damage2 = (monster.getAttack()-m.p.getTempdefence());
+					if(damage2 <= 0) {
+						damage2 = 1;
+					}
+					m.p.setHealth(m.p.getHealth()-damage2);
+					System.out.println(monster.getName()+" deals you "+damage2+" damages!");
+					System.out.println("Your heal is "+m.p.getHealth()+monster.getName()+"'s heal is "+monster.getHealth());
+				}
 			}
 		}
 	}
 	private void tw(Map m,Monster monster) {
 		for(Ability ability:m.p.ablist.getAbilitylist()) {
 			if(ability.getName().toLowerCase().equals("twoway")) {
+				if (ability.getPp() > 0) {
 				m.p.setTempattack(m.p.getAttack()*ability.getAttackboost());
 				m.p.setTempdefence(m.p.getDefence()*ability.getDefenceboost());
 				ability.setPp(ability.getPp()-1);
 				System.out.println("You used the "+ability.getName());
 				System.out.println("You feel you attack and defence improved.");
+				} else {
+					System.out.println("You do not have enough pp!");
+					sc.nextLine();
+				}
 				double damage2 = (monster.getAttack()-m.p.getTempdefence());
 				if(damage2 <= 0) {
 					damage2 = 1;
@@ -294,12 +354,8 @@ public class Battle {
     	    	this.fighting =1;
     	    }
     	 }
-	
-	public Battle(Map m,Monster monster) {	
-		this.attack = m.p.getAttack();
-		this.defence = m.p.getDefence();
-		System.out.println(m.p.getName()+" you meet a "+monster.getName()+"!");
-    	System.out.println("Please decide what you want to do: (Type the number)");
+	private void typedepender(Map m,Monster monster) {
+		System.out.println("Please decide what you want to do: (Type the number)");
 	    do {
 	    	System.out.println("1.Battle");
 	    	System.out.println("2.Bag");
@@ -311,6 +367,7 @@ public class Battle {
 	    	    	 this.battle(m,monster);
 	    	    	 break;
 				 case 2:
+					 UsingEntity ue = new UsingEntity(m.p);
 	    	    	 break;
 	    	     case 3:
 	    	    	 System.out.println("You escape from " +monster.getName());
@@ -320,6 +377,13 @@ public class Battle {
 	    	}catch(Exception e) {
 	    		System.err.println(e);
 	    	}
-	    }while(fighting == 0);
+	
+	}while(fighting == 0);
+	}
+	public Battle(Map m,Monster monster) {	
+		this.attack = m.p.getAttack();
+		this.defence = m.p.getDefence();
+		System.out.println(m.p.getName()+" you meet a "+monster.getName()+"!");
+    	this.typedepender(m, monster);
 	}
 }
