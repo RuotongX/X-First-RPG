@@ -191,10 +191,10 @@ public class Battle {
 					m.p.setHealth(m.p.getHealth()+m.p.getHealthmax()*ability.getHealupbyp());
 					System.out.println("Due to the Reversal you get "+m.p.getHealthmax()*ability.getHealupbyp()+" heals");
 					System.out.println("Now you heal is "+m.p.getHealth());
+					this.roundr--;
 					if(monster.getHealth() <= 0) {
 						this.roundr=0;
 					}
-					this.roundr--;
 				}
 				System.out.println("Reversal effect disappear.");
 				} else {
@@ -240,10 +240,10 @@ public class Battle {
 					System.out.println("And due to the Leech Seed you get "+monster.getHealthmax()*ability.getPercentagehit()+" heals.");
 					System.out.println("Now you heal is "+m.p.getHealth());
 					System.out.println(monster.getName()+"'s heal is "+monster.getHealth());
+					this.roundl--;
 					if(monster.getHealth() <= 0) {
 						this.roundl=0;
 					}
-					this.roundl--;
 				}
 				System.out.println("Reversal effect disappear.");
 				} else {
@@ -355,6 +355,8 @@ public class Battle {
     	    		System.out.println("Congrations! Level up! Your are lv10 now!");
     	    	}
     	    	this.fighting =1;
+    	    	m.p.setColumn(5);
+    	    	m.p.setRow(5);
     	    }
     	 }
 	private void typedepender(Map m,Monster monster) {
@@ -371,7 +373,14 @@ public class Battle {
 	    	    	 break;
 				 case 2:
 					 UsingEntity ue = new UsingEntity(m.p);
-	    	    	 break;
+	    	    	 double damage2 = (monster.getAttack()-m.p.getTempdefence());
+						if(damage2 <= 0) {
+							damage2 = 1;
+						}
+						m.p.setHealth(m.p.getHealth()-damage2);
+						System.out.println(monster.getName()+" deals you "+damage2+" damages!");
+						System.out.println("Your heal is "+m.p.getHealth()+monster.getName()+"'s heal is "+monster.getHealth());
+						break;
 	    	     case 3:
 	    	    	 System.out.println("You escape from " +monster.getName());
 	    	    	 fighting = 1;

@@ -78,7 +78,6 @@ public class MainClass {
 			}
 
 			if (m.p.getRow() == m.m1.getRow() && m.p.getColumn() == m.m1.getColumn() && m.getFloor() == 0) {
-				System.out.println(m.p.getHealth()+"attack"+m.p.getAttack());
 				Battle b = new Battle(m, m.m1);
 			} else if (m.p.getRow() == m.m2.getRow() && m.p.getColumn() == m.m2.getColumn() && m.getFloor() == 0) {
 				Battle b = new Battle(m, m.m2);
