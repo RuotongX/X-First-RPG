@@ -317,6 +317,9 @@ public class Battle {
     	    	m.p.setExp(m.p.getExp()+monster.getExp());
     	    	if(m.p.getExp()>=10 && m.p.getExp()<14) {
     	    		m.p.setLevel(2);
+    	    		m.p.setHealthmax(150);
+    	    		m.p.setAttack(50);
+    	    		m.p.setDefence(10);
     	    		System.out.println("Congrations! Level up! Your are lv2 now!");
     	    	}
     	    	else if(m.p.getExp()>=15 && m.p.getExp()<22) {
