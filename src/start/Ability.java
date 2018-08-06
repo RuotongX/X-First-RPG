@@ -46,7 +46,7 @@ public abstract class Ability {
 		return pp;
 	}
 	public void setPp(int pp) {
-		if(this.pp+pp>=this.maxpp) {
+		if(pp>=this.maxpp) {
 			this.pp= this.maxpp;
 		}
 		else {
