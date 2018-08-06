@@ -11,6 +11,7 @@ public class MainClass {
 		System.out.println("Hey, Warrior, tell me your name :");
 		String name = sc.nextLine();
 		m.p.setName(name);
+		FileControl fc = new FileControl();
 		TwoWay twoway = new TwoWay();
 		Smash smash = new Smash();
 		Reversal reversal = new Reversal();
@@ -90,6 +91,7 @@ public class MainClass {
 			} else if (m.p.getRow() == m.boss.getRow() && m.p.getColumn() == m.boss.getColumn() && m.getFloor() == 1) {
 				Battle b = new Battle(m, m.boss);
 			}
+			fc.savefile(m.p);
 		} while (!order.equals("0"));
 		sc.close();
 	}

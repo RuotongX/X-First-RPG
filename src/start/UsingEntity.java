@@ -30,6 +30,7 @@ public class UsingEntity {
     				p.setShield(e);;
     				System.out.println("You have equip "+e.getName());
     				p.setDefence(p.getDefence()+e.getDefence());
+    				System.out.println("You defence has increased "+e.getDefence());
     				System.out.println("Your defence value becomes to "+p.getDefence());
     			}
     			else {

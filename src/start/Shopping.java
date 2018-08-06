@@ -61,35 +61,34 @@ public class Shopping {
 				}
 				for (int i = 0; i < searchlist.getTotalnumber(); i++) {
 					while (input.equals(searchlist.getentityList()[i].getName().toLowerCase())) {
-						if (searchlist.getentityList()[i].getName().toLowerCase().contains(token)) {
 							if (searchlist.getentityList()[i].getMoney() <= m.p.getMoney()) {
 								m.p.setMoney(m.p.getMoney() - searchlist.getentityList()[i].getMoney());
 								if (m.p.enlist.hasEntity(searchlist.getentityList()[i])) {
 
 									for (int j = 0; j < m.p.enlist.getTotalnumber(); j++) {
 										if (m.p.enlist.getentityList()[j].getName().toLowerCase().equals(token)) {
-											m.p.enlist.getentityList()[j].setNum(m.p.enlist.getentityList()[j].getNum());
-										} 
+											m.p.enlist.getentityList()[j]
+													.setNum(m.p.enlist.getentityList()[j].getNum() + 1);
+											
+										}
 									}
-								}
-									else {
-										m.p.enlist.addentity(searchlist.getentityList()[i]);
-									}
-
+								} else {
+									m.p.enlist.addentity(searchlist.getentityList()[i]);
+									
 								}
 								System.out.println("You have bought the " + input + ".Now back to main menu.");
 								searchlist.clear();
 								break;
-							} else {
-								System.out.println("player money is " + m.p.getMoney());
-								System.out.println("Sorry you do not have enough money!Back to main menu");
-								searchlist.clear();
-								break;
-							}
+							}	
+						  else {
+							System.out.println("player money is " + m.p.getMoney());
+							System.out.println("Sorry you do not have enough money!Back to main menu");
+							searchlist.clear();
+							break;
 						}
 					}
+				}
 
-				
 				break;
 
 			case 2:
