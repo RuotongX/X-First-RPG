@@ -24,7 +24,6 @@ public class Map {
 		p.setLevel(1);
 		p.setMoney(100);
 		p.setTempattack(p.getAttack());
-		p.setTempdefence(p.getDefence());
 		Tackle tackle = new Tackle();
 		p.ablist.addAbility(tackle);
 	}

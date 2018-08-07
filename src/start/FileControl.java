@@ -36,6 +36,8 @@ import Entity.WoodenShield;
 import java.io.File;
 
 public class FileControl {
+	private static EntityList enlist = new EntityList();
+	private static AbilityList ablist = new AbilityList();
 	private Axe axe = new Axe();
 	private ChickenThigth ct = new ChickenThigth();
 	private ChocolateCake cc = new ChocolateCake();
@@ -74,13 +76,24 @@ public class FileControl {
 			   fileWriter.println(p.isM2defeat());
 			   fileWriter.println(p.isM3defeat());
 			   fileWriter.println(p.getExp());
-			   fileWriter.println(p.getWeapon());
-			   fileWriter.println(p.getShield());
+			   if(p.getWeapon() == null) {
+				   fileWriter.println("null");
+			   }
+			   else {
+			       fileWriter.println(p.getWeapon().getName());
+			   }
+			   if(p.getShield() == null) {
+				   fileWriter.println("null");
+			   }
+			   else {
+			       fileWriter.println(p.getShield().getName());
+			   }
+			   fileWriter.println(p.ablist.getTotalnumber());
 			   for (Ability a : p.ablist.getAbilitylist()) {
 				   fileWriter.println(a.getName());
 				   fileWriter.println(a.getPp());
 			   }
-			   fileWriter.println("--SEPERATOR--");
+			   fileWriter.println(p.enlist.getTotalnumber());
 			   for (Entity e : p.enlist.getentityList()) {
 			       fileWriter.println(e.getName());
 			       fileWriter.println(e.getNum());
@@ -94,10 +107,89 @@ public class FileControl {
 	public static void loadfile(Player p) throws FileNotFoundException {
 		Scanner fileScan = new Scanner(new File("playerdata/data.txt"));
 		try {
-			 String line;
-			 
+			 String line = fileScan.nextLine();
+			 p.setName(line);
+			 int value = fileScan.nextInt();
+			 p.setAttack(value);
+			 value = fileScan.nextInt();
+			 p.setDefence(value);
+			 value = fileScan.nextInt();
+			 p.setLevel(value);
+			 value = fileScan.nextInt();
+			 p.setHealthmax(value);
+			 double v2 = fileScan.nextDouble();
+			 p.setHealth(v2);
+			 value = fileScan.nextInt();
+			 p.setMoney(value);
+			 value = fileScan.nextInt();
+			 p.setRow(value);
+			 value = fileScan.nextInt();
+			 p.setColumn(value);
+			 boolean b = fileScan.nextBoolean();
+			 p.setM1defeat(b);
+			 b = fileScan.nextBoolean();
+			 p.setM2defeat(b);
+			 b = fileScan.nextBoolean();
+			 p.setM3defeat(b);
+			 v2 = fileScan.nextDouble();
+			 p.setExp(v2);
+			 line = fileScan.nextLine();
+			 for(Entity e : enlist.getentityList()) {
+				 if(e.getName().equals(line)) {
+					 p.setWeapon(e);
+				 }
+			 }
+			line = fileScan.nextLine();
+			for(Entity e : enlist.getentityList()) {
+				 if(e.getName().equals(line)) {
+					 p.setShield(e);
+				 }
+			 }
+			value = fileScan.nextInt();
+			for(int i = 0;i<value;i++) {
+				line = fileScan.nextLine();
+				value = fileScan.nextInt();
+				for(Ability a:ablist.getAbilitylist()) {
+					if(a.getName().equals(line)) {
+						a.setPp(value);
+						p.ablist.addAbility(a);
+					}
+				}
+			}
+			value = fileScan.nextInt();
+			for(int i = 0;i<value;i++) {
+				line = fileScan.nextLine();
+				value = fileScan.nextInt();
+				for(Entity e : enlist.getentityList()) {
+					if(e.getName().equals(line)) {
+						e.setNum(value);
+						p.enlist.addentity(e);
+					}
+				}
+			}
+			 fileScan.close();
 		} catch(Exception e) {
 			
 		}
+	}
+	public FileControl() {
+		enlist.addentity(axe);
+		enlist.addentity(ct);
+		enlist.addentity(cc);
+		enlist.addentity(crowbar);
+		enlist.addentity(ds);
+		enlist.addentity(gs);
+		enlist.addentity(hammer);
+		enlist.addentity(is);
+		enlist.addentity(pan);
+		enlist.addentity(pp);
+		enlist.addentity(rb);
+		enlist.addentity(ss);
+		enlist.addentity(sword);
+		enlist.addentity(ws);
+		ablist.addAbility(awh);
+		ablist.addAbility(bh);
+		ablist.addAbility(hi);
+		ablist.addAbility(ls);
 	}
 }

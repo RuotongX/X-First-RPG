@@ -9,7 +9,6 @@ public class Player {
 	private int attack;
 	private int defence;
 	private double tempattack;
-	private double tempdefence;
 	private double health;
 	private int healthmax;
 	public EntityList enlist = new EntityList();
@@ -74,14 +73,6 @@ public class Player {
 
 	public void setTempattack(double tempattack) {
 		this.tempattack = tempattack;
-	}
-
-	public double getTempdefence() {
-		return tempdefence;
-	}
-
-	public void setTempdefence(double tempdefence) {
-		this.tempdefence = tempdefence;
 	}
 
 	public int getRow() {
