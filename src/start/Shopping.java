@@ -1,9 +1,12 @@
 package start;
-
 import java.util.Scanner;
 
 import Ability.AbilityLimiter;
-
+/**
+ * 
+ * @author RuotongXu QiChangZhou
+ *
+ */
 public class Shopping {
 	private enum Type {
 		Entity, Ability, Healing, goback;

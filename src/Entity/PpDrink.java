@@ -1,6 +1,10 @@
 package Entity;
 import start.*;
-
+/**
+ * 
+ * @author RuotongXu QiChangZhou
+ *
+ */
 public class PpDrink extends Consumable {
 	public PpDrink() {
 		super("PP drink");

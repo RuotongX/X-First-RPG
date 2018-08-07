@@ -1,6 +1,10 @@
 package Entity;
 import start.*;
-
+/**
+ * 
+ * @author RuotongXu QiChangZhou
+ *
+ */
 public class ChocolateCake extends Consumable{
 	public ChocolateCake() {
 		super("Chocolate Cake");

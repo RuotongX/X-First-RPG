@@ -1,7 +1,11 @@
 package start;
 import java.util.Random;
 import Ability.*;
-
+/**
+ * 
+ * @author RuotongXu QiChangZhou
+ *
+ */
 public class Map {
 	private static int rowMax = 11;
 	private static int columnMax = 11;
@@ -17,12 +21,12 @@ public class Map {
 	Shop shop = new Shop();
 	private void PlayerGenerator() {
 		p.setExp(0);
-		p.setHealthmax(300);
-		p.setHealth(300);
-		p.setAttack(300);
+		p.setHealthmax(100);
+		p.setHealth(100);
+		p.setAttack(35);
 		p.setDefence(5);
 		p.setLevel(1);
-		p.setMoney(100);
+		p.setMoney(0);
 		p.setTempattack(p.getAttack());
 		Tackle tackle = new Tackle();
 		p.ablist.addAbility(tackle);

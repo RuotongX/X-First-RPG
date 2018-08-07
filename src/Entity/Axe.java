@@ -1,6 +1,10 @@
 package Entity;
 import start.*;
-
+/**
+ * 
+ * @author RuotongXu QiChangZhou
+ *
+ */
 public class Axe extends Entity{
 	public Axe() {
 		super("Axe");

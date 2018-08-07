@@ -1,6 +1,10 @@
 package Ability;
 import start.*;
-
+/**
+ * 
+ * @author RuotongXu QiChangZhou
+ *
+ */
 public class BecomeHuge extends Ability {
 	public BecomeHuge() {
 		super("Become Huge");

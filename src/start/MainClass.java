@@ -1,9 +1,12 @@
 package start;
-
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 import Ability.*;
-
+/**
+ * 
+ * @author RuotongXu QiChangZhou
+ *
+ */
 public class MainClass {
 	public static void main(String[] args) {
 		FileControl fc = new FileControl();

@@ -1,6 +1,10 @@
 package Entity;
 import start.*;
-
+/**
+ * 
+ * @author RuotongXu QiChangZhou
+ *
+ */
 public class SilveryShield extends Entity{
 	public SilveryShield() {
 		super("Silver Shield");

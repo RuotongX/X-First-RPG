@@ -1,6 +1,10 @@
 package start;
 import java.util.ArrayList;
-
+/**
+ * 
+ * @author RuotongXu QiChangZhou
+ *
+ */
 public class EntityList {
 	private ArrayList<Entity> entityItems;
 	public EntityList() {

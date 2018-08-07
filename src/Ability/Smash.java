@@ -1,6 +1,10 @@
 package Ability;
 import start.*;
-
+/**
+ * 
+ * @author RuotongXu QiChangZhou
+ *
+ */
 public class Smash extends Ability {
 	public Smash() {
 	   super("Smash");

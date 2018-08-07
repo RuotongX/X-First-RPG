@@ -1,5 +1,9 @@
 package start;
-
+/**
+ * 
+ * @author RuotongXu QiChangZhou
+ *
+ */
 public class Player {
 	private String name;
 	private int level;

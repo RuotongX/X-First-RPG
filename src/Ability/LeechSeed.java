@@ -1,6 +1,10 @@
 package Ability;
 import start.*;
-
+/**
+ * 
+ * @author RuotongXu QiChangZhou
+ *
+ */
 public class LeechSeed extends Ability {
 	public LeechSeed() {
 		super("Leech Seed");

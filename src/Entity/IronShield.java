@@ -1,6 +1,10 @@
 package Entity;
 import start.*;
-
+/**
+ * 
+ * @author RuotongXu QiChangZhou
+ *
+ */
 public class IronShield extends Entity{
 	public IronShield() {
 		super("Iron Shield");

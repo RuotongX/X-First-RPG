@@ -1,7 +1,11 @@
 package start;
 import java.util.Scanner;
 import Ability.*;
-
+/**
+ * 
+ * @author RuotongXu QiChangZhou
+ *
+ */
 public class Battle {
 	private double attack;
 	private double defence;
@@ -318,49 +322,70 @@ public class Battle {
     	    	m.p.setMoney(monster.getMoney()+m.p.getMoney());
     	    	
     	    	m.p.setExp(m.p.getExp()+monster.getExp());
-    	    	if(m.p.getExp()>=10 && m.p.getExp()<14) {
+    	    	if(m.p.getExp()>=10 && m.p.getExp()<30) {
     	    		m.p.setLevel(2);
     	    		m.p.setHealthmax(150);
     	    		m.p.setAttack(50);
     	    		m.p.setDefence(10);
     	    		System.out.println("Congrations! Level up! Your are lv2 now!");
     	    	}
-    	    	else if(m.p.getExp()>=15 && m.p.getExp()<22) {
+    	    	else if(m.p.getExp()>=30 && m.p.getExp()<50) {
     	    		m.p.setLevel(3);
+    	    		m.p.setHealthmax(150);
+    	    		m.p.setAttack(50);
+    	    		m.p.setDefence(10);
     	    		System.out.println("Congrations! Level up! Your are lv3 now!");
     	    	}
-    	    	else if(m.p.getExp()>=22 && m.p.getExp()<32) {
+    	    	else if(m.p.getExp()>=50 && m.p.getExp()<80) {
     	    		m.p.setLevel(4);
+    	    		m.p.setHealthmax(150);
+    	    		m.p.setAttack(50);
+    	    		m.p.setDefence(10);
     	    		System.out.println("Congrations! Level up! Your are lv4 now!");
     	    	}
-    	    	else if(m.p.getExp()>=33 && m.p.getExp()<49) {
+    	    	else if(m.p.getExp()>=80 && m.p.getExp()<120) {
     	    		m.p.setLevel(5);
+    	    		m.p.setHealthmax(150);
+    	    		m.p.setAttack(50);
+    	    		m.p.setDefence(10);
     	    		System.out.println("Congrations! Level up! Your are lv5 now!");
     	    	}
-    	    	else if(m.p.getExp()>=50 && m.p.getExp()<74) {
+    	    	else if(m.p.getExp()>=120 && m.p.getExp()<160) {
     	    		m.p.setLevel(6);
     	    		System.out.println("Congrations! Level up! Your are lv6 now!");
     	    	}
-    	    	else if(m.p.getExp()>=75 && m.p.getExp()<112) {
+    	    	else if(m.p.getExp()>=160 && m.p.getExp()<200) {
     	    		m.p.setLevel(7);
+    	    		m.p.setHealthmax(150);
+    	    		m.p.setAttack(50);
+    	    		m.p.setDefence(10);
     	    		System.out.println("Congrations! Level up! Your are lv7 now!");
     	    	}
-    	    	else if(m.p.getExp()>=113 && m.p.getExp()<169) {
+    	    	else if(m.p.getExp()>=200 && m.p.getExp()<250) {
     	    		m.p.setLevel(8);
+    	    		m.p.setHealthmax(150);
+    	    		m.p.setAttack(50);
+    	    		m.p.setDefence(10);
     	    		System.out.println("Congrations! Level up! Your are lv8 now!");
     	    	}
-    	    	else if(m.p.getExp()>=170 && m.p.getExp()<255) {
+    	    	else if(m.p.getExp()>=250 && m.p.getExp()<300) {
     	    		m.p.setLevel(9);
+    	    		m.p.setHealthmax(150);
+    	    		m.p.setAttack(50);
+    	    		m.p.setDefence(10);
     	    		System.out.println("Congrations! Level up! Your are lv9 now!");
     	    	}
-    	    	else if(m.p.getExp()>=256 && m.p.getExp()<384) {
+    	    	else if(m.p.getExp()>=300 && m.p.getExp()<384) {
     	    		m.p.setLevel(10);
+    	    		m.p.setHealthmax(150);
+    	    		m.p.setAttack(50);
+    	    		m.p.setDefence(10);
     	    		System.out.println("Congrations! Level up! Your are lv10 now!");
     	    	}
     	    	this.fighting =1;
     	    	m.p.setColumn(5);
     	    	m.p.setRow(5);
-    	    }
+    	    	}	
     	 }
 	private void typedepender(Map m,Monster monster) {
 		System.out.println("Please decide what you want to do: (Type the number)");

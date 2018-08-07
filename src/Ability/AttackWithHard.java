@@ -1,6 +1,10 @@
 package Ability;
 import start.*;
-
+/**
+ * 
+ * @author RuotongXu QiChangZhou
+ *
+ */
 public class AttackWithHard extends Ability {
 	public AttackWithHard() {
 		super("Attackwithhard");

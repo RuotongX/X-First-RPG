@@ -1,5 +1,9 @@
 package start;
-
+/**
+ * 
+ * @author RuotongXu QiChangZhou
+ *
+ */
 public class PlayerAbilityDisplay {
 	StringBuilder sb = new StringBuilder();
 	public PlayerAbilityDisplay(AbilityList a) {

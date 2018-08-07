@@ -1,6 +1,10 @@
 package Entity;
 import start.*;
-
+/**
+ * 
+ * @author RuotongXu QiChangZhou
+ *
+ */
 public class WoodenShield extends Entity{
 	public WoodenShield() {
 		super("Wooden Shield");

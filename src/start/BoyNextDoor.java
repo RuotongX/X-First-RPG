@@ -1,5 +1,9 @@
 package start;
-
+/**
+ * 
+ * @author RuotongXu QiChangZhou
+ *
+ */
 public class BoyNextDoor {
 	public BoyNextDoor(Map map) {
 		if (map.p.isM1defeat() == true && map.p.isM2defeat() == true && map.p.isM3defeat() == true) {

@@ -1,6 +1,10 @@
 package start;
 import java.util.ArrayList;
-
+/**
+ * 
+ * @author RuotongXu QiChangZhou
+ *
+ */
 public class AbilityList {
 	private ArrayList<Ability> abilityi;
 	public AbilityList() {

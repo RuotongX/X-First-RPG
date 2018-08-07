@@ -1,5 +1,9 @@
 package start;
-
+/**
+ * 
+ * @author RuotongXu QiChangZhou
+ *
+ */
 public class PlayerEntityDisplay {
 	StringBuilder sb = new StringBuilder();
 	public PlayerEntityDisplay(EntityList a) {

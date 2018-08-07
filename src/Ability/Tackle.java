@@ -1,6 +1,10 @@
 package Ability;
 import start.*;
-
+/**
+ * 
+ * @author RuotongXu QiChangZhou
+ *
+ */
 public class Tackle extends Ability {
 	public Tackle() {
 		super("Tackle");

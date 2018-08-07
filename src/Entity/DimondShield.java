@@ -1,6 +1,10 @@
 package Entity;
 import start.*;
-
+/**
+ * 
+ * @author RuotongXu QiChangZhou
+ *
+ */
 public class DimondShield extends Entity{
 	public DimondShield() {
 		super("Dimond Shield");

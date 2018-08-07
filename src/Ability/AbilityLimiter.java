@@ -1,7 +1,11 @@
 package Ability;
 import start.*;
 import java.util.Scanner;
-
+/**
+ * 
+ * @author RuotongXu QiChangZhou
+ *
+ */
 public class AbilityLimiter {
 	Scanner sc = new Scanner(System.in);
 	private boolean keep = false;

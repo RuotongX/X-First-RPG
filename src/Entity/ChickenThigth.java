@@ -1,6 +1,10 @@
 package Entity;
 import start.*;
-
+/**
+ * 
+ * @author RuotongXu QiChangZhou
+ *
+ */
 public class ChickenThigth extends Consumable{
 	public ChickenThigth() {
 		super("Chinken Thigth");

@@ -1,5 +1,9 @@
 package start;
-
+/**
+ * 
+ * @author RuotongXu QiChangZhou
+ *
+ */
 public class AbilityTableList {
 	StringBuilder sb = new StringBuilder();
 	public AbilityTableList(AbilityList a) {

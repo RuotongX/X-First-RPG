@@ -1,5 +1,9 @@
 package start;
-
+/**
+ * 
+ * @author RuotongXu QiChangZhou
+ *
+ */
 public abstract class Consumable extends Entity{
 	
 	public Consumable(String name) {

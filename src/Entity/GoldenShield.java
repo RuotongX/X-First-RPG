@@ -1,6 +1,10 @@
 package Entity;
 import start.*;
-
+/**
+ * 
+ * @author RuotongXu QiChangZhou
+ *
+ */
 public class GoldenShield extends Entity{
 	public GoldenShield() {
 		super("Golden Shield");

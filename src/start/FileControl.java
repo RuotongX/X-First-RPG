@@ -1,5 +1,4 @@
 package start;
-
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -34,7 +33,11 @@ import Entity.Sword;
 import Entity.WoodenShield;
 
 import java.io.File;
-
+/**
+ * 
+ * @author RuotongXu QiChangZhou
+ *
+ */
 public class FileControl {
 	private static EntityList enlist = new EntityList();
 	private static AbilityList ablist = new AbilityList();

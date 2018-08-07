@@ -1,7 +1,11 @@
 package start;
 import Ability.*;
 import Entity.*;
-
+/**
+ * 
+ * @author RuotongXu QiChangZhou
+ *
+ */
 public class Shop {
 	private EntityList enlist = new EntityList();
 	private AbilityList ablist = new AbilityList();

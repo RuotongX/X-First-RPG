@@ -1,6 +1,10 @@
 package start;
 import java.util.Scanner;
-
+/**
+ * 
+ * @author RuotongXu QiChangZhou
+ *
+ */
 public class UsingEntity {
 	private void Weapondepender(String a,Player p) {
 		for(Entity e :p.enlist.getentityList()) {

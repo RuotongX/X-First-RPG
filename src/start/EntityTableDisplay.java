@@ -1,5 +1,9 @@
 package start;
-
+/**
+ * 
+ * @author RuotongXu QiChangZhou
+ *
+ */
 public class EntityTableDisplay {
 	StringBuilder sb = new StringBuilder();
 	public EntityTableDisplay(EntityList e) {
