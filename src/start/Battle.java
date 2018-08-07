@@ -311,6 +311,10 @@ public class Battle {
     	    	else if(monster.getHealthmax() == 90) {
     	    		m.p.setM3defeat(true);
     	    	}
+    	    	else if(monster.getHealthmax() == 200) {
+    	    		System.out.println("Now you save the small town! People are so happy that they won't suruand the demon!");
+    	    		System.out.println("Congratuation and thank you for playing!");
+    	    	}
     	    	m.p.setMoney(monster.getMoney()+m.p.getMoney());
     	    	
     	    	m.p.setExp(m.p.getExp()+monster.getExp());

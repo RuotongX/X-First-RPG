@@ -64,6 +64,7 @@ public class Map {
 		boss.setColumn(5);
 		boss.setAttack(100);
 		boss.setDefence(80);
+		boss.setHealthmax(200);
 		boss.setHealth(200.00);
 		boss.setLevel(10);
 		boss.setExp(400);

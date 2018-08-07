@@ -1,17 +1,29 @@
 package start;
 
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 import Ability.*;
 
 public class MainClass {
 	public static void main(String[] args) {
+		FileControl fc = new FileControl();
 		String order;
 		Scanner sc = new Scanner(System.in);
 		Map m = new Map();
-		System.out.println("Hey, Warrior, tell me your name :");
-		String name = sc.nextLine();
-		m.p.setName(name);
-		FileControl fc = new FileControl();
+		System.out.println("Would you like to use the record?(Type true of false.)");
+		boolean command = sc.nextBoolean();
+		if (command == true) {
+			try {
+				fc.loadfile(m.p);
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else {
+			System.out.println("Hey, Warrior, tell me your name :");
+			String name = sc.nextLine();
+			m.p.setName(name);
+		}
 		TwoWay twoway = new TwoWay();
 		Smash smash = new Smash();
 		Reversal reversal = new Reversal();
@@ -72,6 +84,30 @@ public class MainClass {
 					break;
 				case "B":
 					UsingEntity ue = new UsingEntity(m.p);
+					break;
+				case "2":
+					System.out.println("Player State");
+					System.out.println("Player Heal: "+m.p.getHealth());
+					System.out.println("Player Attack: "+m.p.getAttack());
+					System.out.println("Player defence: "+m.p.getDefence());
+					if(m.p.getWeapon() == null) {
+						System.out.println("No weapon");
+					} else {
+					    System.out.println("Player weapon: "+m.p.getWeapon().getName());
+					}
+					if(m.p.getShield() == null) {
+						System.out.println("No shield");
+					} else {
+					    System.out.println("Player shield: "+m.p.getShield().getName());
+					}
+					System.out.println("Player level: "+m.p.getLevel());
+					System.out.println("Player money: "+m.p.getMoney());
+					System.out.println("Zombie slain "+m.p.isM1defeat());
+					System.out.println("Knight slain "+m.p.isM2defeat());
+					System.out.println("Drangon slain "+m.p.isM3defeat());
+					PlayerAbilityDisplay pad = new PlayerAbilityDisplay(m.p.ablist);
+					sc.nextLine();
+					break;
 				}
 			} catch (Exception e) {
 				System.out.println("The input is invalid!");
