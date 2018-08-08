@@ -16,6 +16,7 @@ import Ability.HugeImpact;
 import Ability.LeechSeed;
 import Ability.Reversal;
 import Ability.Smash;
+import Ability.Tackle;
 import Ability.TwoWay;
 import Entity.Axe;
 import Entity.ChickenThigth;
@@ -62,6 +63,7 @@ public class FileControl {
 	private TwoWay twoway = new TwoWay();
 	private Smash smash = new Smash();
 	private Reversal reversal = new Reversal();
+	private Tackle tackle = new Tackle();
 	public static void savefile(Player p) {
 		try {
 			
@@ -148,14 +150,30 @@ public class FileControl {
 					 p.setShield(e);
 				 }
 			 }
+			fileScan.nextLine();
 			value = fileScan.nextInt();
 			for(int i = 0;i<value;i++) {
+				fileScan.nextLine();
 				line = fileScan.nextLine();
 				value = fileScan.nextInt();
 				for(Ability a:ablist.getAbilitylist()) {
 					if(a.getName().equals(line)) {
-						a.setPp(value);
-						p.ablist.addAbility(a);
+						if(line.equals("Tackle")) {
+							for(Ability a2:p.ablist.getAbilitylist()) {
+								if(a2.getName().equals("Tackle")) {
+									a2.setPp(value);
+								}
+							}
+						}
+						else {
+						   p.ablist.addAbility(a);
+						   for(Ability a3:p.ablist.getAbilitylist()) {
+							   if(a3.getName().equals(line)) {
+								   System.out.println(line);
+								   a3.setPp(value);
+							   }
+						   }
+						}
 					}
 				}
 			}
@@ -194,5 +212,9 @@ public class FileControl {
 		ablist.addAbility(bh);
 		ablist.addAbility(hi);
 		ablist.addAbility(ls);
+		ablist.addAbility(twoway);
+		ablist.addAbility(smash);
+		ablist.addAbility(reversal);
+		ablist.addAbility(tackle);
 	}
 }

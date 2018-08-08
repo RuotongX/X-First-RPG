@@ -103,7 +103,7 @@ public class UsingEntity {
 	    	this.Consumableuse("chocolate cake", p);
 	    	break;
 	    case "crow bar":
-	    	this.Consumableuse("crow bar", p);
+	    	this.Weapondepender("crow bar", p);
 	    	break;
 	    case "roastbeef":
 	    	this.Consumableuse("roastbeef", p);

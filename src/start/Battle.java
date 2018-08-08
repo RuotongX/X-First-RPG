@@ -324,30 +324,30 @@ public class Battle {
     	    	m.p.setExp(m.p.getExp()+monster.getExp());
     	    	if(m.p.getExp()>=10 && m.p.getExp()<30) {
     	    		m.p.setLevel(2);
-    	    		m.p.setHealthmax(150);
-    	    		m.p.setAttack(50);
-    	    		m.p.setDefence(10);
+    	    		m.p.setHealthmax(160);
+    	    		m.p.setAttack(60);
+    	    		m.p.setDefence(15);
     	    		System.out.println("Congrations! Level up! Your are lv2 now!");
     	    	}
     	    	else if(m.p.getExp()>=30 && m.p.getExp()<50) {
     	    		m.p.setLevel(3);
-    	    		m.p.setHealthmax(150);
-    	    		m.p.setAttack(50);
-    	    		m.p.setDefence(10);
+    	    		m.p.setHealthmax(170);
+    	    		m.p.setAttack(70);
+    	    		m.p.setDefence(20);
     	    		System.out.println("Congrations! Level up! Your are lv3 now!");
     	    	}
     	    	else if(m.p.getExp()>=50 && m.p.getExp()<80) {
     	    		m.p.setLevel(4);
-    	    		m.p.setHealthmax(150);
-    	    		m.p.setAttack(50);
-    	    		m.p.setDefence(10);
+    	    		m.p.setHealthmax(180);
+    	    		m.p.setAttack(80);
+    	    		m.p.setDefence(25);
     	    		System.out.println("Congrations! Level up! Your are lv4 now!");
     	    	}
     	    	else if(m.p.getExp()>=80 && m.p.getExp()<120) {
     	    		m.p.setLevel(5);
-    	    		m.p.setHealthmax(150);
-    	    		m.p.setAttack(50);
-    	    		m.p.setDefence(10);
+    	    		m.p.setHealthmax(180);
+    	    		m.p.setAttack(90);
+    	    		m.p.setDefence(30);
     	    		System.out.println("Congrations! Level up! Your are lv5 now!");
     	    	}
     	    	else if(m.p.getExp()>=120 && m.p.getExp()<160) {
@@ -356,30 +356,30 @@ public class Battle {
     	    	}
     	    	else if(m.p.getExp()>=160 && m.p.getExp()<200) {
     	    		m.p.setLevel(7);
-    	    		m.p.setHealthmax(150);
-    	    		m.p.setAttack(50);
-    	    		m.p.setDefence(10);
+    	    		m.p.setHealthmax(190);
+    	    		m.p.setAttack(100);
+    	    		m.p.setDefence(35);
     	    		System.out.println("Congrations! Level up! Your are lv7 now!");
     	    	}
     	    	else if(m.p.getExp()>=200 && m.p.getExp()<250) {
     	    		m.p.setLevel(8);
-    	    		m.p.setHealthmax(150);
-    	    		m.p.setAttack(50);
-    	    		m.p.setDefence(10);
+    	    		m.p.setHealthmax(200);
+    	    		m.p.setAttack(110);
+    	    		m.p.setDefence(40);
     	    		System.out.println("Congrations! Level up! Your are lv8 now!");
     	    	}
     	    	else if(m.p.getExp()>=250 && m.p.getExp()<300) {
     	    		m.p.setLevel(9);
-    	    		m.p.setHealthmax(150);
-    	    		m.p.setAttack(50);
-    	    		m.p.setDefence(10);
+    	    		m.p.setHealthmax(210);
+    	    		m.p.setAttack(120);
+    	    		m.p.setDefence(45);
     	    		System.out.println("Congrations! Level up! Your are lv9 now!");
     	    	}
     	    	else if(m.p.getExp()>=300 && m.p.getExp()<384) {
     	    		m.p.setLevel(10);
-    	    		m.p.setHealthmax(150);
-    	    		m.p.setAttack(50);
-    	    		m.p.setDefence(10);
+    	    		m.p.setHealthmax(220);
+    	    		m.p.setAttack(130);
+    	    		m.p.setDefence(50);
     	    		System.out.println("Congrations! Level up! Your are lv10 now!");
     	    	}
     	    	this.fighting =1;

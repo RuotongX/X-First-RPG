@@ -19,7 +19,7 @@ public class AbilityLimiter {
 	}
 
 	public AbilityLimiter(AbilityList al) {
-		if(al.getTotalnumber() == 4) {
+		if(al.getTotalnumber() > 4) {
 			System.out.println("You can only master 4 ability , please delete one of your ability");
 			PlayerAbilityDisplay pad = new PlayerAbilityDisplay(al);
 			System.out.println("Type the name of the ability, if you do not want to forget any ablility just type 'e'.");
@@ -30,11 +30,11 @@ public class AbilityLimiter {
 				}
 				else {
 					for(int i = 0;i<al.getTotalnumber();i++) {
-						if(al.getAbilitylist()[i].getName().contains(token)) {
+						if(al.getAbilitylist()[i].getName().toLowerCase().contains(token)) {
 							al.removeAbility(i);
 						}
 					}
-					if(al.getTotalnumber() == 4) {
+					if(al.getTotalnumber() > 4) {
 						System.out.println("You do not have "+token+" Please type again.");
 						return;
 					}
@@ -43,5 +43,16 @@ public class AbilityLimiter {
 				
 			}
 		}
+	}
+	public boolean AvoidDupulicate(Player p,Ability a) {
+		for(Ability a2:p.ablist.getAbilitylist()) {
+			if(a2.getName().equals(a.getName())) {
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+		return false;
 	}
 }

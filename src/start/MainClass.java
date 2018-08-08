@@ -24,6 +24,7 @@ public class MainClass {
 			}
 		} else {
 			System.out.println("Hey, Warrior, tell me your name :");
+			sc.nextLine();
 			String name = sc.nextLine();
 			m.p.setName(name);
 		}
@@ -37,23 +38,30 @@ public class MainClass {
 		System.out.println("Recommand fight with the monster on the left top first.");
 		System.out.println("'P' is player, 'M' is monster, 'S' is shop, 'D' is door, '*' is wall, 'B' is boss.");
 		System.out.println("For more hits or information please type 1.");
+		sc.nextLine();
 		do {
 			if (m.p.getLevel() == 3) {
 				AbilityLimiter al = new AbilityLimiter(m.p.ablist);
 				if (!m.p.ablist.hasAbility(twoway) && al.isKeep() == false) {
-					m.p.ablist.addAbility(twoway);
+					if(al.AvoidDupulicate(m.p, twoway) == false) {
+					    m.p.ablist.addAbility(twoway);
+					}
 				}
 			}
 			if (m.p.getLevel() == 5) {
 				AbilityLimiter al = new AbilityLimiter(m.p.ablist);
 				if (!m.p.ablist.hasAbility(smash) && al.isKeep() == false) {
-					m.p.ablist.addAbility(smash);
+					if(al.AvoidDupulicate(m.p, smash)) {
+					    m.p.ablist.addAbility(smash);
+					}
 				}
 			}
 			if (m.p.getLevel() == 7) {
 				AbilityLimiter al = new AbilityLimiter(m.p.ablist);
 				if (!m.p.ablist.hasAbility(reversal) && al.isKeep() == false) {
-					m.p.ablist.addAbility(reversal);
+					if(al.AvoidDupulicate(m.p, reversal)) {
+					    m.p.ablist.addAbility(reversal);
+					}
 				}
 			}
 			if (m.getFloor() == 0) {
