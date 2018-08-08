@@ -51,7 +51,7 @@ public class MainClass {
 			if (m.p.getLevel() == 5) {
 				AbilityLimiter al = new AbilityLimiter(m.p.ablist);
 				if (!m.p.ablist.hasAbility(smash) && al.isKeep() == false) {
-					if(al.AvoidDupulicate(m.p, smash)) {
+					if(al.AvoidDupulicate(m.p, smash) == false) {
 					    m.p.ablist.addAbility(smash);
 					}
 				}
@@ -59,7 +59,7 @@ public class MainClass {
 			if (m.p.getLevel() == 7) {
 				AbilityLimiter al = new AbilityLimiter(m.p.ablist);
 				if (!m.p.ablist.hasAbility(reversal) && al.isKeep() == false) {
-					if(al.AvoidDupulicate(m.p, reversal)) {
+					if(al.AvoidDupulicate(m.p, reversal) == false) {
 					    m.p.ablist.addAbility(reversal);
 					}
 				}

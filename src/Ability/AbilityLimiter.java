@@ -49,9 +49,6 @@ public class AbilityLimiter {
 			if(a2.getName().equals(a.getName())) {
 				return true;
 			}
-			else {
-				return false;
-			}
 		}
 		return false;
 	}

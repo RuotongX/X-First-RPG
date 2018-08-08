@@ -23,4 +23,4 @@ public class EntityTableDisplay {
 		System.out.println(sb.toString());
 	}
 }
-//m.shop.getEnlist().getentityList()[i].getName(), m.shop.getEnlist().getentityList()[i].getMoney(), m.shop.getEnlist().getentityList()[i].getDescription()
+

@@ -44,7 +44,7 @@ public class Battle {
 				if(ability.getName().toLowerCase().equals("attack with hard")){
 					if (ability.getPp() > 0) {
 					m.p.setTempattack(this.attack*ability.getStrength());
-					this.defence = m.p.getDefence()*ability.getDefenceboost();
+					this.defence = this.defence*ability.getDefenceboost();
 					ability.setPp(ability.getPp()-1);
 					System.out.println("You used the "+ability.getName());
 					System.out.println("You feel your defence improve.");
@@ -72,8 +72,8 @@ public class Battle {
 		for(Ability ability:m.p.ablist.getAbilitylist()) {
 			if(ability.getName().toLowerCase().equals("become huge")) {
 			  if (ability.getPp() > 0) {
-				this.attack = m.p.getAttack()*ability.getAttackboost();
-				this.defence = m.p.getDefence()*ability.getDefenceboost();
+				this.attack = this.attack*ability.getAttackboost();
+				this.defence = this.defence*ability.getDefenceboost();
 				ability.setPp(ability.getPp()-1);
 				System.out.println("You used the "+ability.getName());
 				System.out.println("You feel you attack and defence improve a lot.");
@@ -187,6 +187,7 @@ public class Battle {
 				System.out.println(monster.getName()+" deals you "+damage2+" damages!");
 				System.out.println(monster.getName()+"'s heal is "+monster.getHealth());
 				m.p.setHealth(m.p.getHealth()+m.p.getHealthmax()*ability.getHealupbyp());
+				System.out.println("You heal up "+m.p.getHealthmax()*ability.getHealupbyp()+" due to reversal");
 				System.out.println("Your heal is "+m.p.getHealth()+m.p.getHealthmax()*ability.getHealupbyp());
 				this.roundr = 2;
 				while(this.roundr!=0) {
@@ -248,7 +249,7 @@ public class Battle {
 						this.roundl=0;
 					}
 				}
-				System.out.println("Reversal effect disappear.");
+				System.out.println("Leech Seed effect disappear.");
 				} else {
 					System.out.println("Sorry you have not enough pp");
 					sc.nextLine();
@@ -267,8 +268,8 @@ public class Battle {
 		for(Ability ability:m.p.ablist.getAbilitylist()) {
 			if(ability.getName().toLowerCase().equals("twoway")) {
 				if (ability.getPp() > 0) {
-				this.attack = m.p.getAttack()*ability.getAttackboost();
-				this.defence = m.p.getDefence()*ability.getDefenceboost();
+				this.attack = this.attack*ability.getAttackboost();
+				this.defence = this.defence*ability.getDefenceboost();
 				ability.setPp(ability.getPp()-1);
 				System.out.println("You used the "+ability.getName());
 				System.out.println("You feel you attack and defence improved.");
@@ -389,7 +390,6 @@ public class Battle {
     	 }
 	private void typedepender(Map m,Monster monster) {
 		System.out.println("Please decide what you want to do: (Type the number)");
-	    do {
 	    	System.out.println("1.Battle");
 	    	System.out.println("2.Bag");
 	    	System.out.println("3.Run");
@@ -417,13 +417,13 @@ public class Battle {
 	    	}catch(Exception e) {
 	    		System.err.println(e);
 	    	}
-	
-	}while(fighting == 0);
 	}
 	public Battle(Map m,Monster monster) {	
 		this.attack = m.p.getAttack();
 		this.defence = m.p.getDefence();
 		System.out.println(m.p.getName()+" you meet a "+monster.getName()+"!");
-    	this.typedepender(m, monster);
+		do {
+    	    this.typedepender(m, monster);
+		} while(fighting == 0);
 	}
 }
