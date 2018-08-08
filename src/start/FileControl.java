@@ -169,7 +169,6 @@ public class FileControl {
 						   p.ablist.addAbility(a);
 						   for(Ability a3:p.ablist.getAbilitylist()) {
 							   if(a3.getName().equals(line)) {
-								   System.out.println(line);
 								   a3.setPp(value);
 							   }
 						   }
@@ -179,12 +178,17 @@ public class FileControl {
 			}
 			value = fileScan.nextInt();
 			for(int i = 0;i<value;i++) {
+				fileScan.nextLine();
 				line = fileScan.nextLine();
 				value = fileScan.nextInt();
 				for(Entity e : enlist.getentityList()) {
 					if(e.getName().equals(line)) {
-						e.setNum(value);
 						p.enlist.addentity(e);
+						for(Entity e2:p.enlist.getentityList()) {
+							   if(e2.getName().equals(line)) {
+								   e2.setPp(value);
+							   }
+						   }
 					}
 				}
 			}

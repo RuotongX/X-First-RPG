@@ -13,6 +13,9 @@ public class Battle {
 	private int roundl;
 	int fighting = 0;
 	Scanner sc = new Scanner(System.in);
+	TwoWay twoway = new TwoWay();
+	Smash smash = new Smash();
+	Reversal reversal = new Reversal();
 	private void skilldepender(String s,Map m,Monster monster) {
 		if(s.equals("Attack With Hard")) {
 			this.awh(m, monster);
@@ -336,6 +339,12 @@ public class Battle {
     	    		m.p.setAttack(70);
     	    		m.p.setDefence(20);
     	    		System.out.println("Congrations! Level up! Your are lv3 now!");
+    	    		AbilityLimiter al = new AbilityLimiter(m.p.ablist);
+    				if (!m.p.ablist.hasAbility(twoway) && al.isKeep() == false) {
+    					if(al.AvoidDupulicate(m.p, twoway) == false) {
+    					    m.p.ablist.addAbility(twoway);
+    					}
+    				}
     	    	}
     	    	else if(m.p.getExp()>=50 && m.p.getExp()<80) {
     	    		m.p.setLevel(4);
@@ -350,9 +359,18 @@ public class Battle {
     	    		m.p.setAttack(90);
     	    		m.p.setDefence(30);
     	    		System.out.println("Congrations! Level up! Your are lv5 now!");
+    	    		AbilityLimiter al = new AbilityLimiter(m.p.ablist);
+    				if (!m.p.ablist.hasAbility(smash) && al.isKeep() == false) {
+    					if(al.AvoidDupulicate(m.p, smash) == false) {
+    					    m.p.ablist.addAbility(smash);
+    					}
+    				}
     	    	}
     	    	else if(m.p.getExp()>=120 && m.p.getExp()<160) {
     	    		m.p.setLevel(6);
+    	    		m.p.setHealthmax(185);
+    	    		m.p.setAttack(95);
+    	    		m.p.setDefence(35);
     	    		System.out.println("Congrations! Level up! Your are lv6 now!");
     	    	}
     	    	else if(m.p.getExp()>=160 && m.p.getExp()<200) {
@@ -361,6 +379,12 @@ public class Battle {
     	    		m.p.setAttack(100);
     	    		m.p.setDefence(35);
     	    		System.out.println("Congrations! Level up! Your are lv7 now!");
+    	    		AbilityLimiter al = new AbilityLimiter(m.p.ablist);
+    				if (!m.p.ablist.hasAbility(reversal) && al.isKeep() == false) {
+    					if(al.AvoidDupulicate(m.p, reversal) == false) {
+    					    m.p.ablist.addAbility(reversal);
+    					}
+    				}
     	    	}
     	    	else if(m.p.getExp()>=200 && m.p.getExp()<250) {
     	    		m.p.setLevel(8);

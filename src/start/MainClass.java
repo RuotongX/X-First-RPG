@@ -28,9 +28,6 @@ public class MainClass {
 			String name = sc.nextLine();
 			m.p.setName(name);
 		}
-		TwoWay twoway = new TwoWay();
-		Smash smash = new Smash();
-		Reversal reversal = new Reversal();
 		System.out.println("Welcome " + m.p.getName() + ", please type your order, W A S D with enter to move.");
 		System.out.println("If you want to escape from this disappointing world just type 0.");
 		System.out.println("To check you bag please type 'b'");
@@ -40,30 +37,6 @@ public class MainClass {
 		System.out.println("For more hits or information please type 1.");
 		sc.nextLine();
 		do {
-			if (m.p.getLevel() == 3) {
-				AbilityLimiter al = new AbilityLimiter(m.p.ablist);
-				if (!m.p.ablist.hasAbility(twoway) && al.isKeep() == false) {
-					if(al.AvoidDupulicate(m.p, twoway) == false) {
-					    m.p.ablist.addAbility(twoway);
-					}
-				}
-			}
-			if (m.p.getLevel() == 5) {
-				AbilityLimiter al = new AbilityLimiter(m.p.ablist);
-				if (!m.p.ablist.hasAbility(smash) && al.isKeep() == false) {
-					if(al.AvoidDupulicate(m.p, smash) == false) {
-					    m.p.ablist.addAbility(smash);
-					}
-				}
-			}
-			if (m.p.getLevel() == 7) {
-				AbilityLimiter al = new AbilityLimiter(m.p.ablist);
-				if (!m.p.ablist.hasAbility(reversal) && al.isKeep() == false) {
-					if(al.AvoidDupulicate(m.p, reversal) == false) {
-					    m.p.ablist.addAbility(reversal);
-					}
-				}
-			}
 			if (m.getFloor() == 0) {
 				m.display();
 			} else {
