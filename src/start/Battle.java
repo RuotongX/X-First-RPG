@@ -454,12 +454,13 @@ public class Battle {
     	    	}	
     	 }
 	private void typedepender(Map m,Monster monster) {
+		int order = 3;
 		System.out.println("Please decide what you want to do: (Type the number)");
 	    	System.out.println("1.Battle");
 	    	System.out.println("2.Bag");
 	    	System.out.println("3.Run");
 	    	try {
-	    	     int order = sc.nextInt();
+	    	     order = sc.nextInt();
 	    	     switch(order) {
 	    	     case 1:
 	    	    	 this.battle(m,monster);
@@ -480,7 +481,8 @@ public class Battle {
 	    	    	 break;
 	    	     }
 	    	}catch(Exception e) {
-	    		System.err.println(e);
+	    		System.out.println("Input invalid, you will be kicked out!");
+	    		this.fighting =1;
 	    	}
 	}
 	public Battle(Map m,Monster monster) {	

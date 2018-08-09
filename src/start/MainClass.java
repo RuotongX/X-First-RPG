@@ -1,5 +1,6 @@
 package start;
 import java.io.FileNotFoundException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import Ability.*;
 /**
@@ -14,7 +15,14 @@ public class MainClass {
 		Scanner sc = new Scanner(System.in);
 		Map m = new Map();
 		System.out.println("Would you like to use the record?(Type true of false.)");
-		boolean command = sc.nextBoolean();
+		boolean command =true;
+		try
+			{
+			command= sc.nextBoolean();
+			}
+		catch(InputMismatchException e) {
+			 System.out.println("Invalid input, the system will load the record.");
+		}
 		if (command == true) {
 			try {
 				fc.loadfile(m.p);
