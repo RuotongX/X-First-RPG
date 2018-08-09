@@ -1,6 +1,7 @@
 package start;
 /**
- * 
+ * This class is used to set the basic attributes for the player, also give each attribute getter and setter.
+ * And also limit the place on the map that the player can't go.
  * @author RuotongXu QiChangZhou
  *
  */
@@ -25,7 +26,7 @@ public class Player {
 	private boolean m1defeat = false;
 	private boolean m2defeat = false;
 	private boolean m3defeat = false;
-	
+	private boolean bossdefeat = false;
 
 	public boolean isM1defeat() {
 		return m1defeat;
@@ -49,6 +50,14 @@ public class Player {
 
 	public void setM3defeat(boolean m3defeat) {
 		this.m3defeat = m3defeat;
+	}
+
+	public boolean isBossdefeat() {
+		return bossdefeat;
+	}
+
+	public void setBossdefeat(boolean bossdefeat) {
+		this.bossdefeat = bossdefeat;
 	}
 
 	public Entity getWeapon() {
@@ -163,7 +172,12 @@ public class Player {
 	public void setHealthmax(int healthmax) {
 		this.healthmax = healthmax;
 	}
-
+/**
+ * This method is used for the player at first level, set the row value and column value to avoid player 
+ * walk into the wall.
+ * @param row
+ * @param column
+ */
 	public void positionControler1(int row,int column) {
 			if (column == 0 || column == 10) {
 				this.column = this.getColumn();
@@ -190,6 +204,12 @@ public class Player {
 				this.row = row;
 			}
 	}
+/**
+ * This method is used for the player at second level, set the row value and column value to avoid player 
+ * walk into the wall.
+ * @param row
+ * @param column
+ */
 	public void positionControler2(int row,int column) {
 		if(row == 0||column == 0||row== 10||column == 10) {
 			this.column = this.getColumn();

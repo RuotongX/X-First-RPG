@@ -1,7 +1,7 @@
 package Entity;
 import start.*;
 /**
- * 
+ * This class just give the basic value to this entity.
  * @author RuotongXu QiChangZhou
  *
  */

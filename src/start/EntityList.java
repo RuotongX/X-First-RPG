@@ -1,7 +1,8 @@
 package start;
 import java.util.ArrayList;
 /**
- * 
+ * This class maintains a list of film objects with functionality to add and
+ * remove entities from the list.
  * @author RuotongXu QiChangZhou
  *
  */
@@ -16,6 +17,10 @@ public class EntityList {
 	public void removeentityItems(int index) {
 		this.entityItems.remove(index);
 	}
+/**
+ * This method is used to get the film array by rewrite the array list into a normal array.
+ * @return
+ */
 	public Entity[] getentityList() {
 		Entity[] array = new Entity[this.entityItems.size()];
 		for(int i =0; i<array.length;i++) {

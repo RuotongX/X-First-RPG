@@ -1,7 +1,7 @@
 package Ability;
 import start.*;
 /**
- * 
+ * This class is just give the basic value to this ability.
  * @author RuotongXu QiChangZhou
  *
  */

@@ -51,7 +51,7 @@ public class Battle {
 	}
 /**
  * This method is when the player use ability "attack with hard", 
- * this round the user will attack the monster and player will get a defense improved, then hit by the monster. 
+ * this round the player will attack the monster and player will get a defense improved, then hit by the monster. 
  * (The ability pp will reduce and damage calculate in this method too.)
  * @param m
  * @param monster
@@ -87,7 +87,7 @@ public class Battle {
 	}
 /**
  * This method is when player use the ability "become huge",
- * this round user will increase the attack and defense, then hit by monster.
+ * this round player will increase the attack and defense, then hit by monster.
  * (The ability pp will reduce and damage calculate in this method too.)
  * @param m
  * @param monster
@@ -117,7 +117,7 @@ public class Battle {
 	}	
 /**
  * This method is when the player use ability "huge impact",
- * This round user will attack to the monster, than hit by monster.
+ * This round player will attack to the monster, than hit by monster.
  *(The ability pp will reduce and damage calculate in this method too.)
  * @param m
  * @param monster
@@ -150,8 +150,8 @@ public class Battle {
 	    }
 	}
 /**
- * This method is used when user use ability "smash",
- * This round user will attack to the monster, than hit by monster.
+ * This method is used when player use ability "smash",
+ * This round player will attack to the monster, than hit by monster.
  * (The ability pp will reduce and damage calculate in this method too.)
  * @param m
  * @param monster
@@ -184,8 +184,8 @@ public class Battle {
 		}
 	}
 /**
- * This method is used when user use ability "tackle",
- *  This round user will attack to the monster, than hit by monster.
+ * This method is used when player use ability "tackle",
+ *  This round player will attack to the monster, than hit by monster.
  *  (The ability pp will reduce and damage calculate in this method too.)	
  * @param m
  * @param monster
@@ -330,7 +330,7 @@ public class Battle {
 	}
 /**
  * This method is used when player use ability "two way",
- * this round user will increase the attack and defense, then hit by monster.
+ * this round player will increase the attack and defense, then hit by monster.
  * (The ability pp will reduce and damage calculate in this method too.)
  * @param m
  * @param monster
@@ -361,7 +361,7 @@ public class Battle {
 /**
  * This method is when player choose to use ability when fighting with monster
  * It will display the ability list of player by calling the play ability display class,
- * then use the skilldepender to depend which ability user type in to use.
+ * then use the skilldepender to depend which ability player type in to use.
  * it also depends the battle progress is over or not by conform the health of player and monster.
  * @param m
  * @param monster
@@ -490,7 +490,7 @@ public class Battle {
     	 }
 /**
  * This method is used to decide which thing player want to do when fight with the monster by using switch case,
- * if the input is invalid, user escape.
+ * if the input is invalid, player escape.
  * @param m
  * @param monster
  */
