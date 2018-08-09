@@ -16,6 +16,13 @@ public class Battle {
 	TwoWay twoway = new TwoWay();
 	Smash smash = new Smash();
 	Reversal reversal = new Reversal();
+/**
+ * This method is used to depend which ability player choose by recognize the input ability name.
+ * Then call the method which is belong to that ability.
+ * @param s
+ * @param m
+ * @param monster
+ */
 	private void skilldepender(String s,Map m,Monster monster) {
 		if(s.equals("Attack With Hard")) {
 			this.awh(m, monster);
@@ -210,6 +217,12 @@ public class Battle {
 			}
 		}
 	}
+/**
+ * This method is used when the player use ability "reversal",
+ * Player will heal up 1/3 heal for 3 times after the damage calculation turn by using while loop.
+ * @param m
+ * @param monster
+ */
 	private void rs(Map m, Monster monster) {
 		for(Ability ability:m.p.ablist.getAbilitylist()) {
 			if(ability.getName().toLowerCase().equals("reversal")) {
@@ -256,6 +269,13 @@ public class Battle {
 			}
 		}
 	}
+/**
+ * This method is used when the player use ability "leech seed",
+ * the monster will reduce some heal and player will heal the same value for 3 rounds after damage calculation turn,
+ * which is the same way to implement compare with "reversal".
+ * @param m
+ * @param monster
+ */
 	private void ls(Map m, Monster monster) {
 		for(Ability ability:m.p.ablist.getAbilitylist()) {
 			if(ability.getName().toLowerCase().equals("leech seed")) {
@@ -308,6 +328,13 @@ public class Battle {
 			}
 		}
 	}
+/**
+ * This method is used when player use ability "two way",
+ * this round user will increase the attack and defense, then hit by monster.
+ * (The ability pp will reduce and damage calculate in this method too.)
+ * @param m
+ * @param monster
+ */
 	private void tw(Map m,Monster monster) {
 		for(Ability ability:m.p.ablist.getAbilitylist()) {
 			if(ability.getName().toLowerCase().equals("twoway")) {
@@ -331,6 +358,14 @@ public class Battle {
 		   }
 		}
 	}
+/**
+ * This method is when player choose to use ability when fighting with monster
+ * It will display the ability list of player by calling the play ability display class,
+ * then use the skilldepender to depend which ability user type in to use.
+ * it also depends the battle progress is over or not by conform the health of player and monster.
+ * @param m
+ * @param monster
+ */
 	private void battle(Map m,Monster monster) {
 		int temp =0;
     	    System.out.println("Please select your ability to attack. Type 1, 2, 3 or 4 to select.");
@@ -453,6 +488,12 @@ public class Battle {
     	    	m.p.setRow(5);
     	    	}	
     	 }
+/**
+ * This method is used to decide which thing player want to do when fight with the monster by using switch case,
+ * if the input is invalid, user escape.
+ * @param m
+ * @param monster
+ */
 	private void typedepender(Map m,Monster monster) {
 		int order = 3;
 		System.out.println("Please decide what you want to do: (Type the number)");
@@ -485,6 +526,12 @@ public class Battle {
 	    		this.fighting =1;
 	    	}
 	}
+/**
+ * This is a constructor. When player meet a monster, it will give the initial value to attack and defense of player for the battle
+ * it will keep looping order input if the battle is not over(player or monster dead or player escape)by using the do while loop.
+ * @param m
+ * @param monster
+ */
 	public Battle(Map m,Monster monster) {	
 		this.attack = m.p.getAttack();
 		this.defense = m.p.getdefense();
