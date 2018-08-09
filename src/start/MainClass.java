@@ -73,7 +73,7 @@ public class MainClass {
 					System.out.println("Player State");
 					System.out.println("Player Heal: "+m.p.getHealth());
 					System.out.println("Player Attack: "+m.p.getAttack());
-					System.out.println("Player defence: "+m.p.getDefence());
+					System.out.println("Player defense: "+m.p.getdefense());
 					if(m.p.getWeapon() == null) {
 						System.out.println("No weapon");
 					} else {

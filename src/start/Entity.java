@@ -8,7 +8,7 @@ public abstract class Entity {
 	private int health;
 	private double exp;
 	private int attack;
-	private int defence;
+	private int defense;
 	private int money;
 	private String name;
 	private String description;
@@ -57,11 +57,11 @@ public abstract class Entity {
 	public void setAttack(int attack) {
 		this.attack = attack;
 	}
-	public int getDefence() {
-		return defence;
+	public int getdefense() {
+		return defense;
 	}
-	public void setDefence(int defence) {
-		this.defence = defence;
+	public void setdefense(int defense) {
+		this.defense = defense;
 	}
 	public int getMoney() {
 		return money;

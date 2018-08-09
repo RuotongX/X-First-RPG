@@ -9,9 +9,9 @@ public class Player {
 	private int level;
 	private int money;
 	private double exp;
-	private static int levelmax = 11;
+	private final static int levelmax = 11;
 	private int attack;
-	private int defence;
+	private int defense;
 	private double tempattack;
 	private double health;
 	private int healthmax;
@@ -135,12 +135,12 @@ public class Player {
 		this.attack = attack;
 	}
 
-	public int getDefence() {
-		return defence;
+	public int getdefense() {
+		return defense;
 	}
 
-	public void setDefence(int defence) {
-		this.defence = defence;
+	public void setdefense(int defense) {
+		this.defense = defense;
 	}
 
 	public double getHealth() {

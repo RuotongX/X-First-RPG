@@ -24,7 +24,7 @@ public class Map {
 		p.setHealthmax(100);
 		p.setHealth(100);
 		p.setAttack(35);
-		p.setDefence(5);
+		p.setdefense(5);
 		p.setLevel(1);
 		p.setMoney(0);
 		p.setTempattack(p.getAttack());
@@ -35,7 +35,7 @@ public class Map {
 		m1.setRow(2);
 		m1.setColumn(2);
 		m1.setAttack(10);
-		m1.setDefence(5);
+		m1.setdefense(5);
 		m1.setHealthmax(25);
 		m1.setHealth(25);
 		m1.setExp(10);
@@ -45,7 +45,7 @@ public class Map {
 		m2.setRow(2);
 		m2.setColumn(8);
 		m2.setAttack(40);
-		m2.setDefence(20);
+		m2.setdefense(20);
 		m2.setHealthmax(50);
 		m2.setHealth(50);
 		m2.setExp(30);
@@ -55,7 +55,7 @@ public class Map {
 		m3.setRow(9);
 		m3.setColumn(5);
 		m3.setAttack(60);
-		m3.setDefence(30);
+		m3.setdefense(30);
 		m3.setHealthmax(90);
 		m3.setHealth(90);
 		m3.setExp(50);
@@ -67,7 +67,7 @@ public class Map {
 		boss.setRow(8);
 		boss.setColumn(5);
 		boss.setAttack(100);
-		boss.setDefence(80);
+		boss.setdefense(80);
 		boss.setHealthmax(200);
 		boss.setHealth(200.00);
 		boss.setLevel(10);

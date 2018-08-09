@@ -70,7 +70,7 @@ public class FileControl {
 		   try(PrintWriter fileWriter = new PrintWriter(new File("playerdata/data.txt"))){
 			   fileWriter.println(p.getName());
 			   fileWriter.println(p.getAttack());
-			   fileWriter.println(p.getDefence());
+			   fileWriter.println(p.getdefense());
 			   fileWriter.println(p.getLevel());
 			   fileWriter.println(p.getHealthmax());
 			   fileWriter.println(p.getHealth());
@@ -117,7 +117,7 @@ public class FileControl {
 			 int value = fileScan.nextInt();
 			 p.setAttack(value);
 			 value = fileScan.nextInt();
-			 p.setDefence(value);
+			 p.setdefense(value);
 			 value = fileScan.nextInt();
 			 p.setLevel(value);
 			 value = fileScan.nextInt();

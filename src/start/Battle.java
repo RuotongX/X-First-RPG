@@ -2,13 +2,13 @@ package start;
 import java.util.Scanner;
 import Ability.*;
 /**
- * 
+ * This class is used to implement the battle when player meet the monster.
  * @author RuotongXu QiChangZhou
  *
  */
 public class Battle {
 	private double attack;
-	private double defence;
+	private double defense;
 	private int roundr;
 	private int roundl;
 	int fighting = 0;
@@ -42,16 +42,23 @@ public class Battle {
 			this.tw(m, monster);
 		}
 	}
+/**
+ * This method is when the player use ability "attack with hard", 
+ * this round the user will attack the monster and player will get a defense improved, then hit by the monster. 
+ * (The ability pp will reduce and damage calculate in this method too.)
+ * @param m
+ * @param monster
+ */
 	private void awh(Map m,Monster monster) {
 			for(Ability ability:m.p.ablist.getAbilitylist()) {
 				if(ability.getName().toLowerCase().equals("attack with hard")){
 					if (ability.getPp() > 0) {
 					m.p.setTempattack(this.attack*ability.getStrength());
-					this.defence = this.defence*ability.getDefenceboost();
+					this.defense = this.defense*ability.getdefenseboost();
 					ability.setPp(ability.getPp()-1);
 					System.out.println("You used the "+ability.getName());
-					System.out.println("You feel your defence improve.");
-					double damage1 = (m.p.getTempattack()-monster.getDefence());
+					System.out.println("You feel your defense improve.");
+					double damage1 = (m.p.getTempattack()-monster.getdefense());
 					if(damage1 <= 0) {
 						damage1 = 1;
 					}
@@ -61,7 +68,7 @@ public class Battle {
 						System.out.println("You do not have enough pp!");
 						sc.nextLine();
 					}
-					double damage2 = (monster.getAttack()-this.defence);
+					double damage2 = (monster.getAttack()-this.defense);
 					if(damage2 <= 0) {
 						damage2 = 1;
 					}
@@ -71,20 +78,27 @@ public class Battle {
 				}
 			}
 	}
+/**
+ * This method is when player use the ability "become huge",
+ * this round user will increase the attack and defense, then hit by monster.
+ * (The ability pp will reduce and damage calculate in this method too.)
+ * @param m
+ * @param monster
+ */
 	private void bh(Map m,Monster monster) {
 		for(Ability ability:m.p.ablist.getAbilitylist()) {
 			if(ability.getName().toLowerCase().equals("become huge")) {
 			  if (ability.getPp() > 0) {
 				this.attack = this.attack*ability.getAttackboost();
-				this.defence = this.defence*ability.getDefenceboost();
+				this.defense = this.defense*ability.getdefenseboost();
 				ability.setPp(ability.getPp()-1);
 				System.out.println("You used the "+ability.getName());
-				System.out.println("You feel you attack and defence improve a lot.");
+				System.out.println("You feel you attack and defense improve a lot.");
 			  } else {
 					System.out.println("You do not have enough pp!");
 					sc.nextLine();
 				}
-				double damage2 = (monster.getAttack()-this.defence);
+				double damage2 = (monster.getAttack()-this.defense);
 				if(damage2 <= 0) {
 					damage2 = 1;
 				}
@@ -94,6 +108,13 @@ public class Battle {
 		   }
 		}
 	}	
+/**
+ * This method is when the player use ability "huge impact",
+ * This round user will attack to the monster, than hit by monster.
+ *(The ability pp will reduce and damage calculate in this method too.)
+ * @param m
+ * @param monster
+ */
 	private void hi(Map m,Monster monster) {
 		for(Ability ability:m.p.ablist.getAbilitylist()) {
 			 if(ability.getName().toLowerCase().equals("huge Impact")) {
@@ -101,7 +122,7 @@ public class Battle {
 					m.p.setTempattack(m.p.getAttack()*ability.getStrength());
 					ability.setPp(ability.getPp()-1);
 					System.out.println("You used the "+ability.getName());
-					double damage1 = (m.p.getTempattack()-monster.getDefence());
+					double damage1 = (m.p.getTempattack()-monster.getdefense());
 					if(damage1 <= 0) {
 						damage1 = 1;
 					}
@@ -111,7 +132,7 @@ public class Battle {
 						System.out.println("You do not have enough pp!");
 						sc.nextLine();
 					}
-					double damage2 = (monster.getAttack()-this.defence);
+					double damage2 = (monster.getAttack()-this.defense);
 					if(damage2 <= 0) {
 						damage2 = 1;
 					}
@@ -121,6 +142,13 @@ public class Battle {
 			 }
 	    }
 	}
+/**
+ * This method is used when user use ability "smash",
+ * This round user will attack to the monster, than hit by monster.
+ * (The ability pp will reduce and damage calculate in this method too.)
+ * @param m
+ * @param monster
+ */
 	private void sm(Map m,Monster monster) {
 		for(Ability ability:m.p.ablist.getAbilitylist()) {
 			if (ability.getName().toLowerCase().equals("smash")) {
@@ -128,7 +156,7 @@ public class Battle {
 					m.p.setTempattack(attack * ability.getStrength());
 					ability.setPp(ability.getPp() - 1);
 					System.out.println("You used the " + ability.getName());
-					double damage1 = (m.p.getTempattack() - monster.getDefence());
+					double damage1 = (m.p.getTempattack() - monster.getdefense());
 					if (damage1 <= 0) {
 						damage1 = 1;
 					}
@@ -138,7 +166,7 @@ public class Battle {
 					System.out.println("You do not have enough pp!");
 					sc.nextLine();
 				}
-				double damage2 = (monster.getAttack()-this.defence);
+				double damage2 = (monster.getAttack()-this.defense);
 				if(damage2 <= 0) {
 					damage2 = 1;
 				}
@@ -148,6 +176,13 @@ public class Battle {
 			}
 		}
 	}
+/**
+ * This method is used when user use ability "tackle",
+ *  This round user will attack to the monster, than hit by monster.
+ *  (The ability pp will reduce and damage calculate in this method too.)	
+ * @param m
+ * @param monster
+ */
 	private void tk(Map m,Monster monster) {
 		for(Ability ability:m.p.ablist.getAbilitylist()) {
 			if(ability.getName().toLowerCase().equals("tackle")) {
@@ -155,7 +190,7 @@ public class Battle {
 				m.p.setTempattack(attack*ability.getStrength());
 				ability.setPp(ability.getPp()-1);
 				System.out.println("You used the "+ability.getName());
-				double damage1 = (m.p.getTempattack()-monster.getDefence());
+				double damage1 = (m.p.getTempattack()-monster.getdefense());
 				if(damage1 <= 0) {
 					damage1 = 1;
 				}
@@ -165,7 +200,7 @@ public class Battle {
 					System.out.println("You do not have enough pp!");
 					sc.nextLine();
 				}
-				double damage2 = (monster.getAttack()-this.defence);
+				double damage2 = (monster.getAttack()-this.defense);
 				if(damage2 <= 0) {
 					damage2 = 1;
 				}
@@ -182,7 +217,7 @@ public class Battle {
 				this.roundr = 3;
 				ability.setPp(ability.getPp()-1);
 				System.out.println("You feel you are full of healing power.");
-				double damage2 = (monster.getAttack()-this.defence);
+				double damage2 = (monster.getAttack()-this.defense);
 				if(damage2 <= 0) {
 					damage2 = 1;
 				}
@@ -202,12 +237,15 @@ public class Battle {
 					if(monster.getHealth() <= 0) {
 						this.roundr=0;
 					}
+					if(this.fighting == 1) {
+						this.roundr = 0;
+					}
 				}
 				System.out.println("Reversal effect disappear.");
 				} else {
 					System.out.println("Sorry you have not enough pp");
 					sc.nextLine();
-					double damage2 = (monster.getAttack()-this.defence);
+					double damage2 = (monster.getAttack()-this.defense);
 					if(damage2 <= 0) {
 						damage2 = 1;
 					}
@@ -225,7 +263,7 @@ public class Battle {
 				this.roundl = 3;
 				ability.setPp(ability.getPp()-1);
 				System.out.println("Enemy got the leechseed and keep losing heal, you are healed by seed.");
-				double damage2 = (monster.getAttack()-this.defence);
+				double damage2 = (monster.getAttack()-this.defense);
 				if(damage2 <= 0) {
 					damage2 = 1;
 				}
@@ -251,12 +289,15 @@ public class Battle {
 					if(monster.getHealth() <= 0) {
 						this.roundl=0;
 					}
+					if(this.fighting == 1) {
+						this.roundl = 0;
+					}
 				}
 				System.out.println("Leech Seed effect disappear.");
 				} else {
 					System.out.println("Sorry you have not enough pp");
 					sc.nextLine();
-					double damage2 = (monster.getAttack()-this.defence);
+					double damage2 = (monster.getAttack()-this.defense);
 					if(damage2 <= 0) {
 						damage2 = 1;
 					}
@@ -272,15 +313,15 @@ public class Battle {
 			if(ability.getName().toLowerCase().equals("twoway")) {
 				if (ability.getPp() > 0) {
 				this.attack = this.attack*ability.getAttackboost();
-				this.defence = this.defence*ability.getDefenceboost();
+				this.defense = this.defense*ability.getdefenseboost();
 				ability.setPp(ability.getPp()-1);
 				System.out.println("You used the "+ability.getName());
-				System.out.println("You feel you attack and defence improved.");
+				System.out.println("You feel you attack and defense improved.");
 				} else {
 					System.out.println("You do not have enough pp!");
 					sc.nextLine();
 				}
-				double damage2 = (monster.getAttack()-this.defence);
+				double damage2 = (monster.getAttack()-this.defense);
 				if(damage2 <= 0) {
 					damage2 = 1;
 				}
@@ -330,14 +371,14 @@ public class Battle {
     	    		m.p.setLevel(2);
     	    		m.p.setHealthmax(160);
     	    		m.p.setAttack(60);
-    	    		m.p.setDefence(15);
+    	    		m.p.setdefense(15);
     	    		System.out.println("Congrations! Level up! Your are lv2 now!");
     	    	}
     	    	else if(m.p.getExp()>=30 && m.p.getExp()<50) {
     	    		m.p.setLevel(3);
     	    		m.p.setHealthmax(170);
     	    		m.p.setAttack(70);
-    	    		m.p.setDefence(20);
+    	    		m.p.setdefense(20);
     	    		System.out.println("Congrations! Level up! Your are lv3 now!");
     	    		AbilityLimiter al = new AbilityLimiter(m.p.ablist);
     				if (!m.p.ablist.hasAbility(twoway) && al.isKeep() == false) {
@@ -350,14 +391,14 @@ public class Battle {
     	    		m.p.setLevel(4);
     	    		m.p.setHealthmax(180);
     	    		m.p.setAttack(80);
-    	    		m.p.setDefence(25);
+    	    		m.p.setdefense(25);
     	    		System.out.println("Congrations! Level up! Your are lv4 now!");
     	    	}
     	    	else if(m.p.getExp()>=80 && m.p.getExp()<120) {
     	    		m.p.setLevel(5);
     	    		m.p.setHealthmax(180);
     	    		m.p.setAttack(90);
-    	    		m.p.setDefence(30);
+    	    		m.p.setdefense(30);
     	    		System.out.println("Congrations! Level up! Your are lv5 now!");
     	    		AbilityLimiter al = new AbilityLimiter(m.p.ablist);
     				if (!m.p.ablist.hasAbility(smash) && al.isKeep() == false) {
@@ -370,14 +411,14 @@ public class Battle {
     	    		m.p.setLevel(6);
     	    		m.p.setHealthmax(185);
     	    		m.p.setAttack(95);
-    	    		m.p.setDefence(35);
+    	    		m.p.setdefense(35);
     	    		System.out.println("Congrations! Level up! Your are lv6 now!");
     	    	}
     	    	else if(m.p.getExp()>=160 && m.p.getExp()<200) {
     	    		m.p.setLevel(7);
     	    		m.p.setHealthmax(190);
     	    		m.p.setAttack(100);
-    	    		m.p.setDefence(35);
+    	    		m.p.setdefense(35);
     	    		System.out.println("Congrations! Level up! Your are lv7 now!");
     	    		AbilityLimiter al = new AbilityLimiter(m.p.ablist);
     				if (!m.p.ablist.hasAbility(reversal) && al.isKeep() == false) {
@@ -390,21 +431,21 @@ public class Battle {
     	    		m.p.setLevel(8);
     	    		m.p.setHealthmax(200);
     	    		m.p.setAttack(110);
-    	    		m.p.setDefence(40);
+    	    		m.p.setdefense(40);
     	    		System.out.println("Congrations! Level up! Your are lv8 now!");
     	    	}
     	    	else if(m.p.getExp()>=250 && m.p.getExp()<300) {
     	    		m.p.setLevel(9);
     	    		m.p.setHealthmax(210);
     	    		m.p.setAttack(120);
-    	    		m.p.setDefence(45);
+    	    		m.p.setdefense(45);
     	    		System.out.println("Congrations! Level up! Your are lv9 now!");
     	    	}
     	    	else if(m.p.getExp()>=300 && m.p.getExp()<384) {
     	    		m.p.setLevel(10);
     	    		m.p.setHealthmax(220);
     	    		m.p.setAttack(130);
-    	    		m.p.setDefence(50);
+    	    		m.p.setdefense(50);
     	    		System.out.println("Congrations! Level up! Your are lv10 now!");
     	    	}
     	    	this.fighting =1;
@@ -425,7 +466,7 @@ public class Battle {
 	    	    	 break;
 				 case 2:
 					 UsingEntity ue = new UsingEntity(m.p);
-	    	    	 double damage2 = (monster.getAttack()-this.defence);
+	    	    	 double damage2 = (monster.getAttack()-this.defense);
 						if(damage2 <= 0) {
 							damage2 = 1;
 						}
@@ -444,7 +485,7 @@ public class Battle {
 	}
 	public Battle(Map m,Monster monster) {	
 		this.attack = m.p.getAttack();
-		this.defence = m.p.getDefence();
+		this.defense = m.p.getdefense();
 		System.out.println(m.p.getName()+" you meet a "+monster.getName()+"!");
 		do {
     	    this.typedepender(m, monster);

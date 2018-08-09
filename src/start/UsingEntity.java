@@ -33,17 +33,17 @@ public class UsingEntity {
     			if(p.getShield() == null) {
     				p.setShield(e);;
     				System.out.println("You have equip "+e.getName());
-    				p.setDefence(p.getDefence()+e.getDefence());
-    				System.out.println("You defence has increased "+e.getDefence());
-    				System.out.println("Your defence value becomes to "+p.getDefence());
+    				p.setdefense(p.getdefense()+e.getdefense());
+    				System.out.println("You defense has increased "+e.getdefense());
+    				System.out.println("Your defense value becomes to "+p.getdefense());
     			}
     			else {
-    				p.setDefence(p.getDefence()-p.getShield().getDefence());
-    				System.out.println("You have take off the "+e.getName() +" and defence reduce "+e.getDefence());
+    				p.setdefense(p.getdefense()-p.getShield().getdefense());
+    				System.out.println("You have take off the "+e.getName() +" and defense reduce "+e.getdefense());
     				p.setShield(e);
     				System.out.println("You have equip "+e.getName());
-    				p.setDefence(p.getDefence()+e.getDefence());
-    				System.out.println("Your defence value becomes to "+p.getDefence());
+    				p.setdefense(p.getdefense()+e.getdefense());
+    				System.out.println("Your defense value becomes to "+p.getdefense());
     				
     			}
     		}

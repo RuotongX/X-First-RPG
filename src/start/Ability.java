@@ -9,7 +9,7 @@ public abstract class Ability {
 	private double strength;
 	private String description;
 	private double attackboost;
-	private double defenceboost;
+	private double defenseboost;
 	private double healupbyp;
 	private double healupbyv;
 	private double percentagehit;
@@ -75,11 +75,11 @@ public abstract class Ability {
 	public void setAttackboost(double attackboost) {
 		this.attackboost = attackboost;
 	}
-	public double getDefenceboost() {
-		return defenceboost;
+	public double getdefenseboost() {
+		return defenseboost;
 	}
-	public void setDefenceboost(double defenceboost) {
-		this.defenceboost = defenceboost;
+	public void setdefenseboost(double defenseboost) {
+		this.defenseboost = defenseboost;
 	}
 	public boolean isBlock() {
 		return block;
