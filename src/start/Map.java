@@ -8,7 +8,7 @@ import Ability.*;
  */
 public class Map {
 	private static int rowMax = 11;
-	private static int columnMax = 11;
+	private static int columnMax = 12;
 	private int floor = 0;
 	private static int level = 2;
 	private static String[][][] map = new String [rowMax][columnMax][level];
@@ -157,6 +157,16 @@ public class Map {
 				else {
 					map[i][j][floor] = " ";
 				}
+				map[1][11][floor] = "     Map information";
+				map[2][11][floor] = "     'P' is player, 'M' is monster, 'S' is shop, 'D' is door, '*' is wall, 'B' is boss.";
+				map[3][11][floor] = "     If you want to escape from this disappointing world just type 0.";
+				map[4][11][floor] = "     For more hits or information please type 1.";
+				map[5][11][floor] = "     To check player states please type '2'";
+				map[6][11][floor] = "     To check you bag please type 'b'";
+				map[7][11][floor] = "     Player heals "+p.getHealth();
+				map[8][11][floor] = "     Player level "+p.getLevel();
+				map[0][11][floor] = "";
+				map[10][11][floor] = "";
 				System.out.print(map[i][j][floor]+" ");
 			}
 			System.out.println();
@@ -205,6 +215,16 @@ public class Map {
 				else {
 					map[i][j][floor] = " ";
 				}
+				map[1][11][floor] = "     Map information";
+				map[2][11][floor] = "     'P' is player, 'M' is monster, 'S' is shop, 'D' is door, '*' is wall, 'B' is boss.";
+				map[3][11][floor] = "     If you want to escape from this disappointing world just type 0.";
+				map[4][11][floor] = "     For more hits or information please type 1.";
+				map[5][11][floor] = "     To check player states please type '2'";
+				map[6][11][floor] = "     To check you bag please type 'b'";
+				map[7][11][floor] = "     Player heals "+p.getHealth();
+				map[8][11][floor] = "     Player level "+p.getLevel();
+				map[0][11][floor] = "";
+				map[10][11][floor] = "";
 				System.out.print(map[i][j][floor]+" ");
 			}
 			System.out.println();

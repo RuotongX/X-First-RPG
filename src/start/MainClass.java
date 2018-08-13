@@ -37,12 +37,7 @@ public class MainClass {
 			m.p.setName(name);
 		}
 		System.out.println("Welcome " + m.p.getName() + ", please type your order, W A S D with enter to move.");
-		System.out.println("If you want to escape from this disappointing world just type 0.");
-		System.out.println("To check you bag please type 'b'");
-		System.out.println("To check player states please type '2'");
 		System.out.println("Recommand fight with the monster on the left top first.");
-		System.out.println("'P' is player, 'M' is monster, 'S' is shop, 'D' is door, '*' is wall, 'B' is boss.");
-		System.out.println("For more hits or information please type 1.");
 		sc.nextLine();
 		do {
 			if (m.getFloor() == 0) {

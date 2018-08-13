@@ -385,7 +385,7 @@ public class Battle {
     	    	System.out.println("You have been defeated!!");
     	    }
     	    if(monster.getHealth() <= 0) {
-    	    	System.out.println("You have slain the monster! You have earned: "+monster.getMoney()+"$!");
+    	    	System.out.println("Congrations! You have slain the monster! You have earned: "+monster.getMoney()+"$!");
     	    	if(monster.getHealthmax()==25) {
     	    		m.p.setM1defeat(true);
     	    	}
@@ -407,14 +407,15 @@ public class Battle {
     	    		m.p.setHealthmax(160);
     	    		m.p.setAttack(60);
     	    		m.p.setdefense(15);
-    	    		System.out.println("Congrations! Level up! Your are lv2 now!");
+    	    		System.out.println("Your are lv2 now!");
     	    	}
     	    	else if(m.p.getExp()>=30 && m.p.getExp()<50) {
     	    		m.p.setLevel(3);
     	    		m.p.setHealthmax(170);
     	    		m.p.setAttack(70);
     	    		m.p.setdefense(20);
-    	    		System.out.println("Congrations! Level up! Your are lv3 now!");
+    	    		System.out.println("Your are lv3 now!");
+    	    		System.out.println("You have learned the ability 'Two way'");
     	    		AbilityLimiter al = new AbilityLimiter(m.p.ablist);
     				if (!m.p.ablist.hasAbility(twoway) && al.isKeep() == false) {
     					if(al.AvoidDupulicate(m.p, twoway) == false) {
@@ -427,14 +428,15 @@ public class Battle {
     	    		m.p.setHealthmax(180);
     	    		m.p.setAttack(80);
     	    		m.p.setdefense(25);
-    	    		System.out.println("Congrations! Level up! Your are lv4 now!");
+    	    		System.out.println("Your are lv4 now!");
     	    	}
     	    	else if(m.p.getExp()>=80 && m.p.getExp()<120) {
     	    		m.p.setLevel(5);
     	    		m.p.setHealthmax(180);
     	    		m.p.setAttack(90);
     	    		m.p.setdefense(30);
-    	    		System.out.println("Congrations! Level up! Your are lv5 now!");
+    	    		System.out.println("Your are lv5 now!");
+    	    		System.out.println("You have learned the ability 'Smash'");
     	    		AbilityLimiter al = new AbilityLimiter(m.p.ablist);
     				if (!m.p.ablist.hasAbility(smash) && al.isKeep() == false) {
     					if(al.AvoidDupulicate(m.p, smash) == false) {
@@ -447,14 +449,15 @@ public class Battle {
     	    		m.p.setHealthmax(185);
     	    		m.p.setAttack(95);
     	    		m.p.setdefense(35);
-    	    		System.out.println("Congrations! Level up! Your are lv6 now!");
+    	    		System.out.println("Your are lv6 now!");
     	    	}
     	    	else if(m.p.getExp()>=160 && m.p.getExp()<200) {
     	    		m.p.setLevel(7);
     	    		m.p.setHealthmax(190);
     	    		m.p.setAttack(100);
     	    		m.p.setdefense(35);
-    	    		System.out.println("Congrations! Level up! Your are lv7 now!");
+    	    		System.out.println("Your are lv7 now!");
+    	    		System.out.println("You have learned the ability 'Reversal'");
     	    		AbilityLimiter al = new AbilityLimiter(m.p.ablist);
     				if (!m.p.ablist.hasAbility(reversal) && al.isKeep() == false) {
     					if(al.AvoidDupulicate(m.p, reversal) == false) {
@@ -467,21 +470,21 @@ public class Battle {
     	    		m.p.setHealthmax(200);
     	    		m.p.setAttack(110);
     	    		m.p.setdefense(40);
-    	    		System.out.println("Congrations! Level up! Your are lv8 now!");
+    	    		System.out.println("Your are lv8 now!");
     	    	}
     	    	else if(m.p.getExp()>=250 && m.p.getExp()<300) {
     	    		m.p.setLevel(9);
     	    		m.p.setHealthmax(210);
     	    		m.p.setAttack(120);
     	    		m.p.setdefense(45);
-    	    		System.out.println("Congrations! Level up! Your are lv9 now!");
+    	    		System.out.println("Your are lv9 now!");
     	    	}
     	    	else if(m.p.getExp()>=300 && m.p.getExp()<384) {
     	    		m.p.setLevel(10);
     	    		m.p.setHealthmax(220);
     	    		m.p.setAttack(130);
     	    		m.p.setdefense(50);
-    	    		System.out.println("Congrations! Level up! Your are lv10 now!");
+    	    		System.out.println("Your are lv10 now!");
     	    	}
     	    	this.fighting =1;
     	    	m.p.setColumn(5);
