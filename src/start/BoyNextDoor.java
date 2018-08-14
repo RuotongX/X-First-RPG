@@ -1,6 +1,7 @@
 package start;
 /**
- * 
+ * This class is used to ensure the player have defeated all the monsters which are lies in first floor, so that player can go to the 
+ * second floor. And also if player want to go floor 1 from floor 2, this class also is been used. 
  * @author RuotongXu QiChangZhou
  *
  */

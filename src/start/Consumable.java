@@ -1,6 +1,6 @@
 package start;
 /**
- * 
+ * This class is used to specific the type of entity. The consumable entity has the consume attribute.
  * @author RuotongXu QiChangZhou
  *
  */

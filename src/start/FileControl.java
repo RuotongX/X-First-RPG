@@ -1,14 +1,10 @@
 package start;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+
 import java.io.PrintWriter;
-import java.util.HashMap;
-import java.util.InputMismatchException;
-import java.util.Map;
+
+
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import Ability.AttackWithHard;
 import Ability.BecomeHuge;
@@ -35,7 +31,8 @@ import Entity.WoodenShield;
 
 import java.io.File;
 /**
- * 
+ * This class is the file io, when the player want to save or load game progress system will call this class,
+ * first I create all abilities and entities instance in this class, so that its easy to load the player abilities and entities.
  * @author RuotongXu QiChangZhou
  *
  */
@@ -64,6 +61,11 @@ public class FileControl {
 	private Smash smash = new Smash();
 	private Reversal reversal = new Reversal();
 	private Tackle tackle = new Tackle();
+/**
+ * This method is to save the player data to a txt file, when store the list, it used the for loop to get each object in that list,
+ * I also create the method in arraylist class which can transfer the arraylist to array so that easy to read and write.
+ * @param p
+ */
 	public static void savefile(Player p) {
 		try {
 			
@@ -93,12 +95,12 @@ public class FileControl {
 			   else {
 			       fileWriter.println(p.getShield().getName());
 			   }
-			   fileWriter.println(p.ablist.getTotalnumber());
+			   fileWriter.println(p.ablist.getTotalnumber());//write how many ability that player have.
 			   for (Ability a : p.ablist.getAbilitylist()) {
 				   fileWriter.println(a.getName());
 				   fileWriter.println(a.getPp());
 			   }
-			   fileWriter.println(p.enlist.getTotalnumber());
+			   fileWriter.println(p.enlist.getTotalnumber());//write how many entity that player have.
 			   for (Entity e : p.enlist.getentityList()) {
 			       fileWriter.println(e.getName());
 			       fileWriter.println(e.getNum());
@@ -109,6 +111,12 @@ public class FileControl {
 			e.printStackTrace();
 		}
 	}
+/**
+ * This method is used to load the txt file and read the player information into the game,
+ * it read the entity's or ability's name and number, then set for player's attributes.
+ * @param p
+ * @throws FileNotFoundException
+ */
 	public static void loadfile(Player p) throws FileNotFoundException {
 		Scanner fileScan = new Scanner(new File("playerdata/data.txt"));
 		try {
@@ -139,28 +147,28 @@ public class FileControl {
 			 v2 = fileScan.nextDouble();
 			 p.setExp(v2);
 			 line = fileScan.nextLine();
-			 for(Entity e : enlist.getentityList()) {
+			 for(Entity e : enlist.getentityList()) {//used for loop to find the player weapen in the total list.
 				 if(e.getName().equals(line)) {
 					 p.setWeapon(e);
 				 }
 			 }
 			line = fileScan.nextLine();
-			for(Entity e : enlist.getentityList()) {
+			for(Entity e : enlist.getentityList()) {//used for loop to find the player shield in the total list.
 				 if(e.getName().equals(line)) {
 					 p.setShield(e);
 				 }
 			 }
 			fileScan.nextLine();
-			value = fileScan.nextInt();
-			for(int i = 0;i<value;i++) {
+			value = fileScan.nextInt();//read how many abilities that player has.
+			for(int i = 0;i<value;i++) {//used the for loop to read each information that a attribute has(actually it just has the name and pp number)
 				fileScan.nextLine();
 				line = fileScan.nextLine();
 				value = fileScan.nextInt();
-				for(Ability a:ablist.getAbilitylist()) {
+				for(Ability a:ablist.getAbilitylist()) {//This for loop is used to find this entity in the total list in this class.
 					if(a.getName().equals(line)) {
 						if(line.equals("Tackle")) {
 							for(Ability a2:p.ablist.getAbilitylist()) {
-								if(a2.getName().equals("Tackle")) {
+								if(a2.getName().equals("Tackle")) {//Because player always has tackle so it avoid player learn this ability again.
 									a2.setPp(value);
 								}
 							}
@@ -176,17 +184,17 @@ public class FileControl {
 					}
 				}
 			}
-			value = fileScan.nextInt();
-			for(int i = 0;i<value;i++) {
+			value = fileScan.nextInt();//read how many entities that player has.
+			for(int i = 0;i<value;i++) {//used the for loop to read each information that a entity has(actually it just has the name and quantity number)
 				fileScan.nextLine();
 				line = fileScan.nextLine();
 				value = fileScan.nextInt();
-				for(Entity e : enlist.getentityList()) {
+				for(Entity e : enlist.getentityList()) {//This for loop is used to find this entity in the total list in this class.
 					if(e.getName().equals(line)) {
 						p.enlist.addentity(e);
 						for(Entity e2:p.enlist.getentityList()) {
 							   if(e2.getName().equals(line)) {
-								   e2.setPp(value);
+								   e2.setNum(value);
 							   }
 						   }
 					}
@@ -197,6 +205,10 @@ public class FileControl {
 			
 		}
 	}
+/**
+ * This is a constructor of this class, it add all the instance of abilities and entities into the list of this class.
+ * So that its easy to get one of them and add it to the player list.
+ */
 	public FileControl() {
 		enlist.addentity(axe);
 		enlist.addentity(ct);

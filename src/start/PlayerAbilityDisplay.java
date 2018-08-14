@@ -1,6 +1,7 @@
 package start;
 /**
- * 
+ * This class is used to display a table for the player's ability list by using the String Builder to format the information.
+ * When the other class call this call just call the constructor and the table will display.
  * @author RuotongXu QiChangZhou
  *
  */

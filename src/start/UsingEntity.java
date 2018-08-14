@@ -1,12 +1,22 @@
 package start;
 import java.util.Scanner;
 /**
- * 
+ * This class is used when player want to use the entity.
  * @author RuotongXu QiChangZhou
  *
  */
 public class UsingEntity {
+/**
+ * This method is used to show when player used the weapon, the attack will increase,
+ * using the for loop to find which entity player used.
+ * And also avoid player to equip more than 1 weapon.
+ * When player equip another weapon, the previous one will be replaced.
+ * If not find the entity system will say sorry you do not have that.
+ * @param a
+ * @param p
+ */
 	private void Weapondepender(String a,Player p) {
+		int temp = p.getAttack();
 		for(Entity e :p.enlist.getentityList()) {
     		if(e.getName().toLowerCase().equals(a)) {
     			if(p.getWeapon() == null) {
@@ -26,8 +36,21 @@ public class UsingEntity {
     			}
     		}
     	}
+		if(p.getdefense() == temp) {
+			System.out.println("Sorry you do not have this weapon or you current equip this weapon.");
+		}
 	}
+/**
+ * This method is used to show when player used the shield, the defense will increase,
+ * using the for loop to find which entity player used.
+ * And also avoid player to equip more than 1 shield.
+ * When player equip another shield, the previous one will be replaced.
+ * If not find the entity system will say sorry you do not have that.
+ * @param a
+ * @param p
+ */
 	private void Shielddepender(String a,Player p) {
+		int temp = p.getdefense();
 		for(Entity e :p.enlist.getentityList()) {
     		if(e.getName().toLowerCase().equals(a)) {
     			if(p.getShield() == null) {
@@ -48,19 +71,46 @@ public class UsingEntity {
     			}
     		}
     	}
+		if(p.getdefense() == temp) {
+			System.out.println("Sorry you do not have this shield or you current equip this shield.");
+		}
 	}
+/**
+ * This method is used when player use the consumable entity,
+ * using the for loop to find which entity player used.
+ * if player have more than one consumable entity, the quantity of that entity will reduce one,
+ * else the entity will disappear after use.
+ * If not find the entity system will say sorry you do not have that.
+ * @param a
+ * @param p
+ */
 	private void Consumableuse(String a,Player p) {
+		double temp = p.getHealth();
 		for(int i = 0;i<p.enlist.getTotalnumber();i++) {
 			if(p.enlist.getentityList()[i].getName().toLowerCase().equals(a)) {
 				System.out.println("You have used the "+p.enlist.getentityList()[i].getName());
 				p.setHealth(p.getHealth()+p.enlist.getentityList()[i].getHealth());
 				System.out.println("You have healed "+p.enlist.getentityList()[i].getHealth());
 				System.out.println("Now you heal is "+p.getHealth());
-				p.enlist.removeentityItems(i);
+				if(p.enlist.getentityList()[i].getNum()>1) {
+				    p.enlist.removeentityItems(i);
+				}
+				else {
+					p.enlist.getentityList()[i].setNum(p.enlist.getentityList()[i].getNum()-1);
+				}
 			}
+		}
+		if(p.getHealth()==temp) {
+			System.out.println("Sorry you do not have "+a);
 		}
 	}
 	Scanner sc = new Scanner(System.in);
+/**
+ * This is a constructor of this class, when call this constructor, it will display the entity list by calling PlayerEntityDisplay class,
+ * then player input which entity, I using the switch to depend which type of entity he enter and call the method in this class to implement
+ * the entity function.
+ * @param p
+ */
 	public UsingEntity(Player p) {
 		System.out.println("You have opened your bag");
 	    PlayerEntityDisplay ped = new PlayerEntityDisplay(p.enlist);
@@ -107,7 +157,7 @@ public class UsingEntity {
 	    	break;
 	    case "roastbeef":
 	    	this.Consumableuse("roastbeef", p);
-	    case "pp drink":
+	    case "pp drink"://coz player have 4 ability so I need to use the switch case to depend which ability that player want to add pp.
 	    	for(int i = 0;i<p.enlist.getTotalnumber();i++) {
 				if(p.enlist.getentityList()[i].getName().toLowerCase().equals("pp drink")) {
 					PlayerAbilityDisplay pad = new PlayerAbilityDisplay(p.ablist);

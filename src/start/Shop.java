@@ -2,7 +2,9 @@ package start;
 import Ability.*;
 import Entity.*;
 /**
- * 
+ * This class is used to add all the entity which can be bought by player to the shop list by initializing all those entities or abilities
+ * and the shop entity list and shop ability list.
+ * This class also sets the position of the shop.
  * @author RuotongXu QiChangZhou
  *
  */

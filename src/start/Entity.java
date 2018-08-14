@@ -1,6 +1,7 @@
 package start;
 /**
- * 
+ *  This class is to initialize the attributes that a entity has.
+ * All the methods in this class are getter and setter.
  * @author RuotongXu QiChangZhou
  *
  */
