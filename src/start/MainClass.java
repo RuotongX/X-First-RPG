@@ -4,7 +4,9 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 import Ability.*;
 /**
- * 
+ * This is our main class, it can read existing file which contains player's record and make player decide
+ * continue pre-game or not. Also this class can check does player has the qualification to go upstairs.
+ * When player stop this game, all the information will be recored automatically for next time to load this game.
  * @author RuotongXu QiChangZhou
  *
  */
@@ -14,6 +16,9 @@ public class MainClass {
 		String order;
 		Scanner sc = new Scanner(System.in);
 		Map m = new Map();
+/**
+ * This is using a boolean value to check the player want to use record or not, if true, it will ask loadfile function in filecontrol class.
+ */
 		System.out.println("Would you like to use the record?(Type true of false.)");
 		boolean command =true;
 		try
@@ -39,6 +44,12 @@ public class MainClass {
 		System.out.println("Welcome " + m.p.getName() + ", please type your order, W A S D with enter to move.");
 		System.out.println("Recommand fight with the monster on the left top first.");
 		sc.nextLine();
+/**
+ * This is using a do while loop to keep accept the player input about move the player position. Each move have record the game progress
+ * and check the position of the player, if player meet something it will change to the other mode like battle and shopping.
+ * The map will generate each times and the monster will be generated too.
+ * It also has the switch case function for depend what player want to do except moving.
+ */
 		do {
 			if (m.getFloor() == 0) {
 				m.display();

@@ -2,7 +2,9 @@ package start;
 import java.util.Random;
 import Ability.*;
 /**
- * 
+ * This class show all the monsters in the map and control player's move.
+ * Besides when player play this game, it will show some basic information at the right
+ * of the map.
  * @author RuotongXu QiChangZhou
  *
  */
@@ -19,6 +21,9 @@ public class Map {
 	Monster m3 = new Monster();
 	Monster boss = new Monster();
 	Shop shop = new Shop();
+/**
+ * This method is used to generate player, give the basic value to player.
+ */
 	private void PlayerGenerator() {
 		p.setExp(0);
 		p.setHealthmax(100);
@@ -31,6 +36,9 @@ public class Map {
 		Tackle tackle = new Tackle();
 		p.ablist.addAbility(tackle);
 	}
+	/**
+	 * This method is used to generate monster, give the basic value to player.
+	 */
 	private void MonsterGenerator() {
 		m1.setRow(2);
 		m1.setColumn(2);
@@ -63,6 +71,9 @@ public class Map {
 		m3.setMoney(rand.nextInt(30)+25);
 		m3.setName("Dragon");
 	}
+	/**
+	 * This method is used to generate monster, give the basic value to player.
+	 */
 	private void BossGenerator() {
 		boss.setRow(8);
 		boss.setColumn(5);
@@ -75,11 +86,17 @@ public class Map {
 		boss.setMoney(214748364);
 		boss.setName("Demon");
 	}
+	/**
+	 * This method is to create a shop by give the basic position value.
+	 */
 	private void ShopGenerator() {
 	    shop.setRow(8);
 	    shop.setColumn(8);
 	}
-
+/**
+ * The method to set player position.
+ * @param floor
+ */
 	public void moveup(int floor) {
 		if (floor == 0) {
 			p.positionControler1(p.getRow() - 1, p.getColumn());
@@ -87,7 +104,10 @@ public class Map {
 			p.positionControler2(p.getRow() - 1, p.getColumn());
 		}
 	}
-
+	/**
+	 * The method to set player position.
+	 * @param floor
+	 */
 	public void movedown(int floor) {
 		if (floor == 0) {
 			p.positionControler1(p.getRow() + 1, p.getColumn());
@@ -95,7 +115,10 @@ public class Map {
 			p.positionControler2(p.getRow() + 1, p.getColumn());
 		}
 	}
-
+	/**
+	 * The method to set player position.
+	 * @param floor
+	 */
 	public void moveright(int floor) {
 		if (floor == 0) {
 			p.positionControler1(p.getRow(), p.getColumn() + 1);
@@ -103,7 +126,10 @@ public class Map {
 			p.positionControler2(p.getRow(), p.getColumn() + 1);
 		}
 	}
-
+	/**
+	 * The method to set player position.
+	 * @param floor
+	 */
 	public void moveleft(int floor) {
 		if (floor == 0) {
 			p.positionControler1(p.getRow(), p.getColumn() - 1);
@@ -111,12 +137,20 @@ public class Map {
 			p.positionControler2(p.getRow(), p.getColumn() - 1);
 		}
 	}
+	/**
+	 * get set method for floor.
+	 * @return
+	 */
 	public int getFloor() {
 		return floor;
 	}
 	public void setFloor(int floor) {
 		this.floor = floor;
 	}
+	/**
+	 * This method is use the double for loop to display what the map details, each element has different sign, which will be define in this method
+	 * this method is use to display the map in level 1
+	 */
 	public void display() {
 		this.MonsterGenerator();
 		for(int i = 0;i<rowMax; i++) {
@@ -172,6 +206,10 @@ public class Map {
 			System.out.println();
 		}
 	}
+	/**
+	 * This method is use the double for loop to display what the map details, each element has different sign, which will be define in this method
+	 * this method is use to display the map in level 2.
+	 */
 	public void display2() {
 		this.BossGenerator();
 		for(int i = 0;i<rowMax; i++) {
@@ -230,6 +268,9 @@ public class Map {
 			System.out.println();
 			}
 		}	
+	/**
+	 * The constructor of the map class which will initialise the player and shop.
+	 */
 	public Map() {
 		this.PlayerGenerator();
 		this.ShopGenerator();

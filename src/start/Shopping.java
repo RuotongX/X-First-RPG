@@ -3,15 +3,24 @@ import java.util.Scanner;
 
 import Ability.AbilityLimiter;
 /**
- * 
+ * This class is used to show player all the entity in the shop also player can use 'search' function to find 
+ *entity they want to buy when player finish shopping this class will minus player's money 
  * @author RuotongXu QiChangZhou
  *
  */
 public class Shopping {
+	/**
+	 * Create a enum to store 4 types of the player choice.
+	 */
 	private enum Type {
 		Entity, Ability, Healing, goback;
 	}
-
+/**
+ * The constructor of the shopping, which get the map object( because player is initialized in map, the map can get every information)
+ * Using the do while loop and a booolean value to keep player can stay in the shop if player want.
+ * And I also use the switch case to depend what player want to do in the shop.
+ * @param m
+ */
 	public Shopping(Map m) {
 		System.out.println("Welcome to CoNuTDoWn shop Warrior " + m.p.getName());
 		Scanner sc = new Scanner(System.in);
@@ -31,6 +40,12 @@ public class Shopping {
 				temp = 4;
 			}
 			switch (temp) {
+			/**
+			 * I use the entitylist to display all the items in shop, and use for loop to search the items in the shop item list
+			 * finally player type the name of the item, if not in the player entity list, it will add into the list, else the quantity
+			 * of the entity in the list will increase 1. And if player type the not exits entity name or they do not have enough money
+			 * this shopping will not success and go back to the root main of shopping.
+			 */
 			case 1:
 				EntityTableDisplay td1 = new EntityTableDisplay(m.shop.getEnlist());
 				System.out.println(
@@ -93,7 +108,14 @@ public class Shopping {
 				}
 
 				break;
-
+				/**
+				 * I use the abilitylist to display all the abilities in shop
+				 * player type the name of the ability the for loop check the ability list of shop, if it exsits,
+				 * The abilityLimiter clss will check the player ability is full or not, if it is full ,player need to replace one ability that 
+				 * already exsits in player's ability list
+				 * And if player type the not exits ability name or they do not have enough money
+				 * this shopping will not success and go back to the root main of shopping.
+				 */
 			case 2:
 				AbilityTableList at = new AbilityTableList(m.shop.getAblist());
 				System.out.println("Please choose which things you want to get, type the name below."
