@@ -5,8 +5,8 @@ Sam
 170
 170.0
 15
-6
-6
+3
+4
 true
 false
 false

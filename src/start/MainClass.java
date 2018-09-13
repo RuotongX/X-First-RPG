@@ -2,7 +2,11 @@ package start;
 import java.io.FileNotFoundException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
+import javax.swing.JFrame;
+
 import Ability.*;
+import gui.*;
 /**
  * This is our main class, it can read existing file which contains player's record and make player decide
  * continue pre-game or not. Also this class can check does player has the qualification to go upstairs.
@@ -53,6 +57,8 @@ public class MainClass {
 		do {
 			if (m.getFloor() == 0) {
 				m.display();
+				JFrame mapd = new MapDisplay(m,1);
+				mapd.setVisible(true);
 			} else {
 				m.display2();
 			}

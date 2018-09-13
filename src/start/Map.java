@@ -8,7 +8,7 @@ import Ability.*;
  * @author RuotongXu QiChangZhou
  *
  */
-public class Map {
+public class Map{
 	private static int rowMax = 11;
 	private static int columnMax = 12;
 	private int floor = 0;
@@ -171,13 +171,13 @@ public class Map {
 					map[i][j][floor] = "*";
 				}
 				else if(i == m1.getRow() && j == m1.getColumn()) {
-					map[i][j][floor] = "M";
+					map[i][j][floor] = "1";
 				}
 				else if(i == m2.getRow() && j == m2.getColumn()) {
-					map[i][j][floor] = "M";
+					map[i][j][floor] = "2";
 				}
 				else if(i == m3.getRow() && j == m3.getColumn()) {
-					map[i][j][floor] = "M";
+					map[i][j][floor] = "3";
 				}
 				else if(i == 9 && j == 1) {
 					map[i][j][floor] = "D";
@@ -275,5 +275,8 @@ public class Map {
 		this.PlayerGenerator();
 		this.ShopGenerator();
 	}
+	public static String[][][] getMap() {
+		return map;
+	}	
 }
 

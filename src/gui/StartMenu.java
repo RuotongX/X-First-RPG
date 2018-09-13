@@ -57,6 +57,7 @@ public class StartMenu extends JFrame {
 
 		this.imageba = new ImageIcon("background.png");
 		this.background = new JLabel();
+		
 		this.background.setIcon(imageba);
 		this.background.setVisible(true);
 		this.background.setLocation(0, 0);
