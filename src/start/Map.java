@@ -21,6 +21,12 @@ public class Map{
 	Monster m3 = new Monster();
 	Monster boss = new Monster();
 	Shop shop = new Shop();
+public Player getP() {
+		return p;
+	}
+	public Shop getShop() {
+		return shop;
+	}
 /**
  * This method is used to generate player, give the basic value to player.
  */

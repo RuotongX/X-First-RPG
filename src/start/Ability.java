@@ -99,4 +99,7 @@ public abstract class Ability {
 	public Ability(String name) {
 		this.name = name;
 	}
+	public String toString() {
+		return this.name;
+	}
 }
