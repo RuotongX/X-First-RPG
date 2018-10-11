@@ -19,7 +19,6 @@ public class GuiRunner extends JFrame{
 		  this.getContentPane().removeAll();
 		  this.getContentPane().add(changeTo);
 		  this.repaint();
-		  
 	 }
 	
 	public void eventHandleMove(Map m,KeyEvent userInput) {
@@ -94,49 +93,42 @@ public class GuiRunner extends JFrame{
 		this.md.getCheckAbility().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				eventHandleCheckAbilityDisplay(m);
+				 md.requestFocus();
 			}
 
 		});
-		this.md.setFocusable(true);
+		
+		
 		this.md.addKeyListener(new KeyListener (){
             @Override
             public void keyPressed(KeyEvent e) {
-            	
                    eventHandleMove(m,e);
                    md.update(m, 1);
                    changeP(md);
-                 
+                  md.requestFocus();
             }
             @Override
             public void keyReleased(KeyEvent e) {
-//            	System.out.println("2");
-//            	eventHandleMove(m,e);
+            	
             }
             @Override
             public void keyTyped(KeyEvent e) {
-            
+            	
             }
-           
+        
         });
 		
+		 
+		this.md.setFocusable(true);
+		 
 		this.getContentPane().add(this.md);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setSize(1600, 900);
+		
+		setSize(1620, 945);
 		
 		
-		
+
 
 	}
 }
 
-
-
-// this.md.getCheckAbility().addActionListener(new ActionListener()
-// {
-// @Override
-// public void actionPerformed(ActionEvent e)
-// {
-//
-// }
-// });
-// }

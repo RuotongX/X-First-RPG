@@ -16,7 +16,7 @@ public class MapDisplay extends JPanel {
 	private ImageIcon okb;
 	private ImageIcon imageback;
 	private ImageIcon backgroundp;
-	private JLabel background;
+	JLabel background;
 	private ImageIcon titleI;
 	JLabel playerName;
 	JLabel playerAttack;
@@ -34,6 +34,15 @@ public class MapDisplay extends JPanel {
 	JLabel info3;
 	JLabel info4;
 	JLabel info5;
+	JLabel elements[][][] = new JLabel[11][11][2];
+	ImageIcon wall =new ImageIcon("wall.png");
+	ImageIcon zoombie = new ImageIcon("zoombie.png");
+	ImageIcon knight = new ImageIcon("knight.png");
+	ImageIcon dragon = new ImageIcon("dragon.png");
+	ImageIcon door = new ImageIcon("door.png");
+	ImageIcon shop = new ImageIcon("shop.png");
+	ImageIcon player = new ImageIcon("player.png");
+	
 	
 	public MapDisplay(Map m, int level) {
 		this.setLayout(null);
@@ -45,63 +54,67 @@ public class MapDisplay extends JPanel {
 	}
 	private void Mapg(Map m, int level) {
 		if (level == 1) {
+			m.display();
 			for (int i = 0; i < 11; i++) {
 				for (int j = 0; j < 11; j++) {
-					JLabel picture = new JLabel();
-					ImageIcon icon;
-					picture.setLocation(354+i * 81, j * 81);
-					picture.setSize(81, 81);
-					m.display();
-					String sign = m.getMap()[j][i][0];
+					
+					elements[i][j][level-1] = new JLabel();
+					elements[i][j][level-1].setLocation(354+i * 81, j * 81);
+					elements[i][j][level-1].setSize(81, 81);
+					String sign = m.getMap()[j][i][level-1];
 					switch (sign) {
 					case "*":
-						icon = new ImageIcon("wall.png");
-						picture.setIcon(icon);
-						picture.setVisible(true);
-						this.add(picture);
+						
+						elements[i][j][level-1].setIcon(wall);
+						elements[i][j][level-1].setVisible(true);
+						this.add(elements[i][j][level-1]);
 						break;
 					case "1":
-						icon = new ImageIcon("zoombie.png");
-						picture.setIcon(icon);
-						picture.setVisible(true);
-						this.add(picture);
+						
+						elements[i][j][level-1].setIcon(zoombie);
+						elements[i][j][level-1].setVisible(true);
+						this.add(elements[i][j][level-1]);
 						break;
 					case "2":
-						icon = new ImageIcon("knight.png");
-						picture.setIcon(icon);
-						picture.setVisible(true);
-						this.add(picture);
+						
+						elements[i][j][level-1].setIcon(knight);
+						elements[i][j][level-1].setVisible(true);
+						this.add(elements[i][j][level-1]);
 						break;
 					case "3":
-						icon = new ImageIcon("dragon.png");
-						picture.setIcon(icon);
-						picture.setVisible(true);
-						this.add(picture);
+					
+						elements[i][j][level-1].setIcon(dragon);
+						elements[i][j][level-1].setVisible(true);
+						this.add(elements[i][j][level-1]);
 						break;
 					case "D":
-						icon = new ImageIcon("door.png");
-						picture.setIcon(icon);
-						picture.setVisible(true);
-						this.add(picture);
+					
+						elements[i][j][level-1].setIcon(door);
+						elements[i][j][level-1].setVisible(true);
+						this.add(elements[i][j][level-1]);
 						break;
 					case "S":
-						icon = new ImageIcon("shop.png");
-						picture.setIcon(icon);
-						picture.setVisible(true);
-						this.add(picture);
+						
+						elements[i][j][level-1].setIcon(shop);
+						elements[i][j][level-1].setVisible(true);
+						this.add(elements[i][j][level-1]);
 						break;
 					case "P":
-						icon = new ImageIcon("player.png");
-						picture.setIcon(icon);
-						picture.setVisible(true);
-						this.add(picture);
+						elements[i][j][level-1].setIcon(player);
+						elements[i][j][level-1].setVisible(true);
+						this.add(elements[i][j][level-1]);
+						break;
+					case " ":
+						elements[i][j][level-1].setIcon(player);
+						elements[i][j][level-1].setVisible(false);
+						this.add(elements[i][j][level-1]);
 						break;
 					}
 				}
 			}
 		}
 		
-		this.playerName = new JLabel("Player Name: "+m.getP().getName());
+		this.playerName = new JLabel("Player: "+m.getP().getName());
 		this.playerName.setVisible(true);
 		this.playerName.setLocation(1245,20);
 		this.playerName.setSize(354,50);
@@ -166,6 +179,8 @@ public class MapDisplay extends JPanel {
 		this.add(this.shield);
 				
 		this.checkAbility = new JButton("Check Ability");
+		this.checkAbility.setOpaque(false);
+	    this.checkAbility.setBackground(new Color(0,0,0,0));
 		this.checkAbility.setVisible(true);
 		this.checkAbility.setLocation(1245,650);
 		this.checkAbility.setSize(354,50);
@@ -174,6 +189,9 @@ public class MapDisplay extends JPanel {
 		this.add(this.checkAbility);
 		
 		this.checkEntity = new JButton("Check Entity");
+		this.checkEntity.setOpaque(false);
+		this.checkEntity.setBackground(new Color(0,0,0,0));
+		this.checkEntity.setIcon(backgroundp);
 		this.checkEntity.setVisible(true);
 		this.checkEntity.setLocation(1245,750);
 		this.checkEntity.setSize(354,50);
@@ -250,8 +268,58 @@ public class MapDisplay extends JPanel {
 	public JButton getCheckAbility() {
 		return checkAbility;
 	}
-	public void update(Map m,int l) {
-		Mapg(m,l);
+	public void update(Map m,int level) {
 		
+		if (level == 1) {
+			m.display();
+
+			for (int i = 0; i < 11; i++) {
+				for (int j = 0; j < 11; j++) {
+					elements[i][j][level-1].setVisible(false);
+					
+					String sign = m.getMap()[j][i][level-1];
+					switch (sign) {
+					case "*":
+						
+						elements[i][j][level-1].setIcon(wall);
+						elements[i][j][level-1].setVisible(true);
+						break;
+					case "1":
+						
+						elements[i][j][level-1].setIcon(zoombie);
+						elements[i][j][level-1].setVisible(true);
+						break;
+					case "2":
+						
+						elements[i][j][level-1].setIcon(knight);
+						elements[i][j][level-1].setVisible(true);
+						break;
+					case "3":
+						
+						elements[i][j][level-1].setIcon(dragon);
+						elements[i][j][level-1].setVisible(true);
+						break;
+					case "D":
+						
+						elements[i][j][level-1].setIcon(door);
+						elements[i][j][level-1].setVisible(true);
+						break;
+					case "S":
+						
+						elements[i][j][level-1].setIcon(shop);
+						elements[i][j][level-1].setVisible(true);
+						break;
+					case "P":
+						elements[i][j][level-1].setVisible(true);
+						break;
+					case " ":
+						elements[i][j][level-1].setVisible(false);
+						break;
+					}
+				}
+			}
+
+		}
+	
 	}
 }

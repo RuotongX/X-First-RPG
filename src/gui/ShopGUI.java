@@ -10,13 +10,14 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JViewport;
 import javax.swing.ListSelectionModel;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.JScrollPane;
 
-public class ShopGUI extends JFrame {
+public class ShopGUI extends JPanel {
 	JButton confirm;
 	JButton exit;
 	JTextField search;
@@ -97,9 +98,9 @@ public class ShopGUI extends JFrame {
 		this.background.setSize(1600, 900);
 		this.add(background);
 		
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setSize(1600, 930); 
-		setResizable(false);
+//		setDefaultCloseOperation(EXIT_ON_CLOSE);
+//		setSize(1600, 930); 
+//		setResizable(false);
 	}
 
 }

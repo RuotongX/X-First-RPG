@@ -125,8 +125,8 @@ public class MainClass {
 			} else if (m.p.getRow() == m.m3.getRow() && m.p.getColumn() == m.m3.getColumn() && m.getFloor() == 0) {
 				Battle b = new Battle(m, m.m3);
 			} else if (m.p.getRow() == m.shop.getRow() && m.p.getColumn() == m.shop.getColumn() && m.getFloor() == 0) {
-				JFrame frame = new ShopGUI(m);
-				frame.setVisible(true);
+//				JFrame frame = new ShopGUI(m);
+//				frame.setVisible(true);
 				Shopping s = new Shopping(m);
 			} else if (m.p.getRow() == 9 && m.p.getColumn() == 1) {
 				BoyNextDoor bnd = new BoyNextDoor(m);
