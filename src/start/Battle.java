@@ -1,5 +1,8 @@
 package start;
 import java.util.Scanner;
+
+import javax.swing.JOptionPane;
+
 import Ability.*;
 /**
  * This class is used to implement the battle when player meet the monster.
@@ -56,7 +59,7 @@ public class Battle {
  * @param m
  * @param monster
  */
-	private void awh(Map m,Monster monster) {
+	public void awh(Map m,Monster monster) {
 			for(Ability ability:m.p.ablist.getAbilitylist()) {
 				if(ability.getName().toLowerCase().equals("attack with hard")){
 					if (ability.getPp() > 0) {
@@ -92,7 +95,7 @@ public class Battle {
  * @param m
  * @param monster
  */
-	private void bh(Map m,Monster monster) {
+	public void bh(Map m,Monster monster) {
 		for(Ability ability:m.p.ablist.getAbilitylist()) {
 			if(ability.getName().toLowerCase().equals("become huge")) {
 			  if (ability.getPp() > 0) {
@@ -122,7 +125,7 @@ public class Battle {
  * @param m
  * @param monster
  */
-	private void hi(Map m,Monster monster) {
+	public void hi(Map m,Monster monster) {
 		for(Ability ability:m.p.ablist.getAbilitylist()) {
 			 if(ability.getName().toLowerCase().equals("huge Impact")) {
 				 if (ability.getPp() > 0) {
@@ -156,7 +159,7 @@ public class Battle {
  * @param m
  * @param monster
  */
-	private void sm(Map m,Monster monster) {
+	public void sm(Map m,Monster monster) {
 		for(Ability ability:m.p.ablist.getAbilitylist()) {
 			if (ability.getName().toLowerCase().equals("smash")) {
 				if (ability.getPp() > 0) {
@@ -190,7 +193,7 @@ public class Battle {
  * @param m
  * @param monster
  */
-	private void tk(Map m,Monster monster) {
+	public void tk(Map m,Monster monster) {
 		for(Ability ability:m.p.ablist.getAbilitylist()) {
 			if(ability.getName().toLowerCase().equals("tackle")) {
 				if (ability.getPp() > 0) {
@@ -223,7 +226,7 @@ public class Battle {
  * @param m
  * @param monster
  */
-	private void rs(Map m, Monster monster) {
+	public void rs(Map m, Monster monster) {
 		for(Ability ability:m.p.ablist.getAbilitylist()) {
 			if(ability.getName().toLowerCase().equals("reversal")) {
 				if (ability.getPp() > 0) {
@@ -276,7 +279,7 @@ public class Battle {
  * @param m
  * @param monster
  */
-	private void ls(Map m, Monster monster) {
+	public void ls(Map m, Monster monster) {
 		for(Ability ability:m.p.ablist.getAbilitylist()) {
 			if(ability.getName().toLowerCase().equals("leech seed")) {
 				if (ability.getPp() > 0) {
@@ -335,7 +338,7 @@ public class Battle {
  * @param m
  * @param monster
  */
-	private void tw(Map m,Monster monster) {
+	public void tw(Map m,Monster monster) {
 		for(Ability ability:m.p.ablist.getAbilitylist()) {
 			if(ability.getName().toLowerCase().equals("twoway")) {
 				if (ability.getPp() > 0) {
@@ -366,7 +369,7 @@ public class Battle {
  * @param m
  * @param monster
  */
-	private void battle(Map m,Monster monster) {
+	public void battle(Map m,Monster monster) {
 		int temp =0;
     	    System.out.println("Please select your ability to attack. Type 1, 2, 3 or 4 to select.");
     	    PlayerAbilityDisplay pad = new PlayerAbilityDisplay(m.p.ablist);
@@ -538,9 +541,11 @@ public class Battle {
 	public Battle(Map m,Monster monster) {	
 		this.attack = m.p.getAttack();
 		this.defense = m.p.getdefense();
-		System.out.println(m.p.getName()+" you meet a "+monster.getName()+"!");
-		do {
-    	    this.typedepender(m, monster);
-		} while(fighting == 0);
+		JOptionPane.showMessageDialog(null, m.p.getName()+" you meet a "+monster.getName()+"!", "",
+				JOptionPane.INFORMATION_MESSAGE);
+		
+//		do {
+//    	    this.typedepender(m, monster);
+//		} while(fighting == 0);
 	}
 }

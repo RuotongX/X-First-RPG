@@ -42,6 +42,8 @@ public class MapDisplay extends JPanel {
 	ImageIcon door = new ImageIcon("door.png");
 	ImageIcon shop = new ImageIcon("shop.png");
 	ImageIcon player = new ImageIcon("player.png");
+	ImageIcon demon =new ImageIcon("Demonmap.png");
+	
 	
 	
 	public MapDisplay(Map m, int level) {
@@ -52,6 +54,95 @@ public class MapDisplay extends JPanel {
 //		setSize(1600, 900); 
 //		setResizable(false);
 	}
+	public void setM2(Map m) {
+		m.display2();
+		for (int i = 0; i < 11; i++) {
+			for (int j = 0; j < 11; j++) {
+				elements[i][j][0].setVisible(false);
+				String sign = m.getMap()[j][i][1];
+				switch (sign) {
+				case "*":
+					
+					elements[i][j][0].setIcon(wall);
+					elements[i][j][0].setVisible(true);
+					
+					break;
+				case "D":
+				
+					elements[i][j][0].setIcon(door);
+					elements[i][j][0].setVisible(true);
+					
+					break;
+				case "P":
+					elements[i][j][0].setIcon(player);
+					elements[i][j][0].setVisible(true);
+					
+					break;
+				case " ":
+					elements[i][j][0].setIcon(player);
+					elements[i][j][0].setVisible(false);
+					
+					break;
+				case "B":
+					elements[i][j][0].setIcon(demon);
+					elements[i][j][0].setVisible(true);
+					
+					break;
+				}
+			}
+		}
+	}
+
+	public void setM1(Map m) {
+		m.display();
+
+		for (int i = 0; i < 11; i++) {
+			for (int j = 0; j < 11; j++) {
+				elements[i][j][0].setVisible(false);
+				
+				String sign = m.getMap()[j][i][0];
+				switch (sign) {
+				case "*":
+					
+					elements[i][j][0].setIcon(wall);
+					elements[i][j][0].setVisible(true);
+					break;
+				case "1":
+					
+					elements[i][j][0].setIcon(zoombie);
+					elements[i][j][0].setVisible(true);
+					break;
+				case "2":
+					
+					elements[i][j][0].setIcon(knight);
+					elements[i][j][0].setVisible(true);
+					break;
+				case "3":
+					
+					elements[i][j][0].setIcon(dragon);
+					elements[i][j][0].setVisible(true);
+					break;
+				case "D":
+					
+					elements[i][j][0].setIcon(door);
+					elements[i][j][0].setVisible(true);
+					break;
+				case "S":
+					
+					elements[i][j][0].setIcon(shop);
+					elements[i][j][0].setVisible(true);
+					break;
+				case "P":
+					elements[i][j][0].setVisible(true);
+					break;
+				case " ":
+					elements[i][j][0].setVisible(false);
+					break;
+				}
+			}
+		}
+	}
+	
 	private void Mapg(Map m, int level) {
 		if (level == 1) {
 			m.display();
@@ -99,20 +190,22 @@ public class MapDisplay extends JPanel {
 						elements[i][j][level-1].setVisible(true);
 						this.add(elements[i][j][level-1]);
 						break;
-					case "P":
-						elements[i][j][level-1].setIcon(player);
-						elements[i][j][level-1].setVisible(true);
-						this.add(elements[i][j][level-1]);
-						break;
 					case " ":
 						elements[i][j][level-1].setIcon(player);
 						elements[i][j][level-1].setVisible(false);
 						this.add(elements[i][j][level-1]);
 						break;
+					case "P":
+						elements[i][j][level-1].setIcon(player);
+						elements[i][j][level-1].setVisible(true);
+						this.add(elements[i][j][level-1]);
+						break;
 					}
 				}
+				
 			}
-		}
+		}	
+		
 		
 		this.playerName = new JLabel("Player: "+m.getP().getName());
 		this.playerName.setVisible(true);
@@ -268,6 +361,35 @@ public class MapDisplay extends JPanel {
 	public JButton getCheckAbility() {
 		return checkAbility;
 	}
+	
+	public void setM1unvisable() {
+		for(int i =0;i<11;i++) {
+			for(int j =0;j<11;j++) {
+				elements[i][j][0].setVisible(false);
+			}
+		}
+	}
+	public void setM1visable() {
+		for(int i =0;i<11;i++) {
+			for(int j =0;j<11;j++) {
+				elements[i][j][0].setVisible(true);
+			}
+		}
+	}
+	public void setM2unvisable() {
+		for(int i =0;i<11;i++) {
+			for(int j =0;j<11;j++) {
+				elements[i][j][1].setVisible(false);
+			}
+		}
+	}
+	public void setM2visable() {
+		for(int i =0;i<11;i++) {
+			for(int j =0;j<11;j++) {
+				elements[i][j][1].setVisible(true);
+			}
+		}
+	}
 	public void update(Map m,int level) {
 		
 		if (level == 1) {
@@ -319,6 +441,45 @@ public class MapDisplay extends JPanel {
 				}
 			}
 
+		}
+		if (level == 2) {
+			m.display2();
+			for (int i = 0; i < 11; i++) {
+				for (int j = 0; j < 11; j++) {
+					elements[i][j][0].setVisible(false);
+					String sign = m.getMap()[j][i][level-1];
+					switch (sign) {
+					case "*":
+						
+						elements[i][j][0].setIcon(wall);
+						elements[i][j][0].setVisible(true);
+						break;
+					case "D":
+					
+						elements[i][j][0].setIcon(door);
+						elements[i][j][0].setVisible(true);
+						
+						break;
+					case "P":
+						elements[i][j][0].setIcon(player);
+						elements[i][j][0].setVisible(true);
+						
+						break;
+					case " ":
+						elements[i][j][0].setIcon(player);
+						elements[i][j][0].setVisible(false);
+						
+						break;
+					case "B":
+						elements[i][j][0].setIcon(demon);
+						elements[i][j][0].setVisible(true);
+						
+						break;
+					}
+				}
+				
+			}
+			
 		}
 	
 	}

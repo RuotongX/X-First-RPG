@@ -16,6 +16,11 @@ import gui.*;
  */
 public class MainClass {
 	public static void main(String[] args) {
+		JFrame mapd = new GuiRunner();
+		mapd.setSize(1620, 955);
+		mapd.setVisible(true);
+		
+		
 		FileControl fc = new FileControl();
 		String order;
 		Scanner sc = new Scanner(System.in);
@@ -23,7 +28,7 @@ public class MainClass {
 /**
  * This is using a boolean value to check the player want to use record or not, if true, it will ask loadfile function in filecontrol class.
  */
-		System.out.println("Would you like to use the record?(Type true of false.)");
+//		System.out.println("Would you like to use the record?(Type true of false.)");
 		boolean command =true;
 		try
 			{
@@ -57,8 +62,7 @@ public class MainClass {
 		do {
 			if (m.getFloor() == 0) {
 				m.display();
-				JFrame mapd = new GuiRunner(m);
-				mapd.setVisible(true);
+				
 			} else {
 				m.display2();
 			}
@@ -129,7 +133,7 @@ public class MainClass {
 //				frame.setVisible(true);
 				Shopping s = new Shopping(m);
 			} else if (m.p.getRow() == 9 && m.p.getColumn() == 1) {
-				BoyNextDoor bnd = new BoyNextDoor(m);
+//				
 			} else if (m.p.getRow() == m.boss.getRow() && m.p.getColumn() == m.boss.getColumn() && m.getFloor() == 1) {
 				Battle b = new Battle(m, m.boss);
 			}

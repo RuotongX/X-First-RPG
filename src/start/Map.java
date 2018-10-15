@@ -21,6 +21,18 @@ public class Map{
 	Monster m3 = new Monster();
 	Monster boss = new Monster();
 	Shop shop = new Shop();
+public Monster getM1() {
+		return m1;
+	}
+	public Monster getM2() {
+		return m2;
+	}
+	public Monster getM3() {
+		return m3;
+	}
+	public Monster getBoss() {
+		return boss;
+	}
 public Player getP() {
 		return p;
 	}

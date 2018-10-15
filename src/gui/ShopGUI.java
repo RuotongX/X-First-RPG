@@ -84,7 +84,7 @@ public class ShopGUI extends JPanel {
 		scrollPane2.setSize(800, 300);
 		this.add(scrollPane2);
 		
-		this.price = new JLabel("Price: "+a);
+		this.price = new JLabel("Price: ");
 		this.price.setForeground(Color.WHITE);
 		this.price.setFont(new Font("Arial",1, 50));
 		this.price.setIcon(priceI);
@@ -92,15 +92,41 @@ public class ShopGUI extends JPanel {
 		this.price.setSize(800,100);
 		this.add(price);
 		
+		
+		
+		
+		
+		this.confirm = new JButton();
+		this.confirm.setOpaque(false);
+		this.confirm.setBackground(new Color(0, 0, 0, 0));
+		this.confirm.setVisible(true);
+		this.confirm.setLocation(1525,825);
+		this.confirm.setSize(75,75);
+		this.add(confirm);
+		
+		this.exit = new JButton();
+		this.exit.setOpaque(false);
+		this.exit.setBackground(new Color(0, 0, 0, 0));
+		this.exit.setVisible(true);
+		this.exit.setLocation(1525,710);
+		this.exit.setSize(75,75);
+		this.add(exit);
+		
+		this.search = new JTextField();
+		this.search.setOpaque(false);
+		this.search.setBackground(new Color(0, 0, 0, 0));
+		this.search.setVisible(true);
+		this.search.setLocation(800,800);
+		this.search.setSize(565,100);
+		this.search.setForeground(Color.WHITE);
+		this.search.setFont(new Font("Times New Roman",1,40));
+		this.add(search);
+				
 		this.background = new JLabel();
 		this.background.setIcon(backgroundI);
 		this.background.setLocation(0,0);
 		this.background.setSize(1600, 900);
 		this.add(background);
-		
-//		setDefaultCloseOperation(EXIT_ON_CLOSE);
-//		setSize(1600, 930); 
-//		setResizable(false);
 	}
 
 }

@@ -7,53 +7,55 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 /**
  *
  * @author Angelo
  */
-public class StartMenu extends JFrame {
+public class StartMenu extends JPanel {
 	private ImageIcon imageba;
 	private ImageIcon imagebunew;
 	private ImageIcon imagebuload;
 	private JLabel background;
+	public JButton load;
+	public JButton newGame;
 
-	public StartMenu(String name) {
-		super(name);
+	public StartMenu() {
 
-		getContentPane().setLayout(null);
+		this.setLayout(null);
 
-		JLabel gameName = new JLabel("CODE X");
-		gameName.setLocation(450, 75);
-		gameName.setSize(700, 150);
-		gameName.setFont(new Font("Old English Text MT", 1, 150));
+		JLabel gameName = new JLabel("Warrior Challenge");
+		gameName.setLocation(285, 75);
+		gameName.setSize(1200, 150);
+		gameName.setFont(new Font("Old English Text MT", 1, 120));
 		gameName.setForeground(Color.WHITE);
-		getContentPane().add(gameName);
+		this.add(gameName);
 
 		JLabel info = new JLabel("Author: Ruotong XU, Qichang Zhou");
 		info.setLocation(10, 10);
 		info.setSize(300, 50);
 		info.setForeground(Color.WHITE);
 		info.setFont(new Font("Old English Text MT", 0, 20));
-		getContentPane().add(info);
+		this.add(info);
 
 		this.imagebunew = new ImageIcon("buttonnew.png");
 		this.imagebuload = new ImageIcon("buttonload.png");
 
-		JButton newGame = new JButton("New Game");
+		newGame = new JButton("New Game");
 		newGame.setLocation(520, 400);
 		newGame.setSize(500, 100);
 		newGame.setIcon(imagebunew);
 		newGame.setContentAreaFilled(true);
 
-		getContentPane().add(newGame);
+		this.add(newGame);
 
-		JButton load = new JButton("Load");
+		this.load = new JButton("Load");
 		load.setLocation(520, 600);
 		load.setSize(500, 100);
 		load.setIcon(imagebuload);
-		getContentPane().add(load);
+		this.add(load);
 
 		this.imageba = new ImageIcon("background.png");
 		this.background = new JLabel();
@@ -62,17 +64,7 @@ public class StartMenu extends JFrame {
 		this.background.setVisible(true);
 		this.background.setLocation(0, 0);
 		this.background.setSize(1600, 900);
-		getContentPane().add(background);
-
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setSize(1600, 900); 
-		setResizable(false);
+		this.add(background);
 
 	}
-
-	public static void main(String[] args) {
-		JFrame frame = new StartMenu("My Fruit List");
-		frame.setVisible(true);
-	}
-
 }
