@@ -22,6 +22,7 @@ public class BattleB extends JPanel{
 	JButton playerBag;
 	JButton palyerRun;
 	JLabel playerState;
+	JButton checkAbility;
 	JLabel monsterState;
 	
 	public BattleB(Map m,Monster mon) {
@@ -87,15 +88,15 @@ public class BattleB extends JPanel{
 		this.playerBag.setFont(new Font("old English Text MT",0,35));
 		this.add(this.playerBag);
 		
-		this.playerBag = new JButton("Check Ability");
-		this.playerBag.setOpaque(false);
-		this.playerBag.setBackground(new Color(0, 0, 0, 0));
-		this.playerBag.setVisible(true);
-		this.playerBag.setLocation(20,660);
-		this.playerBag.setSize(280, 80);
-		this.playerBag.setForeground(Color.WHITE);
-		this.playerBag.setFont(new Font("old English Text MT",0,35));
-		this.add(this.playerBag);
+		this.checkAbility = new JButton("Check Ability");
+		this.checkAbility.setOpaque(false);
+		this.checkAbility.setBackground(new Color(0, 0, 0, 0));
+		this.checkAbility.setVisible(true);
+		this.checkAbility.setLocation(20,660);
+		this.checkAbility.setSize(280, 80);
+		this.checkAbility.setForeground(Color.WHITE);
+		this.checkAbility.setFont(new Font("old English Text MT",0,35));
+		this.add(this.checkAbility);
 		
 		this.palyerRun = new JButton("Run Away");
 		this.palyerRun.setOpaque(false);
@@ -141,8 +142,32 @@ public class BattleB extends JPanel{
 		this.playerState.setText(m.getP().getName()+" LV:"+m.getP().getLevel()+" HP:"+m.getP().getHealth());
 		this.playerState.setVisible(true);
 		this.monsterState.setVisible(false);
-		this.monsterState.setText(m.getM1().getName()+" LV:"+m.getM1().getLevel()+" HP:"+m.getM1().getHealth());
+		this.monsterState.setText(m.getM2().getName()+" LV:"+m.getM2().getLevel()+" HP:"+m.getM2().getHealth());
 		this.monsterState.setVisible(true);
+		this.ability1.setVisible(false);
+		this.ability1.setText(m.getP().ablist.getAbilitylist()[0].getName()+" pp: "+m.getP().ablist.getAbilitylist()[0].getPp());
+		this.ability1.setVisible(true);
+		try {
+		this.ability2.setVisible(false);
+		this.ability2.setText(m.getP().ablist.getAbilitylist()[1].getName()+" pp: "+m.getP().ablist.getAbilitylist()[1].getPp());
+		this.ability2.setVisible(true);
+		} catch (Exception e) {
+			
+		}
+		try {
+			this.ability3.setVisible(false);
+			this.ability3.setText(m.getP().ablist.getAbilitylist()[2].getName()+" pp: "+m.getP().ablist.getAbilitylist()[2].getPp());
+			this.ability3.setVisible(true);
+			} catch (Exception e) {
+				
+			}
+		try {
+			this.ability4.setVisible(false);
+			this.ability4.setText(m.getP().ablist.getAbilitylist()[3].getName()+" pp: "+m.getP().ablist.getAbilitylist()[3].getPp());
+			this.ability4.setVisible(true);
+			} catch (Exception e) {
+				
+			}
 	}
 
 

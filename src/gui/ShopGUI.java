@@ -24,7 +24,6 @@ public class ShopGUI extends JPanel {
 	JScrollPane elist;
 	JScrollPane alist;
 	JLabel background;
-	JLabel price;
 	JList<Entity> shopelist;
 	JList<Ability> shopalist;
 	EntityList model1;
@@ -83,16 +82,6 @@ public class ShopGUI extends JPanel {
 		scrollPane2.setLocation(0, 500);
 		scrollPane2.setSize(800, 300);
 		this.add(scrollPane2);
-		
-		this.price = new JLabel("Price: ");
-		this.price.setForeground(Color.WHITE);
-		this.price.setFont(new Font("Arial",1, 50));
-		this.price.setIcon(priceI);
-		this.price.setLocation(0,800);
-		this.price.setSize(800,100);
-		this.add(price);
-		
-		
 		
 		
 		

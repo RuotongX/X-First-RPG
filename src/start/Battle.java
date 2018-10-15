@@ -12,8 +12,8 @@ import Ability.*;
 public class Battle {
 	private double attack;
 	private double defense;
-	private int roundr;
-	private int roundl;
+	private int roundr = 0;
+	private int roundl = 0;
 	int fighting = 0;
 	Scanner sc = new Scanner(System.in);
 	TwoWay twoway = new TwoWay();
@@ -27,28 +27,29 @@ public class Battle {
  * @param monster
  */
 	public void skilldepender(String s,Map m,Monster monster) {
-		if(s.equals("Attack With Hard")) {
+		System.out.println(s);
+		if(s.contains("Attack With Hard")) {
 			this.awh(m, monster);
 		}
-		else if(s.equals("Become Huge")) {
+		else if(s.contains("Become Huge")) {
 			this.bh(m,monster);
 		}
-		else if(s.equals("Huge Impact")) {
+		else if(s.contains("Huge Impact")) {
 			this.hi(m, monster);
 		}
-		else if(s.equals("Leech Seed")) {
+		else if(s.contains("Leech Seed")) {
 			this.ls(m, monster);
 		}
-		else if(s.equals("Reversal")) {
+		else if(s.contains("Reversal")) {
 			this.rs(m,monster);
 		}
-		else if(s.equals("Smash")) {
+		else if(s.contains("Smash")) {
 			this.sm(m, monster);
 		}
-		else if(s.equals("Tackle")) {
+		else if(s.contains("Tackle")) {
 			this.tk(m, monster);
 		}
-		else if(s.equals("TwoWay")) {
+		else if(s.contains("TwoWay")) {
 			this.tw(m, monster);
 		}
 	}
@@ -85,6 +86,28 @@ public class Battle {
 					}
 					m.p.setHealth(m.p.getHealth()-damage2);
 					hit=hit+"\n"+monster.getName()+" deals you "+damage2+" damages!";
+					if(roundr!=0) {
+						m.p.setHealth(m.p.getHealth()+m.p.getHealthmax()*ability.getHealupbyp());
+						hit = hit+"\nDue to the Reversal you get "+m.p.getHealthmax()*ability.getHealupbyp()+" heals";
+						this.roundr--;
+						if(roundr == 0) 
+							hit = hit+"\nReversal effect disappear";
+						if(monster.getHealth() <= 0) {
+							this.roundr=0;
+						}
+					} 
+					if(roundl!=0) {
+						monster.setHealth(monster.getHealth()-monster.getHealthmax()*ability.getPercentagehit());
+						m.p.setHealth(m.p.getHealth()+monster.getHealthmax()*ability.getPercentagehit());
+						hit = hit+"\nDue to the Leech Seed enemy gets "+monster.getHealthmax()*ability.getPercentagehit()+" damages.";
+						hit = hit+"\nAnd due to the Leech Seed you get "+monster.getHealthmax()*ability.getPercentagehit()+" heals.";
+						this.roundl--;
+						if(roundl == 0) 
+							hit = hit+"\nLeech Seed effect disappear";
+						if(monster.getHealth() <= 0) {
+							this.roundl=0;
+						}
+					}
 					JOptionPane.showMessageDialog(null,hit, "info",
 							JOptionPane.INFORMATION_MESSAGE);
 				}
@@ -109,7 +132,7 @@ public class Battle {
 				hit = hit+"\nYou feel you attack and defense improve a lot.";
 			  } else {
 				  hit = "You do not have enough pp!";
-				  sc.nextLine();
+				  
 				}
 				double damage2 = (monster.getAttack()-this.defense);
 				if(damage2 <= 0) {
@@ -117,6 +140,30 @@ public class Battle {
 				}
 				m.p.setHealth(m.p.getHealth()-damage2);
 				hit = hit+"\n"+monster.getName()+" deals you "+damage2+" damages!";
+				if(roundr!=0) {
+					m.p.setHealth(m.p.getHealth()+m.p.getHealthmax()*ability.getHealupbyp());
+					hit = hit+"\nDue to the Reversal you get "+m.p.getHealthmax()*ability.getHealupbyp()+" heals";
+					this.roundr--;
+					if(roundr == 0) 
+						hit = hit+"\nReversal effect disappear";
+					if(monster.getHealth() <= 0) {
+						this.roundr=0;
+					}
+				} 
+				if(roundl!=0) {
+					monster.setHealth(monster.getHealth()-monster.getHealthmax()*ability.getPercentagehit());
+					m.p.setHealth(m.p.getHealth()+monster.getHealthmax()*ability.getPercentagehit());
+					hit = hit+"\nDue to the Leech Seed enemy gets "+monster.getHealthmax()*ability.getPercentagehit()+" damages.";
+					hit = hit+"\nAnd due to the Leech Seed you get "+monster.getHealthmax()*ability.getPercentagehit()+" heals.";
+					this.roundl--;
+					if(roundl == 0) 
+						hit = hit+"\nLeech Seed effect disappear";
+					if(monster.getHealth() <= 0) {
+						this.roundl=0;
+					}
+				}
+				JOptionPane.showMessageDialog(null,hit, "info",
+						JOptionPane.INFORMATION_MESSAGE);
 		   }
 		}
 	}	
@@ -128,29 +175,53 @@ public class Battle {
  * @param monster
  */
 	private void hi(Map m,Monster monster) {
+		String hit;
 		for(Ability ability:m.p.ablist.getAbilitylist()) {
 			 if(ability.getName().toLowerCase().equals("huge Impact")) {
 				 if (ability.getPp() > 0) {
 					m.p.setTempattack(m.p.getAttack()*ability.getStrength());
 					ability.setPp(ability.getPp()-1);
-					System.out.println("You used the "+ability.getName());
+					hit = "You used the "+ability.getName();
 					double damage1 = (m.p.getTempattack()-monster.getdefense());
 					if(damage1 <= 0) {
 						damage1 = 1;
 					}
 					monster.setHealth(monster.getHealth()-damage1);
-					System.out.println("You have deal "+damage1+" to "+monster.getName());
+					hit = hit+"\nYou have deal "+damage1+" to "+monster.getName();
 				 } else {
-						System.out.println("You do not have enough pp!");
-						sc.nextLine();
+						hit = "You do not have enough pp!";
+						
 					}
 					double damage2 = (monster.getAttack()-this.defense);
 					if(damage2 <= 0) {
 						damage2 = 1;
 					}
 					m.p.setHealth(m.p.getHealth()-damage2);
-					System.out.println(monster.getName()+" deals you "+damage2+" damages!");
-					System.out.println("Your heal is "+m.p.getHealth()+monster.getName()+"'s heal is "+monster.getHealth());
+					hit = hit+"\n"+monster.getName()+" deals you "+damage2+" damages!";
+					if(roundr!=0) {
+						m.p.setHealth(m.p.getHealth()+m.p.getHealthmax()*ability.getHealupbyp());
+						hit = hit+"\nDue to the Reversal you get "+m.p.getHealthmax()*ability.getHealupbyp()+" heals";
+						this.roundr--;
+						if(roundr == 0) 
+							hit = hit+"\nReversal effect disappear";
+						if(monster.getHealth() <= 0) {
+							this.roundr=0;
+						}
+					} 
+					if(roundl!=0) {
+						monster.setHealth(monster.getHealth()-monster.getHealthmax()*ability.getPercentagehit());
+						m.p.setHealth(m.p.getHealth()+monster.getHealthmax()*ability.getPercentagehit());
+						hit = hit+"\nDue to the Leech Seed enemy gets "+monster.getHealthmax()*ability.getPercentagehit()+" damages.";
+						hit = hit+"\nAnd due to the Leech Seed you get "+monster.getHealthmax()*ability.getPercentagehit()+" heals.";
+						this.roundl--;
+						if(roundl == 0) 
+							hit = hit+"\nLeech Seed effect disappear";
+						if(monster.getHealth() <= 0) {
+							this.roundl=0;
+						}
+					}
+					JOptionPane.showMessageDialog(null,hit, "info",
+							JOptionPane.INFORMATION_MESSAGE);
 			 }
 	    }
 	}
@@ -162,29 +233,53 @@ public class Battle {
  * @param monster
  */
 	private void sm(Map m,Monster monster) {
+		String hit;
 		for(Ability ability:m.p.ablist.getAbilitylist()) {
 			if (ability.getName().toLowerCase().equals("smash")) {
 				if (ability.getPp() > 0) {
 					m.p.setTempattack(attack * ability.getStrength());
 					ability.setPp(ability.getPp() - 1);
-					System.out.println("You used the " + ability.getName());
+					hit = "You used the " + ability.getName();
 					double damage1 = (m.p.getTempattack() - monster.getdefense());
 					if (damage1 <= 0) {
 						damage1 = 1;
 					}
 					monster.setHealth(monster.getHealth() - damage1);
-					System.out.println("You have deal " + damage1 + " to " + monster.getName());
+					hit ="\nYou have deal " + damage1 + " to " + monster.getName();
 				} else {
-					System.out.println("You do not have enough pp!");
-					sc.nextLine();
+					hit = "You do not have enough pp!";
+					
 				}
 				double damage2 = (monster.getAttack()-this.defense);
 				if(damage2 <= 0) {
 					damage2 = 1;
 				}
 				m.p.setHealth(m.p.getHealth()-damage2);
-				System.out.println(monster.getName()+" deals you "+damage2+" damages!");
-				System.out.println("Your heal is "+m.p.getHealth()+monster.getName()+"'s heal is "+monster.getHealth());
+				hit = hit+"\n"+monster.getName()+" deals you "+damage2+" damages!";
+				if(roundr!=0) {
+					m.p.setHealth(m.p.getHealth()+m.p.getHealthmax()*ability.getHealupbyp());
+					hit = hit+"\nDue to the Reversal you get "+m.p.getHealthmax()*ability.getHealupbyp()+" heals";
+					this.roundr--;
+					if(roundr == 0) 
+						hit = hit+"\nReversal effect disappear";
+					if(monster.getHealth() <= 0) {
+						this.roundr=0;
+					}
+				} 
+				if(roundl!=0) {
+					monster.setHealth(monster.getHealth()-monster.getHealthmax()*ability.getPercentagehit());
+					m.p.setHealth(m.p.getHealth()+monster.getHealthmax()*ability.getPercentagehit());
+					hit = hit+"\nDue to the Leech Seed enemy gets "+monster.getHealthmax()*ability.getPercentagehit()+" damages.";
+					hit = hit+"\nAnd due to the Leech Seed you get "+monster.getHealthmax()*ability.getPercentagehit()+" heals.";
+					this.roundl--;
+					if(roundl == 0) 
+						hit = hit+"\nLeech Seed effect disappear";
+					if(monster.getHealth() <= 0) {
+						this.roundl=0;
+					}
+				}
+				JOptionPane.showMessageDialog(null,hit, "info",
+						JOptionPane.INFORMATION_MESSAGE);
 			}
 		}
 	}
@@ -196,29 +291,53 @@ public class Battle {
  * @param monster
  */
 	private void tk(Map m,Monster monster) {
+		String hit;
 		for(Ability ability:m.p.ablist.getAbilitylist()) {
 			if(ability.getName().toLowerCase().equals("tackle")) {
 				if (ability.getPp() > 0) {
 				m.p.setTempattack(attack*ability.getStrength());
 				ability.setPp(ability.getPp()-1);
-				System.out.println("You used the "+ability.getName());
+				hit = "You used the "+ability.getName();
 				double damage1 = (m.p.getTempattack()-monster.getdefense());
 				if(damage1 <= 0) {
 					damage1 = 1;
 				}
 				monster.setHealth(monster.getHealth()-damage1);
-				System.out.println("You have deal "+damage1+" to "+monster.getName());
+				hit = hit+"\nYou have deal "+damage1+" to "+monster.getName();
 				} else {
-					System.out.println("You do not have enough pp!");
-					sc.nextLine();
+					hit = "You do not have enough pp!";
 				}
 				double damage2 = (monster.getAttack()-this.defense);
 				if(damage2 <= 0) {
 					damage2 = 1;
 				}
 				m.p.setHealth(m.p.getHealth()-damage2);
-				System.out.println(monster.getName()+" deals you "+damage2+" damages!");
-				System.out.println("Your heal is "+m.p.getHealth()+monster.getName()+"'s heal is "+monster.getHealth());
+				hit = hit+"\n"+monster.getName()+" deals you "+damage2+" damages!";
+				if(roundr!=0) {
+					m.p.setHealth(m.p.getHealth()+m.p.getHealthmax()*ability.getHealupbyp());
+					hit = hit+"\nDue to the Reversal you get "+m.p.getHealthmax()*ability.getHealupbyp()+" heals";
+					this.roundr--;
+					if(roundr == 0) 
+						hit = hit+"\nReversal effect disappear";
+					if(monster.getHealth() <= 0) {
+						this.roundr=0;
+					}
+				} 
+				if(roundl!=0) {
+					monster.setHealth(monster.getHealth()-monster.getHealthmax()*ability.getPercentagehit());
+					m.p.setHealth(m.p.getHealth()+monster.getHealthmax()*ability.getPercentagehit());
+					hit = hit+"\nDue to the Leech Seed enemy gets "+monster.getHealthmax()*ability.getPercentagehit()+" damages.";
+					hit = hit+"\nAnd due to the Leech Seed you get "+monster.getHealthmax()*ability.getPercentagehit()+" heals.";
+					this.roundl--;
+					if(roundl == 0) 
+						hit = hit+"\nLeech Seed effect disappear";
+					if(monster.getHealth() <= 0) {
+						this.roundl=0;
+					}
+				}
+				JOptionPane.showMessageDialog(null,hit, "info",
+						JOptionPane.INFORMATION_MESSAGE);
+				
 			}
 		}
 	}
@@ -229,47 +348,54 @@ public class Battle {
  * @param monster
  */
 	private void rs(Map m, Monster monster) {
+		String hit;
 		for(Ability ability:m.p.ablist.getAbilitylist()) {
 			if(ability.getName().toLowerCase().equals("reversal")) {
 				if (ability.getPp() > 0) {
 				this.roundr = 3;
 				ability.setPp(ability.getPp()-1);
-				System.out.println("You feel you are full of healing power.");
+				hit = "You feel you are full of healing power.";
 				double damage2 = (monster.getAttack()-this.defense);
 				if(damage2 <= 0) {
 					damage2 = 1;
 				}
 				m.p.setHealth(m.p.getHealth()-damage2);
-				System.out.println(monster.getName()+" deals you "+damage2+" damages!");
-				System.out.println(monster.getName()+"'s heal is "+monster.getHealth());
+				hit = hit+"\n"+monster.getName()+" deals you "+damage2+" damages!";
 				m.p.setHealth(m.p.getHealth()+m.p.getHealthmax()*ability.getHealupbyp());
-				System.out.println("You heal up "+m.p.getHealthmax()*ability.getHealupbyp()+" due to reversal");
-				System.out.println("Your heal is "+m.p.getHealth()+m.p.getHealthmax()*ability.getHealupbyp());
-				this.roundr = 2;
-				while(this.roundr!=0) {
-					this.typedepender(m, monster);
-					m.p.setHealth(m.p.getHealth()+m.p.getHealthmax()*ability.getHealupbyp());
-					System.out.println("Due to the Reversal you get "+m.p.getHealthmax()*ability.getHealupbyp()+" heals");
-					System.out.println("Now you heal is "+m.p.getHealth());
-					this.roundr--;
-					if(monster.getHealth() <= 0) {
-						this.roundr=0;
-					}
-					if(this.fighting == 1) {
-						this.roundr = 0;
-					}
-				}
-				System.out.println("Reversal effect disappear.");
+				hit = hit+"\nYou heal up "+m.p.getHealthmax()*ability.getHealupbyp()+" due to reversal";
+				this.roundr = this.roundr+2;
 				} else {
-					System.out.println("Sorry you have not enough pp");
-					sc.nextLine();
+					hit = "Sorry you have not enough pp";
 					double damage2 = (monster.getAttack()-this.defense);
 					if(damage2 <= 0) {
 						damage2 = 1;
 					}
 					m.p.setHealth(m.p.getHealth()-damage2);
-					System.out.println(monster.getName()+" deals you "+damage2+" damages!");
-					System.out.println("Your heal is "+m.p.getHealth()+monster.getName()+"'s heal is "+monster.getHealth());
+					hit = hit+"\n"+monster.getName()+" deals you "+damage2+" damages!";
+					if(roundr!=0) {
+						m.p.setHealth(m.p.getHealth()+m.p.getHealthmax()*ability.getHealupbyp());
+						hit = hit+"\nDue to the Reversal you get "+m.p.getHealthmax()*ability.getHealupbyp()+" heals";
+						this.roundr--;
+						if(roundr == 0) 
+							hit = hit+"\nReversal effect disappear";
+						if(monster.getHealth() <= 0) {
+							this.roundr=0;
+						}
+					} 
+					if(roundl!=0) {
+						monster.setHealth(monster.getHealth()-monster.getHealthmax()*ability.getPercentagehit());
+						m.p.setHealth(m.p.getHealth()+monster.getHealthmax()*ability.getPercentagehit());
+						hit = hit+"\nDue to the Leech Seed enemy gets "+monster.getHealthmax()*ability.getPercentagehit()+" damages.";
+						hit = hit+"\nAnd due to the Leech Seed you get "+monster.getHealthmax()*ability.getPercentagehit()+" heals.";
+						this.roundl--;
+						if(roundl == 0) 
+							hit = hit+"\nLeech Seed effect disappear";
+						if(monster.getHealth() <= 0) {
+							this.roundl=0;
+						}
+					}
+					JOptionPane.showMessageDialog(null,hit, "info",
+							JOptionPane.INFORMATION_MESSAGE);
 				}
 			}
 		}
@@ -282,53 +408,60 @@ public class Battle {
  * @param monster
  */
 	private void ls(Map m, Monster monster) {
+		String hit;
 		for(Ability ability:m.p.ablist.getAbilitylist()) {
 			if(ability.getName().toLowerCase().equals("leech seed")) {
 				if (ability.getPp() > 0) {
 				this.roundl = 3;
 				ability.setPp(ability.getPp()-1);
-				System.out.println("Enemy got the leechseed and keep losing heal, you are healed by seed.");
+				hit = "Enemy got the leechseed and keep losing heal, you are healed by seed.";
 				double damage2 = (monster.getAttack()-this.defense);
 				if(damage2 <= 0) {
 					damage2 = 1;
 				}
 				m.p.setHealth(m.p.getHealth()-damage2);
-				System.out.println(monster.getName()+" deals you "+damage2+" damages!");
+				hit=hit+"\n"+monster.getName()+" deals you "+damage2+" damages!";
 				monster.setHealth(monster.getHealth()-monster.getHealthmax()*ability.getPercentagehit());
 				m.p.setHealth(m.p.getHealth()+monster.getHealthmax()*ability.getPercentagehit());
 				this.roundl = 2;
-				System.out.println("Due to the Leech Seed enemy gets "+monster.getHealthmax()*ability.getPercentagehit()+" damages.");
-				System.out.println("And due to the Leech Seed you get "+monster.getHealthmax()*ability.getPercentagehit()+" heals.");
-				System.out.println("Now you heal is "+m.p.getHealth());
-				System.out.println(monster.getName()+"'s heal is "+monster.getHealth());
+				hit = hit+"\nDue to the Leech Seed enemy gets "+monster.getHealthmax()*ability.getPercentagehit()+" damages.";
+				hit = hit+"\nAnd due to the Leech Seed you get "+monster.getHealthmax()*ability.getPercentagehit()+" heals.";
+				
 				this.roundl = 2;
-				while(this.roundl!=0) {
-					this.typedepender(m, monster);
-					monster.setHealth(monster.getHealth()-monster.getHealthmax()*ability.getPercentagehit());
-					m.p.setHealth(m.p.getHealth()+monster.getHealthmax()*ability.getPercentagehit());
-					System.out.println("Due to the Leech Seed enemy gets "+monster.getHealthmax()*ability.getPercentagehit()+" damages.");
-					System.out.println("And due to the Leech Seed you get "+monster.getHealthmax()*ability.getPercentagehit()+" heals.");
-					System.out.println("Now you heal is "+m.p.getHealth());
-					System.out.println(monster.getName()+"'s heal is "+monster.getHealth());
-					this.roundl--;
-					if(monster.getHealth() <= 0) {
-						this.roundl=0;
-					}
-					if(this.fighting == 1) {
-						this.roundl = 0;
-					}
-				}
-				System.out.println("Leech Seed effect disappear.");
+			
 				} else {
-					System.out.println("Sorry you have not enough pp");
+					hit = "Sorry you have not enough pp";
 					sc.nextLine();
 					double damage2 = (monster.getAttack()-this.defense);
 					if(damage2 <= 0) {
 						damage2 = 1;
 					}
 					m.p.setHealth(m.p.getHealth()-damage2);
-					System.out.println(monster.getName()+" deals you "+damage2+" damages!");
-					System.out.println("Your heal is "+m.p.getHealth()+monster.getName()+"'s heal is "+monster.getHealth());
+					hit = hit+"\n"+monster.getName()+" deals you "+damage2+" damages!";
+					if(roundr!=0) {
+						m.p.setHealth(m.p.getHealth()+m.p.getHealthmax()*ability.getHealupbyp());
+						hit = hit+"\nDue to the Reversal you get "+m.p.getHealthmax()*ability.getHealupbyp()+" heals";
+						this.roundr--;
+						if(roundr == 0) 
+							hit = hit+"\nReversal effect disappear";
+						if(monster.getHealth() <= 0) {
+							this.roundr=0;
+						}
+					} 
+					if(roundl!=0) {
+						monster.setHealth(monster.getHealth()-monster.getHealthmax()*ability.getPercentagehit());
+						m.p.setHealth(m.p.getHealth()+monster.getHealthmax()*ability.getPercentagehit());
+						hit = hit+"\nDue to the Leech Seed enemy gets "+monster.getHealthmax()*ability.getPercentagehit()+" damages.";
+						hit = hit+"\nAnd due to the Leech Seed you get "+monster.getHealthmax()*ability.getPercentagehit()+" heals.";
+						this.roundl--;
+						if(roundl == 0) 
+							hit = hit+"\nLeech Seed effect disappear";
+						if(monster.getHealth() <= 0) {
+							this.roundl=0;
+						}
+					}
+					JOptionPane.showMessageDialog(null,hit, "info",
+							JOptionPane.INFORMATION_MESSAGE);
 				}
 			}
 		}
@@ -341,25 +474,49 @@ public class Battle {
  * @param monster
  */
 	private void tw(Map m,Monster monster) {
+		String hit;
 		for(Ability ability:m.p.ablist.getAbilitylist()) {
 			if(ability.getName().toLowerCase().equals("twoway")) {
 				if (ability.getPp() > 0) {
 				this.attack = this.attack*ability.getAttackboost();
 				this.defense = this.defense*ability.getdefenseboost();
 				ability.setPp(ability.getPp()-1);
-				System.out.println("You used the "+ability.getName());
-				System.out.println("You feel you attack and defense improved.");
+				hit = "You used the "+ability.getName();
+				hit =hit+"\nYou feel you attack and defense improved.";
 				} else {
-					System.out.println("You do not have enough pp!");
-					sc.nextLine();
+					hit ="You do not have enough pp!";
+				
 				}
 				double damage2 = (monster.getAttack()-this.defense);
 				if(damage2 <= 0) {
 					damage2 = 1;
 				}
 				m.p.setHealth(m.p.getHealth()-damage2);
-				System.out.println(monster.getName()+" deals you "+damage2+" damages!");
-				System.out.println("Your heal is "+m.p.getHealth()+monster.getName()+"'s heal is "+monster.getHealth());
+				hit = hit+"\n"+monster.getName()+" deals you "+damage2+" damages!";
+				if(roundr!=0) {
+					m.p.setHealth(m.p.getHealth()+m.p.getHealthmax()*ability.getHealupbyp());
+					hit = hit+"\nDue to the Reversal you get "+m.p.getHealthmax()*ability.getHealupbyp()+" heals";
+					this.roundr--;
+					if(roundr == 0) 
+						hit = hit+"\nReversal effect disappear";
+					if(monster.getHealth() <= 0) {
+						this.roundr=0;
+					}
+				} 
+				if(roundl!=0) {
+					monster.setHealth(monster.getHealth()-monster.getHealthmax()*ability.getPercentagehit());
+					m.p.setHealth(m.p.getHealth()+monster.getHealthmax()*ability.getPercentagehit());
+					hit = hit+"\nDue to the Leech Seed enemy gets "+monster.getHealthmax()*ability.getPercentagehit()+" damages.";
+					hit = hit+"\nAnd due to the Leech Seed you get "+monster.getHealthmax()*ability.getPercentagehit()+" heals.";
+					this.roundl--;
+					if(roundl == 0) 
+						hit = hit+"\nLeech Seed effect disappear";
+					if(monster.getHealth() <= 0) {
+						this.roundl=0;
+					}
+				}
+				JOptionPane.showMessageDialog(null,hit, "info",
+						JOptionPane.INFORMATION_MESSAGE);
 		   }
 		}
 	}

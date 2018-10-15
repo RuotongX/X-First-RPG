@@ -101,7 +101,7 @@ public abstract class Ability {
 	}
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append(String.format("%16s|%71s|%10s",this.name,this.description,"pp: "+this.pp));
+		sb.append(String.format("%18s|%10s|%50s",this.name,"pp: "+this.pp,this.description));
 		return sb.toString();
 	}
 }

@@ -49,10 +49,6 @@ public class MapDisplay extends JPanel {
 	public MapDisplay(Map m, int level) {
 		this.setLayout(null);
 		Mapg(m,level);
-				
-//		setDefaultCloseOperation(EXIT_ON_CLOSE);
-//		setSize(1600, 900); 
-//		setResizable(false);
 	}
 	public void setM2(Map m) {
 		m.display2();
@@ -204,7 +200,46 @@ public class MapDisplay extends JPanel {
 				}
 				
 			}
-		}	
+		}	if(level == 2) {
+			m.display2();
+			for (int i = 0; i < 11; i++) {
+				for (int j = 0; j < 11; j++) {
+					elements[i][j][0] = new JLabel();
+					elements[i][j][0].setLocation(354+i * 81, j * 81);
+					elements[i][j][0].setSize(81, 81);
+					String sign = m.getMap()[j][i][1];
+					switch (sign) {
+					case "*":
+						
+						elements[i][j][0].setIcon(wall);
+						elements[i][j][0].setVisible(true);
+						this.add(elements[i][j][0]);
+						break;
+					case "D":
+					
+						elements[i][j][0].setIcon(door);
+						elements[i][j][0].setVisible(true);
+						this.add(elements[i][j][0]);
+						break;
+					case "B":
+						elements[i][j][0].setIcon(demon);
+						elements[i][j][0].setVisible(true);
+						this.add(elements[i][j][0]);
+						break;
+					case " ":
+						elements[i][j][0].setIcon(player);
+						elements[i][j][0].setVisible(false);
+						this.add(elements[i][j][0]);
+						break;
+					case "P":
+						elements[i][j][0].setIcon(player);
+						elements[i][j][0].setVisible(true);
+						this.add(elements[i][j][0]);
+						break;
+					}
+				}
+			}
+		}
 		
 		
 		this.playerName = new JLabel("Player: "+m.getP().getName());
