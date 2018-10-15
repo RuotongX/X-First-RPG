@@ -20,6 +20,7 @@ import javax.swing.JScrollPane;
 public class ShopGUI extends JPanel {
 	JButton confirm;
 	JButton exit;
+	JButton Healup;
 	JTextField search;
 	JScrollPane elist;
 	JScrollPane alist;
@@ -35,7 +36,6 @@ public class ShopGUI extends JPanel {
 	ImageIcon list2I = new ImageIcon("shoplist2.png");
 	ImageIcon backgroundI = new ImageIcon("shopbackground.png");
 	ImageIcon priceI = new ImageIcon("shoppricedisplay.png");
-	String a = "bbb";
 	
 	
 	public ShopGUI(Map m) {
@@ -108,8 +108,19 @@ public class ShopGUI extends JPanel {
 		this.search.setLocation(800,800);
 		this.search.setSize(565,100);
 		this.search.setForeground(Color.WHITE);
-		this.search.setFont(new Font("Times New Roman",1,40));
+		this.search.setFont(new Font("Arial",1,40));
 		this.add(search);
+		
+		this.Healup = new JButton("Heal Up for 6$");
+		this.Healup.setOpaque(false);
+		this.Healup.setBackground(new Color(0, 0, 0, 0));
+		this.Healup.setLocation(0, 800);
+		this.Healup.setSize(800,100);
+		this.Healup.setForeground(Color.WHITE);
+		this.Healup.setFont(new Font("old English Text MT",1,40));
+		this.Healup.setVisible(true);
+		this.add(Healup);
+		
 				
 		this.background = new JLabel();
 		this.background.setIcon(backgroundI);

@@ -10,8 +10,6 @@ import javax.swing.event.*;
 
 import Ability.AbilityLimiter;
 
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.io.FileNotFoundException;
 
 public class GuiRunner extends JFrame {
@@ -29,7 +27,6 @@ public class GuiRunner extends JFrame {
 		this.getContentPane().add(changeTo);
 		this.repaint();
 	}
-
 	private void positionCheck(Map m) {
 		if (m.getP().getRow() == m.getM1().getRow() && m.getP().getColumn() == m.getM1().getColumn()
 				&& m.getFloor() == 0) {
@@ -53,6 +50,29 @@ public class GuiRunner extends JFrame {
 		} else if (m.getP().getRow() == m.getShop().getRow() && m.getP().getColumn() == m.getShop().getColumn()
 				&& m.getFloor() == 0) {
 			sg = new ShopGUI(m);
+			sg.Healup.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					if (m.getP().getMoney() >= 6) {
+						m.getP().setMoney(m.getP().getMoney() - 6);
+						m.getP().setHealth(m.getP().getHealthmax());
+						for (int i = 0; i < m.getP().ablist.getTotalnumber(); i++) {
+							m.getP().ablist.getAbilitylist()[i].setPp(m.getP().ablist.getAbilitylist()[i].getMaxpp());
+						}
+						JOptionPane.showMessageDialog(null,"Heal finished.", "info",
+								JOptionPane.INFORMATION_MESSAGE);
+					} else {
+						JOptionPane.showMessageDialog(null,"Sorry your money is " + m.getP().getMoney() + " \nyou can't get healed.", "info",
+								JOptionPane.INFORMATION_MESSAGE);
+					}
+				}
+			});
+			sg.exit.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					m.getP().setRow(9);
+					eventHandleSkip(m);
+				}
+			});
+			this.resize(1615, 938);
 			this.changeP(sg);
 		} else if (m.getP().getRow() == 9 && m.getP().getColumn() == 1) {
 			BoyNextDoor bnd = new BoyNextDoor(m, md);
@@ -342,7 +362,44 @@ public class GuiRunner extends JFrame {
 			}
 		});
 	}
+	private void defeatbyBoss(Map m) {
+		this.md = new MapDisplay(m, 1);
+		this.resize(1620, 935);
+		this.changeP(md);
+		md.requestFocus();
+		this.md.getCheckAbility().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				eventHandleCheckAbilityDisplay(m);
+				md.requestFocus();
+			}
 
+		});
+
+		this.md.addKeyListener(new KeyListener() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				eventHandleMove(m, e);
+				md.update(m, m.getFloor() + 1);
+				changeP(md);
+				positionCheck(m);
+				md.requestFocus();
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+
+			}
+
+			@Override
+			public void keyTyped(KeyEvent e) {
+
+			}
+
+		});
+
+		this.md.setFocusable(true);
+
+	}
 	public void eventHandleSkip(Map m) {
 		this.md = new MapDisplay(m, m.getFloor()+1);
 		this.resize(1620, 935);
@@ -448,6 +505,7 @@ public class GuiRunner extends JFrame {
 		if (m.getP().getHealth() <= 0) {
 			m.getP().setRow(9);
 			m.getP().setColumn(8);
+			m.setFloor(0);
 			m.getP().setMoney(m.getP().getMoney() / 2);
 			m.getP().setHealth(m.getP().getHealthmax());
 			for (int i = 0; i < m.getP().ablist.getTotalnumber(); i++) {
@@ -456,7 +514,7 @@ public class GuiRunner extends JFrame {
 			JOptionPane.showMessageDialog(null, "You have been defeated!!", "", JOptionPane.INFORMATION_MESSAGE);
 			
 			this.resize(1621,954);
-			this.eventHandleSkip(m);
+			this.defeatbyBoss(m);
 			;
 		}
 		if (monster.getHealth() <= 0) {

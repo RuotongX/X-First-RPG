@@ -15,7 +15,6 @@ import start.*;
 public class MapDisplay extends JPanel {
 	private ImageIcon okb;
 	private ImageIcon imageback;
-	private ImageIcon backgroundp;
 	JLabel background;
 	private ImageIcon titleI;
 	JLabel playerName;
@@ -43,6 +42,7 @@ public class MapDisplay extends JPanel {
 	ImageIcon shop = new ImageIcon("shop.png");
 	ImageIcon player = new ImageIcon("player.png");
 	ImageIcon demon =new ImageIcon("Demonmap.png");
+	ImageIcon backgroundp = new ImageIcon("background.png");
 	
 	
 	
@@ -319,7 +319,6 @@ public class MapDisplay extends JPanel {
 		this.checkEntity = new JButton("Check Entity");
 		this.checkEntity.setOpaque(false);
 		this.checkEntity.setBackground(new Color(0,0,0,0));
-		this.checkEntity.setIcon(backgroundp);
 		this.checkEntity.setVisible(true);
 		this.checkEntity.setLocation(1245,750);
 		this.checkEntity.setSize(354,50);
@@ -383,7 +382,6 @@ public class MapDisplay extends JPanel {
 		title.setSize(355, 500);
 		this.add(title);
 		
-		this.backgroundp = new ImageIcon("background.png");
 		this.background = new JLabel();
 		this.background.setIcon(backgroundp);
 		this.background.setVisible(true);
@@ -467,6 +465,7 @@ public class MapDisplay extends JPanel {
 						elements[i][j][level-1].setVisible(true);
 						break;
 					case "P":
+						elements[i][j][0].setIcon(player);
 						elements[i][j][level-1].setVisible(true);
 						break;
 					case " ":
@@ -482,6 +481,7 @@ public class MapDisplay extends JPanel {
 			for (int i = 0; i < 11; i++) {
 				for (int j = 0; j < 11; j++) {
 					elements[i][j][0].setVisible(false);
+					
 					String sign = m.getMap()[j][i][level-1];
 					switch (sign) {
 					case "*":
@@ -501,6 +501,7 @@ public class MapDisplay extends JPanel {
 						
 						break;
 					case " ":
+						
 						elements[i][j][0].setIcon(player);
 						elements[i][j][0].setVisible(false);
 						
