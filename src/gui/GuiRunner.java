@@ -2,11 +2,14 @@ package gui;
 
 import java.awt.Color;
 import java.awt.Font;
-
+import Ability.*;
 import start.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.event.*;
+
+import Ability.AbilityLimiter;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.FileNotFoundException;
@@ -70,15 +73,156 @@ public class GuiRunner extends JFrame {
 		if(mon.equals(m.getM1())) {
 			ba.ability1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					
+					battle.skilldepender(ba.ability1.getText(), m, mon);
+					ba.update(m);
+					changeP(ba);
+					situation(m,mon);
 				}
 			});
+			ba.ability2.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					battle.skilldepender(ba.ability2.getText(), m, mon);
+					ba.update(m);
+					changeP(ba);
+				}
+			});
+			ba.ability3.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					battle.skilldepender(ba.ability3.getText(), m, mon);
+					ba.update(m);
+					changeP(ba);
+					situation(m,mon);
+				}
+			});
+			ba.ability4.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					battle.skilldepender(ba.ability4.getText(), m, mon);
+					ba.update(m);
+					changeP(ba);
+					situation(m,mon);
+				}
+			});
+			ba.palyerRun.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					eventHandleSkip(m);
+				}
+			});
+					
+			
 		} else if(mon.equals(m.getM2())) {
-			
+			bb.ability1.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					battle.skilldepender(bb.ability1.getText(), m, mon);
+					bb.update(m);
+					changeP(bb);
+					situation(m,mon);
+				}
+			});
+			bb.ability2.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					battle.skilldepender(bb.ability2.getText(), m, mon);
+					bb.update(m);
+					changeP(bb);
+					situation(m,mon);
+				}
+			});
+			bb.ability3.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					battle.skilldepender(bb.ability3.getText(), m, mon);
+					bb.update(m);
+					changeP(bb);
+					situation(m,mon);
+				}
+			});
+			bb.ability4.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					battle.skilldepender(bb.ability4.getText(), m, mon);
+					bb.update(m);
+					changeP(bb);
+					situation(m,mon);
+				}
+			});
+			bb.palyerRun.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					eventHandleSkip(m);
+				}
+			});
 		} else if(mon.equals(m.getM3())) {
-			
+			bc.ability1.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					battle.skilldepender(bc.ability1.getText(), m, mon);
+					bc.update(m);
+					changeP(bc);
+					situation(m,mon);
+				}
+			});
+			bc.ability2.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					battle.skilldepender(bc.ability2.getText(), m, mon);
+					bc.update(m);
+					changeP(bc);
+					situation(m,mon);
+				}
+			});
+			bc.ability3.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					battle.skilldepender(bc.ability3.getText(), m, mon);
+					bc.update(m);
+					changeP(bc);
+					situation(m,mon);
+				}
+			});
+			bc.ability4.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					battle.skilldepender(bc.ability4.getText(), m, mon);
+					bc.update(m);
+					changeP(bc);
+					situation(m,mon);
+				}
+			});
+			bc.palyerRun.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					eventHandleSkip(m);
+				}
+			});
 		} else if(mon.equals(m.getBoss())) {
-			
+			bd.ability1.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					battle.skilldepender(bd.ability1.getText(), m, mon);
+					bd.update(m);
+					changeP(bd);
+					situation(m,mon);
+				}
+			});
+			bd.ability2.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					battle.skilldepender(bd.ability2.getText(), m, mon);
+					bd.update(m);
+					changeP(bd);
+					situation(m,mon);
+				}
+			});
+			bd.ability3.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					battle.skilldepender(bd.ability3.getText(), m, mon);
+					bd.update(m);
+					changeP(bd);
+					situation(m,mon);
+				}
+			});
+			bd.ability4.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					battle.skilldepender(bd.ability4.getText(), m, mon);
+					bd.update(m);
+					changeP(bd);
+					situation(m,mon);
+				}
+			});
+			bd.palyerRun.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					eventHandleSkip(m);
+				}
+			});
 		}
 	}
 	public void eventHandleNewGame(Map m) {
@@ -212,6 +356,142 @@ public class GuiRunner extends JFrame {
 		return userInput.getKeyChar() == 'a' || userInput.getKeyChar() == 's' || userInput.getKeyChar() == 'w'
 				|| userInput.getKeyChar() == 'd' || userInput.getKeyChar() == 'A' || userInput.getKeyChar() == 'S'
 				|| userInput.getKeyChar() == 'W' || userInput.getKeyChar() == 'D';
+	}
+	public void situation(Map m, Monster monster) {
+		if(m.getP().getHealth() <= 0) {
+	    	m.getP().setRow(9);
+	    	m.getP().setColumn(8);
+	    	m.getP().setMoney(m.getP().getMoney()/2);
+	    	m.getP().setHealth(m.getP().getHealthmax());
+	    	for (int i = 0; i < m.getP().ablist.getTotalnumber(); i++) {
+				m.getP().ablist.getAbilitylist()[i].setPp(m.getP().ablist.getAbilitylist()[i].getMaxpp());
+			}
+	    	JOptionPane.showMessageDialog(null, "You have been defeated!!", "",
+					JOptionPane.INFORMATION_MESSAGE);
+	    	this.eventHandleSkip(m);;
+	    	
+	    }
+	    if(monster.getHealth() <= 0) {
+	    	JOptionPane.showMessageDialog(null, "Congrations! You have slain the monster! You have earned: "+monster.getMoney()+"$!", "",
+					JOptionPane.INFORMATION_MESSAGE);
+	    	
+	    	if(monster.getHealthmax()==25) {
+	    		m.getP().setM1defeat(true);
+	    	}
+	    	else if(monster.getHealthmax()==50) {
+	    		m.getP().setM2defeat(true);
+	    	}
+	    	else if(monster.getHealthmax() == 90) {
+	    		m.getP().setM3defeat(true);
+	    	}
+	    	else if(monster.getHealthmax() == 200) {
+		    	JOptionPane.showMessageDialog(null, "Now you save the small town! People are so happy that they won't suruand the demon!"
+		    			+ "\nCongratuation and thank you for playing!", "",
+						JOptionPane.INFORMATION_MESSAGE);
+		    	
+	    	}
+	    	m.getP().setMoney(monster.getMoney()+m.getP().getMoney());
+	    	
+	    	m.getP().setExp(m.getP().getExp()+monster.getExp());
+	    	if(m.getP().getExp()>=10 && m.getP().getExp()<30) {
+	    		m.getP().setLevel(2);
+	    		m.getP().setHealthmax(160);
+	    		m.getP().setAttack(60);
+	    		m.getP().setdefense(15);
+	    		JOptionPane.showMessageDialog(null, "Your are lv2 now!"+monster.getMoney()+"$!", "",
+						JOptionPane.INFORMATION_MESSAGE);
+	    		
+	    	}
+	    	else if(m.getP().getExp()>=30 && m.getP().getExp()<50) {
+	    		m.getP().setLevel(3);
+	    		m.getP().setHealthmax(170);
+	    		m.getP().setAttack(70);
+	    		m.getP().setdefense(20);
+	    		JOptionPane.showMessageDialog(null, "Your are lv3 now!\n\"You have learned the ability 'Two way'\""+monster.getMoney()+"$!", "",
+						JOptionPane.INFORMATION_MESSAGE);
+	    		AbilityLimiter al = new AbilityLimiter(m.getP().ablist);
+				Ability twoway = new TwoWay();
+				if (!m.getP().ablist.hasAbility(twoway ) && al.isKeep() == false) {
+					if(al.AvoidDupulicate(m.getP(), twoway) == false) {
+					    m.getP().ablist.addAbility(twoway);
+					}
+				}
+			
+	    	}
+	    	else if(m.getP().getExp()>=50 && m.getP().getExp()<80) {
+	    		m.getP().setLevel(4);
+	    		m.getP().setHealthmax(180);
+	    		m.getP().setAttack(80);
+	    		m.getP().setdefense(25);
+	    		JOptionPane.showMessageDialog(null, "Your are lv4 now!"+monster.getMoney()+"$!", "",
+						JOptionPane.INFORMATION_MESSAGE);
+	    	}
+	    	else if(m.getP().getExp()>=80 && m.getP().getExp()<120) {
+	    		m.getP().setLevel(5);
+	    		m.getP().setHealthmax(180);
+	    		m.getP().setAttack(90);
+	    		m.getP().setdefense(30);
+	    		JOptionPane.showMessageDialog(null, "Your are lv5 now!\nYou have learned the ability 'Smash'"+monster.getMoney()+"$!", "",
+						JOptionPane.INFORMATION_MESSAGE);
+	    		AbilityLimiter al = new AbilityLimiter(m.getP().ablist);
+				Ability smash = new Smash();
+				if (!m.getP().ablist.hasAbility(smash ) && al.isKeep() == false) {
+					if(al.AvoidDupulicate(m.getP(), smash) == false) {
+					    m.getP().ablist.addAbility(smash);
+					}
+				}
+	    	}
+	    	else if(m.getP().getExp()>=120 && m.getP().getExp()<160) {
+	    		m.getP().setLevel(6);
+	    		m.getP().setHealthmax(185);
+	    		m.getP().setAttack(95);
+	    		m.getP().setdefense(35);
+	    		JOptionPane.showMessageDialog(null, "Your are lv6 now!"+monster.getMoney()+"$!", "",
+						JOptionPane.INFORMATION_MESSAGE);
+	    	}
+	    	else if(m.getP().getExp()>=160 && m.getP().getExp()<200) {
+	    		m.getP().setLevel(7);
+	    		m.getP().setHealthmax(190);
+	    		m.getP().setAttack(100);
+	    		m.getP().setdefense(35);
+	    		JOptionPane.showMessageDialog(null, "Your are lv7 now!\nYou have learned the ability 'Reversal'"+monster.getMoney()+"$!", "",
+						JOptionPane.INFORMATION_MESSAGE);
+	    		AbilityLimiter al = new AbilityLimiter(m.getP().ablist);
+				Ability reversal = new Reversal();
+				if (!m.getP().ablist.hasAbility(reversal) && al.isKeep() == false) {
+					if(al.AvoidDupulicate(m.getP(), reversal) == false) {
+					    m.getP().ablist.addAbility(reversal);
+					}
+				}
+	    	}
+	    	else if(m.getP().getExp()>=200 && m.getP().getExp()<250) {
+	    		m.getP().setLevel(8);
+	    		m.getP().setHealthmax(200);
+	    		m.getP().setAttack(110);
+	    		m.getP().setdefense(40);
+	    		JOptionPane.showMessageDialog(null, "Your are lv8 now!"+monster.getMoney()+"$!", "",
+						JOptionPane.INFORMATION_MESSAGE);
+	    	}
+	    	else if(m.getP().getExp()>=250 && m.getP().getExp()<300) {
+	    		m.getP().setLevel(9);
+	    		m.getP().setHealthmax(210);
+	    		m.getP().setAttack(120);
+	    		m.getP().setdefense(45);
+	    		JOptionPane.showMessageDialog(null, "Your are lv9 now!"+monster.getMoney()+"$!", "",
+						JOptionPane.INFORMATION_MESSAGE);
+	    	}
+	    	else if(m.getP().getExp()>=300 && m.getP().getExp()<384) {
+	    		m.getP().setLevel(10);
+	    		m.getP().setHealthmax(220);
+	    		m.getP().setAttack(130);
+	    		m.getP().setdefense(50);
+	    		JOptionPane.showMessageDialog(null, "Your are lv10 now!"+monster.getMoney()+"$!", "",
+						JOptionPane.INFORMATION_MESSAGE);
+	    	}
+	    	m.getP().setColumn(5);
+	    	m.getP().setRow(5);
+	    	}	
+	    this.eventHandleSkip(m);
 	}
 
 	public GuiRunner() {

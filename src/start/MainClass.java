@@ -28,7 +28,7 @@ public class MainClass {
 /**
  * This is using a boolean value to check the player want to use record or not, if true, it will ask loadfile function in filecontrol class.
  */
-//		System.out.println("Would you like to use the record?(Type true of false.)");
+		System.out.println(" ");
 		boolean command =true;
 		try
 			{

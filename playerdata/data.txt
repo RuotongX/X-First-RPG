@@ -5,7 +5,7 @@ Sam
 170
 170.0
 15
-6
+5
 4
 true
 true
@@ -13,7 +13,7 @@ false
 30.0
 null
 null
-5
+2
 Tackle
 10
 TwoWay

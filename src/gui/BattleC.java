@@ -29,24 +29,24 @@ public class BattleC extends JPanel {
 
 	public BattleC(Map m, Monster mon) {
 		this.setLayout(null);
-		this.ability1 = new JButton(m.getP().ablist.getAbilitylist()[0].getName());
+		this.ability1 = new JButton(m.getP().ablist.getAbilitylist()[0].getName()+" pp: "+m.getP().ablist.getAbilitylist()[0].getPp());
 		this.ability1.setOpaque(false);
 		this.ability1.setBackground(new Color(0, 0, 0, 0));
 		this.ability1.setVisible(true);
 		this.ability1.setLocation(20, 60);
-		this.ability1.setSize(280, 80);
+		this.ability1.setSize(350, 80);
 		this.ability1.setForeground(Color.WHITE);
 		this.ability1.setFont(new Font("old English Text MT", 0, 35));
 		this.add(this.ability1);
 
 		try {
 
-			this.ability2 = new JButton(m.getP().ablist.getAbilitylist()[1].getName());
+			this.ability2 = new JButton(m.getP().ablist.getAbilitylist()[1].getName()+" pp: "+m.getP().ablist.getAbilitylist()[1].getPp());
 			this.ability2.setOpaque(false);
 			this.ability2.setBackground(new Color(0, 0, 0, 0));
 			this.ability2.setVisible(true);
 			this.ability2.setLocation(20,180);
-			this.ability2.setSize(280, 80);
+			this.ability2.setSize(350, 80);
 			this.ability2.setForeground(Color.WHITE);
 			this.ability2.setFont(new Font("old English Text MT", 0, 35));
 			this.add(this.ability2);
@@ -54,12 +54,12 @@ public class BattleC extends JPanel {
 
 		}
 		try {
-			this.ability3 = new JButton(m.getP().ablist.getAbilitylist()[2].getName());
+			this.ability3 = new JButton(m.getP().ablist.getAbilitylist()[2].getName()+" pp: "+m.getP().ablist.getAbilitylist()[2].getPp());
 			this.ability3.setOpaque(false);
 			this.ability3.setBackground(new Color(0, 0, 0, 0));
 			this.ability3.setVisible(true);
 			this.ability3.setLocation(20,300);
-			this.ability3.setSize(280, 80);
+			this.ability3.setSize(350, 80);
 			this.ability3.setForeground(Color.WHITE);
 			this.ability3.setFont(new Font("old English Text MT", 0, 35));
 			this.add(this.ability3);
@@ -68,12 +68,12 @@ public class BattleC extends JPanel {
 		}
 
 		try {
-			this.ability4 = new JButton(m.getP().ablist.getAbilitylist()[3].getName());
+			this.ability4 = new JButton(m.getP().ablist.getAbilitylist()[3].getName()+" pp: "+m.getP().ablist.getAbilitylist()[3].getPp());
 			this.ability4.setOpaque(false);
 			this.ability4.setBackground(new Color(0, 0, 0, 0));
 			this.ability4.setVisible(true);
 			this.ability4.setLocation(20,420);
-			this.ability4.setSize(280, 40);
+			this.ability4.setSize(350, 40);
 			this.ability4.setForeground(Color.WHITE);
 			this.ability4.setFont(new Font("old English Text MT", 0, 35));
 			this.add(this.ability4);
@@ -140,5 +140,12 @@ public class BattleC extends JPanel {
 		this.add(background);
 
 	}
-
+	public void update(Map m) {
+		this.playerState.setVisible(false);
+		this.playerState.setText(m.getP().getName()+" LV:"+m.getP().getLevel()+" HP:"+m.getP().getHealth());
+		this.playerState.setVisible(true);
+		this.monsterState.setVisible(false);
+		this.monsterState.setText(m.getM1().getName()+" LV:"+m.getM1().getLevel()+" HP:"+m.getM1().getHealth());
+		this.monsterState.setVisible(true);
+	}
 }

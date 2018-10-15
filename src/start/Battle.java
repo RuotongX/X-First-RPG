@@ -26,7 +26,7 @@ public class Battle {
  * @param m
  * @param monster
  */
-	private void skilldepender(String s,Map m,Monster monster) {
+	public void skilldepender(String s,Map m,Monster monster) {
 		if(s.equals("Attack With Hard")) {
 			this.awh(m, monster);
 		}
@@ -59,32 +59,34 @@ public class Battle {
  * @param m
  * @param monster
  */
-	public void awh(Map m,Monster monster) {
+	private void awh(Map m,Monster monster) {
+		String hit;
 			for(Ability ability:m.p.ablist.getAbilitylist()) {
 				if(ability.getName().toLowerCase().equals("attack with hard")){
 					if (ability.getPp() > 0) {
 					m.p.setTempattack(this.attack*ability.getStrength());
 					this.defense = this.defense*ability.getdefenseboost();
 					ability.setPp(ability.getPp()-1);
-					System.out.println("You used the "+ability.getName());
-					System.out.println("You feel your defense improve.");
+					hit = "You used the "+ability.getName();
+					hit = hit+"\nYou feel your defense improve.";
 					double damage1 = (m.p.getTempattack()-monster.getdefense());
 					if(damage1 <= 0) {
 						damage1 = 1;
 					}
 					monster.setHealth(monster.getHealth()-damage1);
-					System.out.println("You have deal "+damage1+" to "+monster.getName());
+					hit = hit+"\nYou have deal "+damage1+" to "+monster.getName();
 					} else {
-						System.out.println("You do not have enough pp!");
-						sc.nextLine();
+						hit = "You do not have enough pp!";
+						
 					}
 					double damage2 = (monster.getAttack()-this.defense);
 					if(damage2 <= 0) {
 						damage2 = 1;
 					}
 					m.p.setHealth(m.p.getHealth()-damage2);
-					System.out.println(monster.getName()+" deals you "+damage2+" damages!");
-					System.out.println("Your heal is "+m.p.getHealth()+monster.getName()+"'s heal is "+monster.getHealth());
+					hit=hit+"\n"+monster.getName()+" deals you "+damage2+" damages!";
+					JOptionPane.showMessageDialog(null,hit, "info",
+							JOptionPane.INFORMATION_MESSAGE);
 				}
 			}
 	}
@@ -95,26 +97,26 @@ public class Battle {
  * @param m
  * @param monster
  */
-	public void bh(Map m,Monster monster) {
+	private void bh(Map m,Monster monster) {
+		String hit;
 		for(Ability ability:m.p.ablist.getAbilitylist()) {
 			if(ability.getName().toLowerCase().equals("become huge")) {
 			  if (ability.getPp() > 0) {
 				this.attack = this.attack*ability.getAttackboost();
 				this.defense = this.defense*ability.getdefenseboost();
 				ability.setPp(ability.getPp()-1);
-				System.out.println("You used the "+ability.getName());
-				System.out.println("You feel you attack and defense improve a lot.");
+				hit = "You used the "+ability.getName();
+				hit = hit+"\nYou feel you attack and defense improve a lot.";
 			  } else {
-					System.out.println("You do not have enough pp!");
-					sc.nextLine();
+				  hit = "You do not have enough pp!";
+				  sc.nextLine();
 				}
 				double damage2 = (monster.getAttack()-this.defense);
 				if(damage2 <= 0) {
 					damage2 = 1;
 				}
 				m.p.setHealth(m.p.getHealth()-damage2);
-				System.out.println(monster.getName()+" deals you "+damage2+" damages!");
-				System.out.println("Your heal is "+m.p.getHealth()+monster.getName()+"'s heal is "+monster.getHealth());
+				hit = hit+"\n"+monster.getName()+" deals you "+damage2+" damages!";
 		   }
 		}
 	}	
@@ -125,7 +127,7 @@ public class Battle {
  * @param m
  * @param monster
  */
-	public void hi(Map m,Monster monster) {
+	private void hi(Map m,Monster monster) {
 		for(Ability ability:m.p.ablist.getAbilitylist()) {
 			 if(ability.getName().toLowerCase().equals("huge Impact")) {
 				 if (ability.getPp() > 0) {
@@ -159,7 +161,7 @@ public class Battle {
  * @param m
  * @param monster
  */
-	public void sm(Map m,Monster monster) {
+	private void sm(Map m,Monster monster) {
 		for(Ability ability:m.p.ablist.getAbilitylist()) {
 			if (ability.getName().toLowerCase().equals("smash")) {
 				if (ability.getPp() > 0) {
@@ -193,7 +195,7 @@ public class Battle {
  * @param m
  * @param monster
  */
-	public void tk(Map m,Monster monster) {
+	private void tk(Map m,Monster monster) {
 		for(Ability ability:m.p.ablist.getAbilitylist()) {
 			if(ability.getName().toLowerCase().equals("tackle")) {
 				if (ability.getPp() > 0) {
@@ -226,7 +228,7 @@ public class Battle {
  * @param m
  * @param monster
  */
-	public void rs(Map m, Monster monster) {
+	private void rs(Map m, Monster monster) {
 		for(Ability ability:m.p.ablist.getAbilitylist()) {
 			if(ability.getName().toLowerCase().equals("reversal")) {
 				if (ability.getPp() > 0) {
@@ -279,7 +281,7 @@ public class Battle {
  * @param m
  * @param monster
  */
-	public void ls(Map m, Monster monster) {
+	private void ls(Map m, Monster monster) {
 		for(Ability ability:m.p.ablist.getAbilitylist()) {
 			if(ability.getName().toLowerCase().equals("leech seed")) {
 				if (ability.getPp() > 0) {
@@ -338,7 +340,7 @@ public class Battle {
  * @param m
  * @param monster
  */
-	public void tw(Map m,Monster monster) {
+	private void tw(Map m,Monster monster) {
 		for(Ability ability:m.p.ablist.getAbilitylist()) {
 			if(ability.getName().toLowerCase().equals("twoway")) {
 				if (ability.getPp() > 0) {
@@ -369,130 +371,14 @@ public class Battle {
  * @param m
  * @param monster
  */
-	public void battle(Map m,Monster monster) {
+	private void battle(Map m,Monster monster) {
 		int temp =0;
     	    System.out.println("Please select your ability to attack. Type 1, 2, 3 or 4 to select.");
     	    PlayerAbilityDisplay pad = new PlayerAbilityDisplay(m.p.ablist);
     	    int order = sc.nextInt();
     	    String s = m.p.ablist.getAbilitylist()[order-1].getName();
     	    this.skilldepender(s, m, monster);
-    	    if(m.p.getHealth() <= 0) {
-    	    	m.p.setRow(9);
-    	    	m.p.setColumn(8);
-    	    	m.p.setMoney(m.p.getMoney()/2);
-    	    	m.p.setHealth(m.p.getHealthmax());
-    	    	for (int i = 0; i < m.p.ablist.getTotalnumber(); i++) {
-					m.p.ablist.getAbilitylist()[i].setPp(m.p.ablist.getAbilitylist()[i].getMaxpp());
-				}
-    	    	this.fighting =1;
-    	    	System.out.println("You have been defeated!!");
-    	    }
-    	    if(monster.getHealth() <= 0) {
-    	    	System.out.println("Congrations! You have slain the monster! You have earned: "+monster.getMoney()+"$!");
-    	    	if(monster.getHealthmax()==25) {
-    	    		m.p.setM1defeat(true);
-    	    	}
-    	    	else if(monster.getHealthmax()==50) {
-    	    		m.p.setM2defeat(true);
-    	    	}
-    	    	else if(monster.getHealthmax() == 90) {
-    	    		m.p.setM3defeat(true);
-    	    	}
-    	    	else if(monster.getHealthmax() == 200) {
-    	    		System.out.println("Now you save the small town! People are so happy that they won't suruand the demon!");
-    	    		System.out.println("Congratuation and thank you for playing!");
-    	    	}
-    	    	m.p.setMoney(monster.getMoney()+m.p.getMoney());
-    	    	
-    	    	m.p.setExp(m.p.getExp()+monster.getExp());
-    	    	if(m.p.getExp()>=10 && m.p.getExp()<30) {
-    	    		m.p.setLevel(2);
-    	    		m.p.setHealthmax(160);
-    	    		m.p.setAttack(60);
-    	    		m.p.setdefense(15);
-    	    		System.out.println("Your are lv2 now!");
-    	    	}
-    	    	else if(m.p.getExp()>=30 && m.p.getExp()<50) {
-    	    		m.p.setLevel(3);
-    	    		m.p.setHealthmax(170);
-    	    		m.p.setAttack(70);
-    	    		m.p.setdefense(20);
-    	    		System.out.println("Your are lv3 now!");
-    	    		System.out.println("You have learned the ability 'Two way'");
-    	    		AbilityLimiter al = new AbilityLimiter(m.p.ablist);
-    				if (!m.p.ablist.hasAbility(twoway) && al.isKeep() == false) {
-    					if(al.AvoidDupulicate(m.p, twoway) == false) {
-    					    m.p.ablist.addAbility(twoway);
-    					}
-    				}
-    	    	}
-    	    	else if(m.p.getExp()>=50 && m.p.getExp()<80) {
-    	    		m.p.setLevel(4);
-    	    		m.p.setHealthmax(180);
-    	    		m.p.setAttack(80);
-    	    		m.p.setdefense(25);
-    	    		System.out.println("Your are lv4 now!");
-    	    	}
-    	    	else if(m.p.getExp()>=80 && m.p.getExp()<120) {
-    	    		m.p.setLevel(5);
-    	    		m.p.setHealthmax(180);
-    	    		m.p.setAttack(90);
-    	    		m.p.setdefense(30);
-    	    		System.out.println("Your are lv5 now!");
-    	    		System.out.println("You have learned the ability 'Smash'");
-    	    		AbilityLimiter al = new AbilityLimiter(m.p.ablist);
-    				if (!m.p.ablist.hasAbility(smash) && al.isKeep() == false) {
-    					if(al.AvoidDupulicate(m.p, smash) == false) {
-    					    m.p.ablist.addAbility(smash);
-    					}
-    				}
-    	    	}
-    	    	else if(m.p.getExp()>=120 && m.p.getExp()<160) {
-    	    		m.p.setLevel(6);
-    	    		m.p.setHealthmax(185);
-    	    		m.p.setAttack(95);
-    	    		m.p.setdefense(35);
-    	    		System.out.println("Your are lv6 now!");
-    	    	}
-    	    	else if(m.p.getExp()>=160 && m.p.getExp()<200) {
-    	    		m.p.setLevel(7);
-    	    		m.p.setHealthmax(190);
-    	    		m.p.setAttack(100);
-    	    		m.p.setdefense(35);
-    	    		System.out.println("Your are lv7 now!");
-    	    		System.out.println("You have learned the ability 'Reversal'");
-    	    		AbilityLimiter al = new AbilityLimiter(m.p.ablist);
-    				if (!m.p.ablist.hasAbility(reversal) && al.isKeep() == false) {
-    					if(al.AvoidDupulicate(m.p, reversal) == false) {
-    					    m.p.ablist.addAbility(reversal);
-    					}
-    				}
-    	    	}
-    	    	else if(m.p.getExp()>=200 && m.p.getExp()<250) {
-    	    		m.p.setLevel(8);
-    	    		m.p.setHealthmax(200);
-    	    		m.p.setAttack(110);
-    	    		m.p.setdefense(40);
-    	    		System.out.println("Your are lv8 now!");
-    	    	}
-    	    	else if(m.p.getExp()>=250 && m.p.getExp()<300) {
-    	    		m.p.setLevel(9);
-    	    		m.p.setHealthmax(210);
-    	    		m.p.setAttack(120);
-    	    		m.p.setdefense(45);
-    	    		System.out.println("Your are lv9 now!");
-    	    	}
-    	    	else if(m.p.getExp()>=300 && m.p.getExp()<384) {
-    	    		m.p.setLevel(10);
-    	    		m.p.setHealthmax(220);
-    	    		m.p.setAttack(130);
-    	    		m.p.setdefense(50);
-    	    		System.out.println("Your are lv10 now!");
-    	    	}
-    	    	this.fighting =1;
-    	    	m.p.setColumn(5);
-    	    	m.p.setRow(5);
-    	    	}	
+    	    
     	 }
 /**
  * This method is used to decide which thing player want to do when fight with the monster by using switch case,
@@ -548,4 +434,5 @@ public class Battle {
 //    	    this.typedepender(m, monster);
 //		} while(fighting == 0);
 	}
+
 }

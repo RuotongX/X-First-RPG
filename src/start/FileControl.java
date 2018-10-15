@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 
 import java.util.Scanner;
 
+import Ability.AbilityLimiter;
 import Ability.AttackWithHard;
 import Ability.BecomeHuge;
 import Ability.HugeImpact;
@@ -174,13 +175,18 @@ public class FileControl {
 							}
 						}
 						else {
-						   p.ablist.addAbility(a);
+							AbilityLimiter al = new AbilityLimiter(p.ablist);
+							if(al.AvoidDupulicate(p, a)) {
+							} else
+								p.ablist.addAbility(a);
+						   
 						   for(Ability a3:p.ablist.getAbilitylist()) {
 							   if(a3.getName().equals(line)) {
 								   a3.setPp(value);
 							   }
 						   }
 						}
+						
 					}
 				}
 			}

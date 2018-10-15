@@ -100,6 +100,8 @@ public abstract class Ability {
 		this.name = name;
 	}
 	public String toString() {
-		return this.name;
+		StringBuilder sb = new StringBuilder();
+		sb.append(String.format("%16s|%71s|%10s",this.name,this.description,"pp: "+this.pp));
+		return sb.toString();
 	}
 }

@@ -73,4 +73,9 @@ public abstract class Entity {
 	public Entity(String name) {
 		this.name = name;
 	}
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append(String.format("%15s|%130s",this.name,this.description));
+		return sb.toString();
+	}
 }
