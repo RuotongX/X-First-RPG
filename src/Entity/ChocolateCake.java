@@ -9,7 +9,7 @@ public class ChocolateCake extends Consumable{
 	public ChocolateCake() {
 		super("Chocolate Cake");
 		super.setHealth(20);
-		super.setDescription("a chocolate cake");
+		super.setDescription("This chocolate cake can help you improve 20 hp which worth 10 gold.");
 		super.setMoney(10);
 	}
 

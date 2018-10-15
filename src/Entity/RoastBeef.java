@@ -9,7 +9,7 @@ public class RoastBeef extends Consumable{
 	public RoastBeef() {
 		super("Roast Beef");
 		super.setHealth(100);
-		super.setDescription("a roast beef");
+		super.setDescription("This roast beef can help you improve 100 hp which worth 100 gold.");
 		super.setMoney(100);
 	}
 

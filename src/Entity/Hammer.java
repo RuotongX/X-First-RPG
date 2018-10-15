@@ -9,7 +9,7 @@ public class Hammer extends Entity{
 	public Hammer() {
 		super("Hammer");
 		super.setAttack(25);
-		super.setDescription("an normal hammer");
+		super.setDescription("This normal hammer can help you improve 25 attack which worth 100 gold.");
 		super.setMoney(100);
 	}
 

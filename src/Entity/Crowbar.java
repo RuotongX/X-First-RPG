@@ -10,7 +10,7 @@ public class Crowbar extends Entity{
 	public Crowbar() {
 		super("Crow bar");
 		super.setAttack(15);
-		super.setDescription("A normal gray crowbar");
+		super.setDescription("This normal gray crowbar can help you improve 15 attack which worth 50 gold.");
 		super.setMoney(50);
 		}
 }

@@ -9,7 +9,7 @@ public class Axe extends Entity{
 	public Axe() {
 		super("Axe");
 		super.setAttack(55);
-		super.setDescription("An axe");
+		super.setDescription("This axe can help you improve 55 attack which worth 500 gold.");
 		super.setMoney(500);
 	}
 

@@ -75,7 +75,7 @@ public abstract class Entity {
 	}
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append(String.format("%15s%130s",this.name,this.description));
+		sb.append(String.format("%15s%120s",this.name,this.description));
 		return sb.toString();
 	}
 }

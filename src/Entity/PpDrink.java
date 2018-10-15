@@ -10,6 +10,6 @@ public class PpDrink extends Consumable {
 		super("PP drink");
 		super.setMoney(30);
 		super.setPp(1);
-		super.setDescription("This is the potion which can improve the pp once time for any ability." );
+		super.setDescription("This potion can help you improve once usage for any ability which worth 30 gold." );
 	}
 }

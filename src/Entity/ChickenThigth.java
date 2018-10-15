@@ -9,7 +9,7 @@ public class ChickenThigth extends Consumable{
 	public ChickenThigth() {
 		super("Chinken Thigth");
 		super.setHealth(50);
-		super.setDescription("a chicken thigth");
+		super.setDescription("This chicken thigth can help you improve 50 hp which worth 50 gold.");
 		super.setMoney(50);
 	}
 

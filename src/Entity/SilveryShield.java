@@ -9,7 +9,7 @@ public class SilveryShield extends Entity{
 	public SilveryShield() {
 		super("Silver Shield");
 		super.setdefense(20);
-		super.setDescription("a silvery shield");
+		super.setDescription("This silvery shield can help you improve 20 defence which worth 200 gold.");
 		super.setMoney(200);
 	}
 
