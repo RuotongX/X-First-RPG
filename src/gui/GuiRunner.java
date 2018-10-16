@@ -21,6 +21,7 @@ public class GuiRunner extends JFrame {
 	public ShopGUI sg;
 	FileControl fc = new FileControl();
 	Map m = new Map();
+	Battle battle = null;
 
 	public void changeP(JPanel changeTo) {
 		this.getContentPane().removeAll();
@@ -94,7 +95,11 @@ public class GuiRunner extends JFrame {
 	}
 
 	private void BattleControl(Map m, Monster mon) {
-		Battle battle = new Battle(m, mon);
+		if(this.battle == null) {
+			this.battle = new Battle(m, mon);
+		} else {
+			
+		}
 		if (mon.equals(m.getM1())) {
 			ba.ability1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
@@ -143,6 +148,7 @@ public class GuiRunner extends JFrame {
 				public void actionPerformed(ActionEvent e) {
 					m.getP().setColumn(m.getP().getColumn()+1);
 					resize(1618,956);
+					battle = null;
 					eventHandleSkip(m);
 				}
 			});
@@ -201,6 +207,7 @@ public class GuiRunner extends JFrame {
 				public void actionPerformed(ActionEvent e) {
 					m.getP().setColumn(m.getP().getColumn()+1);
 					resize(1618,955);
+					battle = null;
 					eventHandleSkip(m);
 				}
 			});
@@ -259,6 +266,7 @@ public class GuiRunner extends JFrame {
 				public void actionPerformed(ActionEvent e) {
 					m.getP().setColumn(m.getP().getColumn()+1);
 					resize(1618,953);
+					battle = null;
 					eventHandleSkip(m);
 				}
 			});
@@ -316,6 +324,7 @@ public class GuiRunner extends JFrame {
 				public void actionPerformed(ActionEvent e) {
 					m.getP().setColumn(m.getP().getColumn()+1);
 					resize(1618,949);
+					battle = null;
 					eventHandleSkip(m);
 				}
 			});
@@ -514,6 +523,7 @@ public class GuiRunner extends JFrame {
 			JOptionPane.showMessageDialog(null, "You have been defeated!!", "", JOptionPane.INFORMATION_MESSAGE);
 			
 			this.resize(1621,954);
+			battle = null;
 			this.defeatbyBoss(m);
 			;
 		}
@@ -632,6 +642,7 @@ public class GuiRunner extends JFrame {
 			m.getP().setColumn(5);
 			m.getP().setRow(5);
 			this.resize(1619,956);
+			battle = null;
 			this.eventHandleSkip(m);
 			
 		}
