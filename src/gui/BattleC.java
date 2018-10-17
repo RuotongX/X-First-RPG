@@ -73,7 +73,7 @@ public class BattleC extends JPanel {
 			this.ability4.setBackground(new Color(0, 0, 0, 0));
 			this.ability4.setVisible(true);
 			this.ability4.setLocation(20,420);
-			this.ability4.setSize(350, 40);
+			this.ability4.setSize(350, 80);
 			this.ability4.setForeground(Color.WHITE);
 			this.ability4.setFont(new Font("old English Text MT", 0, 35));
 			this.add(this.ability4);

@@ -21,8 +21,32 @@ public class Bag extends JPanel{
 	JLabel background;
 	JList<Entity> entitylist;
 	JScrollPane elist;
-	ImageIcon backgroundI = new ImageIcon("Bag");
+	EntityList model1;
+	ImageIcon backgroundI = new ImageIcon("Bag.png");
 	public Bag(Map m) {
+		this.model1 = m.getP().enlist;
+		
+		setLayout(null);
+		
+		this.entitylist = new JList<Entity>(this.model1.getentityList());
+		entitylist.setOpaque(false);
+		entitylist.setBackground(new Color(0, 0, 0, 0));
+		entitylist.setForeground(Color.WHITE);
+		entitylist.setFont(new Font("Arial",0, 15));
+		
+		this.entitylist.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		JScrollPane scrollPane1 = new JScrollPane(entitylist);
+		scrollPane1.setViewport(new JViewport());
+		
+		scrollPane1.getViewport().setView(entitylist);
+		
+		scrollPane1.setOpaque(false);
+		scrollPane1.getViewport().setOpaque(false);
+		
+		scrollPane1.setLocation(415, 25);  
+		scrollPane1.setSize(945, 850);
+		this.add(scrollPane1);
+		
 		this.confirm = new JButton();
 		this.confirm.setOpaque(false);
 		this.confirm.setBackground(new Color(0, 0, 0, 0));
@@ -43,6 +67,7 @@ public class Bag extends JPanel{
 		this.background.setIcon(backgroundI);
 		this.background.setLocation(0,0);
 		this.background.setSize(1600, 900);
+		this.setVisible(true);
 		this.add(background);
 	}
 }

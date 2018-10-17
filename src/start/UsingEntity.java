@@ -1,5 +1,7 @@
 package start;
 import java.util.Scanner;
+
+import javax.swing.JOptionPane;
 /**
  * This class is used when player want to use the entity.
  * @author RuotongXu QiChangZhou
@@ -16,29 +18,31 @@ public class UsingEntity {
  * @param p
  */
 	private void Weapondepender(String a,Player p) {
+		String hit = "";
 		int temp = p.getAttack();
 		for(Entity e :p.enlist.getentityList()) {
     		if(e.getName().toLowerCase().equals(a)) {
     			if(p.getWeapon() == null) {
     				p.setWeapon(e);
-    				System.out.println("You have equip "+e.getName());
+    				hit = "You have equip "+e.getName();
     				p.setAttack(p.getAttack()+e.getAttack());
-    				System.out.println("Your attack value becomes to "+p.getAttack());
+    				hit = hit+"\nYour attack value becomes to "+p.getAttack();
     			}
     			else {
     				p.setAttack(p.getAttack()-p.getWeapon().getAttack());
-    				System.out.println("You have take off the "+e.getName() +" and attack reduce "+e.getAttack());
+    				hit = "\nYou have take off the "+e.getName() +" and attack reduce "+e.getAttack();
     				p.setWeapon(e);
-    				System.out.println("You have equip "+e.getName());
+    				hit = hit+"\nYou have equip "+e.getName();
     				p.setAttack(p.getAttack()+e.getAttack());
-    				System.out.println("Your attack value becomes to "+p.getAttack());
+    				hit = hit+"\nYour attack value becomes to "+p.getAttack();
     				
     			}
     		}
     	}
-		if(p.getdefense() == temp) {
-			System.out.println("Sorry you do not have this weapon or you current equip this weapon.");
+		if(p.getAttack() == temp) {
+			hit = "Sorry you do not have this weapon or you current equip this weapon.";
 		}
+		JOptionPane.showMessageDialog(null,hit, "Message",JOptionPane.INFORMATION_MESSAGE);
 	}
 /**
  * This method is used to show when player used the shield, the defense will increase,
@@ -50,30 +54,31 @@ public class UsingEntity {
  * @param p
  */
 	private void Shielddepender(String a,Player p) {
+		String hit = "";
 		int temp = p.getdefense();
 		for(Entity e :p.enlist.getentityList()) {
     		if(e.getName().toLowerCase().equals(a)) {
     			if(p.getShield() == null) {
     				p.setShield(e);;
-    				System.out.println("You have equip "+e.getName());
+    				hit = "You have equip "+e.getName();
     				p.setdefense(p.getdefense()+e.getdefense());
-    				System.out.println("You defense has increased "+e.getdefense());
-    				System.out.println("Your defense value becomes to "+p.getdefense());
+    				hit = hit+"\nYour defense value becomes to "+p.getdefense();
     			}
     			else {
     				p.setdefense(p.getdefense()-p.getShield().getdefense());
-    				System.out.println("You have take off the "+e.getName() +" and defense reduce "+e.getdefense());
+    				hit = "You have take off the "+e.getName() +" and defense reduce "+e.getdefense();
     				p.setShield(e);
-    				System.out.println("You have equip "+e.getName());
+    				hit = hit+"\nYou have equip "+e.getName();
     				p.setdefense(p.getdefense()+e.getdefense());
-    				System.out.println("Your defense value becomes to "+p.getdefense());
+    				hit = hit +"\nYour defense value becomes to "+p.getdefense();
     				
     			}
     		}
     	}
 		if(p.getdefense() == temp) {
-			System.out.println("Sorry you do not have this shield or you current equip this shield.");
+			hit = "Sorry you do not have this shield or you current equip this shield.";
 		}
+		JOptionPane.showMessageDialog(null,hit, "Message",JOptionPane.INFORMATION_MESSAGE);
 	}
 /**
  * This method is used when player use the consumable entity,
@@ -85,14 +90,15 @@ public class UsingEntity {
  * @param p
  */
 	private void Consumableuse(String a,Player p) {
+		String hit = "";
 		double temp = p.getHealth();
 		for(int i = 0;i<p.enlist.getTotalnumber();i++) {
 			if(p.enlist.getentityList()[i].getName().toLowerCase().equals(a)) {
-				System.out.println("You have used the "+p.enlist.getentityList()[i].getName());
+				hit = "You have used the "+p.enlist.getentityList()[i].getName();
 				p.setHealth(p.getHealth()+p.enlist.getentityList()[i].getHealth());
-				System.out.println("You have healed "+p.enlist.getentityList()[i].getHealth());
-				System.out.println("Now you heal is "+p.getHealth());
-				if(p.enlist.getentityList()[i].getNum()>1) {
+				hit = hit + "\nYou have healed "+p.enlist.getentityList()[i].getHealth();
+				hit = hit + "\nNow you heal is "+p.getHealth();
+				if(p.enlist.getentityList()[i].getNum() == 1) {
 				    p.enlist.removeentityItems(i);
 				}
 				else {
@@ -101,8 +107,9 @@ public class UsingEntity {
 			}
 		}
 		if(p.getHealth()==temp) {
-			System.out.println("Sorry you do not have "+a);
+			hit = "Sorry you do not have "+a;
 		}
+		JOptionPane.showMessageDialog(null,hit, "Message",JOptionPane.INFORMATION_MESSAGE);
 	}
 	Scanner sc = new Scanner(System.in);
 /**
@@ -111,11 +118,8 @@ public class UsingEntity {
  * the entity function.
  * @param p
  */
-	public UsingEntity(Player p) {
-		System.out.println("You have opened your bag");
-	    PlayerEntityDisplay ped = new PlayerEntityDisplay(p.enlist);
-	    System.out.println("Please type the name of what you want to use.(Type 'e' go back.");
-	    String temp = sc.nextLine().toLowerCase();
+	public UsingEntity(String temp,Player p) {
+	    temp = temp.toLowerCase();
 	    switch(temp) {
 	    case "e":
 	    	break;
@@ -161,35 +165,38 @@ public class UsingEntity {
 	    	for(int i = 0;i<p.enlist.getTotalnumber();i++) {
 				if(p.enlist.getentityList()[i].getName().toLowerCase().equals("pp drink")) {
 					PlayerAbilityDisplay pad = new PlayerAbilityDisplay(p.ablist);
-					System.out.println("Please choose one of the skill");
+					JOptionPane.showInputDialog(null, "Please choose one of the skill"
+							+ "\nYou can only input 1-4 value!", "Message", JOptionPane.INFORMATION_MESSAGE);
                     try {
-					   int num = sc.nextInt();
+					   int num = Integer.valueOf(JOptionPane.INPUT_VALUE_PROPERTY);
 					   while(num<1||num>4) {
-						   System.out.println("You can only input 1-4 value!");
+						   JOptionPane.showInputDialog(null, "Please choose one of the skill"
+									+ "\nYou can only input 1-4 value!", "Message", JOptionPane.INFORMATION_MESSAGE);
+						   num = Integer.valueOf(JOptionPane.INPUT_VALUE_PROPERTY);
 					   }
+					   String hit = "";
 					   switch(num) {
 						case 1:
 							p.ablist.getAbilitylist()[0].setPp(p.ablist.getAbilitylist()[0].getPp()+1);
-							System.out.println(p.ablist.getAbilitylist()[0].getName()+" pp + 1!");
+							hit = p.ablist.getAbilitylist()[0].getName()+" pp + 1!";
 						    break;
 					   case 2:
 						   p.ablist.getAbilitylist()[1].setPp(p.ablist.getAbilitylist()[1].getPp()+1);
-						   System.out.println(p.ablist.getAbilitylist()[1].getName()+" pp + 1!");
+						   hit = p.ablist.getAbilitylist()[1].getName()+" pp + 1!";
 						   break;
 					   case 3:
 						   p.ablist.getAbilitylist()[2].setPp(p.ablist.getAbilitylist()[2].getPp()+1);
-						   System.out.println(p.ablist.getAbilitylist()[2].getName()+" pp + 1!");
+						  hit = p.ablist.getAbilitylist()[2].getName()+" pp + 1!";
 						   break;
 					   case 4:
 						   p.ablist.getAbilitylist()[3].setPp(p.ablist.getAbilitylist()[3].getPp()+1);
-						   System.out.println(p.ablist.getAbilitylist()[3].getName()+" pp + 1!");
+						  hit = p.ablist.getAbilitylist()[3].getName()+" pp + 1!";
 						   break;
 					   }
-					   System.out.println("You used 1 pp drink!");
+					   hit = hit +"\nYou used 1 pp drink!";
 					   p.enlist.removeentityItems(i);
+					   JOptionPane.showMessageDialog(null,hit, "Message",JOptionPane.INFORMATION_MESSAGE);
 					}catch(Exception e) {
-						System.out.println("Invalid input, you will get back to entity list!");
-						sc.nextLine();
 						return;
 					}
 			}

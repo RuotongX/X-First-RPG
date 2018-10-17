@@ -28,7 +28,6 @@ public class Battle {
  * @param monster
  */
 	public void skilldepender(String s,Map m,Monster monster) {
-		System.out.println(s);
 		if(s.contains("Attack With Hard")) {
 			this.awh(m, monster);
 		}
@@ -557,7 +556,7 @@ public class Battle {
 	    	    	 this.battle(m,monster);
 	    	    	 break;
 				 case 2:
-					 UsingEntity ue = new UsingEntity(m.p);
+//					 UsingEntity ue = new UsingEntity(m.p);
 	    	    	 double damage2 = (monster.getAttack()-this.defense);
 						if(damage2 <= 0) {
 							damage2 = 1;

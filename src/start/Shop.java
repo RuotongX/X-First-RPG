@@ -33,6 +33,11 @@ public class Shop {
 		return ablist;
 	}
 	public Shop() {
+		this.renew();
+	}
+	public void renew() {
+		enlist.clear();
+		ablist.clear();
 		Axe axe = new Axe();
 		ChickenThigth ct = new ChickenThigth();
 		ChocolateCake cc = new ChocolateCake();
@@ -65,9 +70,9 @@ public class Shop {
 		enlist.addentity(ss);
 		enlist.addentity(sword);
 		enlist.addentity(ws);
-		ablist.addAbility(awh);
-		ablist.addAbility(bh);
-		ablist.addAbility(hi);
 		ablist.addAbility(ls);
+		ablist.addAbility(hi);
+		ablist.addAbility(bh);
+		ablist.addAbility(awh);
 	}
 }

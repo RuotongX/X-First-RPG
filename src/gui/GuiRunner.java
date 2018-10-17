@@ -7,9 +7,7 @@ import start.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.event.*;
-
 import Ability.AbilityLimiter;
-
 import java.io.FileNotFoundException;
 
 public class GuiRunner extends JFrame {
@@ -51,6 +49,9 @@ public class GuiRunner extends JFrame {
 		} else if (m.getP().getRow() == m.getShop().getRow() && m.getP().getColumn() == m.getShop().getColumn()
 				&& m.getFloor() == 0) {
 			sg = new ShopGUI(m);
+			Shopping sp = new Shopping();
+			sg.confirm.setEnabled(false);
+			sg.sch.setEnabled(false);
 			sg.Healup.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					if (m.getP().getMoney() >= 6) {
@@ -70,10 +71,65 @@ public class GuiRunner extends JFrame {
 			sg.exit.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					m.getP().setRow(9);
+					m.getShop().renew();
 					eventHandleSkip(m);
 				}
 			});
-			this.resize(1615, 938);
+			sg.sch.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					EntityList model = sg.model1;
+					String text = sg.search.getText().toLowerCase();
+					EntityList search = new EntityList();
+					for (Entity m : sg.model1.getentityList()) {
+						if (m.getName().toLowerCase().contains(text)) {
+							search.addentity(m);
+						}
+					}
+					if (search.getentityList().length == 0) {
+						model.clear();
+						sg.update();
+						JOptionPane.showMessageDialog(null,"Sorry, No such entity has found.", "Error",
+								JOptionPane.INFORMATION_MESSAGE);
+					} else {
+						model.clear();
+						for (int i = 0; i < search.getentityList().length; i++) {
+							model.addentity(search.getentityList()[i]);
+						}
+						sg.update();
+					}
+					
+				}
+			});
+			sg.search.addKeyListener(new KeyAdapter() {
+				public void keyReleased(KeyEvent e) {
+					sg.sch.setEnabled(!sg.search.getText().isEmpty());
+				}
+			});
+			sg.shopelist.addListSelectionListener(new ListSelectionListener() {
+				public void valueChanged(ListSelectionEvent e) {
+					sg.confirm.setEnabled(true);
+				}
+			});
+			sg.shopalist.addListSelectionListener(new ListSelectionListener() {
+				public void valueChanged(ListSelectionEvent e) {
+					sg.confirm.setEnabled(true);
+					sg.confirm.requestFocus();
+				}
+			});
+			sg.confirm.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					if(sg.shopelist.getSelectedIndex()!=-1) {
+						int temp = sg.shopelist.getSelectedIndex();
+						sp.entitybuy(m, sg.model1.getentityList()[temp].getName());
+					} 
+					if(sg.shopalist.getSelectedIndex()!=-1) {
+						int temp = sg.shopelist.getSelectedIndex();
+						sp.abilitybuy(m, sg.model2.getAbilitylist()[temp].getName());
+					}
+				}
+			});
+			
+			this.resize(1615, 965);
 			this.changeP(sg);
 		} else if (m.getP().getRow() == 9 && m.getP().getColumn() == 1) {
 			BoyNextDoor bnd = new BoyNextDoor(m, md);
@@ -146,7 +202,8 @@ public class GuiRunner extends JFrame {
 			}
 			ba.palyerRun.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					m.getP().setColumn(m.getP().getColumn()+1);
+					m.getP().setColumn(5);
+					m.getP().setRow(5);
 					resize(1618,956);
 					battle = null;
 					eventHandleSkip(m);
@@ -157,6 +214,33 @@ public class GuiRunner extends JFrame {
 					eventHandleCheckAbilityDisplay(m);
 				}
 			});
+			ba.playerBag.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					Bag bag = new Bag(m);
+					resize(1623,956);
+					changeP(bag);
+					bag.exit.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent arg0) {
+							resize(1621,955);
+							changeP(ba);
+							BattleControl(m,mon);
+						}
+						
+					});
+					bag.confirm.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							try {
+								int index = bag.entitylist.getSelectedIndex();
+								UsingEntity ue = new UsingEntity(bag.model1.getentityList()[index].getName(),m.getP());
+							} catch(Exception ee) {
+								JOptionPane.showMessageDialog(null, "You have not choose one of the Entity!", "Error",JOptionPane.ERROR_MESSAGE);
+							}
+							bag.requestFocus();
+						}
+					});
+					ba.requestFocus();
+					}	
+				});
 
 		} else if (mon.equals(m.getM2())) {
 			bb.ability1.addActionListener(new ActionListener() {
@@ -205,7 +289,8 @@ public class GuiRunner extends JFrame {
 			}
 			bb.palyerRun.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					m.getP().setColumn(m.getP().getColumn()+1);
+					m.getP().setColumn(5);
+					m.getP().setRow(5);
 					resize(1618,955);
 					battle = null;
 					eventHandleSkip(m);
@@ -216,6 +301,33 @@ public class GuiRunner extends JFrame {
 					eventHandleCheckAbilityDisplay(m);
 				}
 			});
+			bb.playerBag.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					Bag bag = new Bag(m);
+					resize(1623,956);
+					changeP(bag);
+					bag.exit.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent arg0) {
+							resize(1621,955);
+							changeP(bb);
+							BattleControl(m,mon);
+						}
+						
+					});
+					bag.confirm.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							try {
+								int index = bag.entitylist.getSelectedIndex();
+								UsingEntity ue = new UsingEntity(bag.model1.getentityList()[index].getName(),m.getP());
+							} catch(Exception ee) {
+								JOptionPane.showMessageDialog(null, "You have not choose one of the Entity!", "Error",JOptionPane.ERROR_MESSAGE);
+							}
+							bag.requestFocus();
+						}
+					});
+					bb.requestFocus();
+					}	
+				});
 		} else if (mon.equals(m.getM3())) {
 
 			bc.ability1.addActionListener(new ActionListener() {
@@ -275,6 +387,33 @@ public class GuiRunner extends JFrame {
 					eventHandleCheckAbilityDisplay(m);
 				}
 			});
+			bc.playerBag.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					Bag bag = new Bag(m);
+					resize(1623,956);
+					changeP(bag);
+					bag.exit.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent arg0) {
+							resize(1621,955);
+							changeP(bc);
+							BattleControl(m,mon);
+						}
+						
+					});
+					bag.confirm.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							try {
+								int index = bag.entitylist.getSelectedIndex();
+								UsingEntity ue = new UsingEntity(bag.model1.getentityList()[index].getName(),m.getP());
+							} catch(Exception ee) {
+								JOptionPane.showMessageDialog(null, "You have not choose one of the Entity!", "Error",JOptionPane.ERROR_MESSAGE);
+							}
+							bag.requestFocus();
+						}
+					});
+					bc.requestFocus();
+					}	
+				});
 		} else if (mon.equals(m.getBoss())) {
 			bd.ability1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
@@ -333,6 +472,33 @@ public class GuiRunner extends JFrame {
 					eventHandleCheckAbilityDisplay(m);
 				}
 			});
+			bd.playerBag.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					Bag bag = new Bag(m);
+					resize(1623,956);
+					changeP(bag);
+					bag.exit.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent arg0) {
+							resize(1621,955);
+							changeP(bd);
+							BattleControl(m,mon);
+						}
+						
+					});
+					bag.confirm.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							try {
+								int index = bag.entitylist.getSelectedIndex();
+								UsingEntity ue = new UsingEntity(bag.model1.getentityList()[index].getName(),m.getP());
+							} catch(Exception ee) {
+								JOptionPane.showMessageDialog(null, "You have not choose one of the Entity!", "Error",JOptionPane.ERROR_MESSAGE);
+							}
+							bag.requestFocus();
+						}
+					});
+					bd.requestFocus();
+					}	
+				});
 		}
 	}
 
@@ -405,6 +571,31 @@ public class GuiRunner extends JFrame {
 			}
 
 		});
+		this.md.checkEntity.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Bag bag = new Bag(m);
+				resize(1618,957);
+				changeP(bag);
+				bag.exit.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						eventHandleSkip(m);
+					}
+					
+				});
+				bag.confirm.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						try {
+							int index = bag.entitylist.getSelectedIndex();
+							UsingEntity ue = new UsingEntity(bag.model1.getentityList()[index].getName(),m.getP());
+						} catch(Exception ee) {
+							JOptionPane.showMessageDialog(null, "You have not choose one of the Entity!", "Error",JOptionPane.ERROR_MESSAGE);
+						}
+						bag.requestFocus();
+					}
+				});
+				md.requestFocus();
+				}	
+			});
 
 		this.md.setFocusable(true);
 
@@ -443,6 +634,31 @@ public class GuiRunner extends JFrame {
 			}
 
 		});
+		this.md.checkEntity.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Bag bag = new Bag(m);
+				resize(1618,957);
+				changeP(bag);
+				bag.exit.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						eventHandleSkip(m);
+					}
+					
+				});
+				bag.confirm.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						try {
+							int index = bag.entitylist.getSelectedIndex();
+							UsingEntity ue = new UsingEntity(bag.model1.getentityList()[index].getName(),m.getP());
+						} catch(Exception ee) {
+							JOptionPane.showMessageDialog(null, "You have not choose one of the Entity!", "Error",JOptionPane.ERROR_MESSAGE);
+						}
+						bag.requestFocus();
+					}
+				});
+				md.requestFocus();
+				}	
+			});
 
 		this.md.setFocusable(true);
 
@@ -469,6 +685,7 @@ public class GuiRunner extends JFrame {
 				m.moveright(m.getFloor());
 				break;
 			}
+			fc.savefile(m.getP());
 		}
 
 	}

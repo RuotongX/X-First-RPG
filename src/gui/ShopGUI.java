@@ -29,6 +29,7 @@ public class ShopGUI extends JPanel {
 	JList<Ability> shopalist;
 	EntityList model1;
 	AbilityList model2;
+	JButton sch;
 	ImageIcon confirmI = new ImageIcon("shopconfirm.png");
 	ImageIcon exitI = new ImageIcon("shopexit.png");
 	ImageIcon searchI = new ImageIcon("shopsearchbar.png");
@@ -106,10 +107,21 @@ public class ShopGUI extends JPanel {
 		this.search.setBackground(new Color(0, 0, 0, 0));
 		this.search.setVisible(true);
 		this.search.setLocation(800,800);
-		this.search.setSize(565,100);
+		this.search.setSize(365,100);
 		this.search.setForeground(Color.WHITE);
 		this.search.setFont(new Font("Arial",1,40));
 		this.add(search);
+		
+		this.sch = new JButton("Search>");
+		this.sch.setOpaque(false);
+		this.sch.setBackground(new Color(0, 0, 0, 0));
+		this.sch.setVisible(true);
+		this.sch.setLocation(1165,800);
+		this.sch.setSize(200,100);
+		this.sch.setForeground(Color.WHITE);
+		this.sch.setFont(new Font("old English Text MT",1,40));
+		this.add(sch);
+		
 		
 		this.Healup = new JButton("Heal Up for 6$");
 		this.Healup.setOpaque(false);
@@ -127,6 +139,13 @@ public class ShopGUI extends JPanel {
 		this.background.setLocation(0,0);
 		this.background.setSize(1600, 900);
 		this.add(background);
+	}
+	
+	public void update() {
+		this.shopelist.setListData(this.model1.getentityList());
+		this.sch.setEnabled(!this.search.getText().isEmpty());
+		this.confirm.setEnabled(this.shopelist.getSelectedIndex()!=-1);
+		this.confirm.setEnabled(this.shopalist.getSelectedIndex()!=-1);
 	}
 
 }

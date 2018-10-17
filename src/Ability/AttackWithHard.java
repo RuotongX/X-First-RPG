@@ -8,7 +8,7 @@ import start.*;
 public class AttackWithHard extends Ability {
 	public AttackWithHard() {
 		super("Attack With Hard");
-		super.setDescription("This ability can attack a decent damage with improving your defense.");
+		super.setDescription("This ability can attack a decent damage with improving your defense, which worth 100$.");
 		super.setStrength(0.5);
 		super.setdefenseboost(1.2);
 		super.setMaxpp(10);

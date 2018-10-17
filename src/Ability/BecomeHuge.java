@@ -8,7 +8,7 @@ import start.*;
 public class BecomeHuge extends Ability {
 	public BecomeHuge() {
 		super("Become Huge");
-		super.setDescription("This ability can improve your attack and defense a lot.");
+		super.setDescription("This ability can improve your attack and defense a lot, which worth 300$");
 		super.setAttackboost(1.6);
 		super.setdefenseboost(1.6);
 		super.setMaxpp(2);
