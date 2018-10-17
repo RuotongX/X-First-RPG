@@ -165,10 +165,11 @@ public class UsingEntity {
 	    	for(int i = 0;i<p.enlist.getTotalnumber();i++) {
 				if(p.enlist.getentityList()[i].getName().toLowerCase().equals("pp drink")) {
 					PlayerAbilityDisplay pad = new PlayerAbilityDisplay(p.ablist);
-					JOptionPane.showInputDialog(null, "Please choose one of the skill"
+					String iii = JOptionPane.showInputDialog(null, "Please choose one of the skill"
 							+ "\nYou can only input 1-4 value!", "Message", JOptionPane.INFORMATION_MESSAGE);
                     try {
-					   int num = Integer.valueOf(JOptionPane.INPUT_VALUE_PROPERTY);
+					   int num = Integer.valueOf(iii);
+					   System.out.println(num);
 					   while(num<1||num>4) {
 						   JOptionPane.showInputDialog(null, "Please choose one of the skill"
 									+ "\nYou can only input 1-4 value!", "Message", JOptionPane.INFORMATION_MESSAGE);
