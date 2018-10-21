@@ -11,8 +11,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 /**
+ * This is the control class which is a part of MVC.This class control the panel changes and event happen.
+ * @author RuotongXu QichangZhou
  *
- * @author Angelo
  */
 public class StartMenu extends JPanel {
 	private ImageIcon imageba;

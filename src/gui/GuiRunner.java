@@ -8,8 +8,14 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.event.*;
 import Ability.AbilityLimiter;
+import database.PlayerDB;
 import java.io.FileNotFoundException;
-
+import database.*;
+/**
+ * This is the control class which is a part of MVC.This class control the panel changes and event happen.
+ * @author RuotongXu QichangZhou
+ *
+ */
 public class GuiRunner extends JFrame {
 	public MapDisplay md;
 	public BattleA ba;
@@ -18,35 +24,43 @@ public class GuiRunner extends JFrame {
 	public BattleD bd;
 	public ShopGUI sg;
 	FileControl fc = new FileControl();
+//        PlayerDB pdb = new PlayerDB();
 	Map m = new Map();
 	Battle battle = null;
-
+/**
+ * This method is used to change the panel in this JFrame.
+ * @param changeTo 
+ */
 	public void changeP(JPanel changeTo) {
 		this.getContentPane().removeAll();
 		this.getContentPane().add(changeTo);
 		this.repaint();
 	}
+        /**
+         * This class is used to check the position of player in the map.
+         * @param m 
+         */
 	private void positionCheck(Map m) {
-		if (m.getP().getRow() == m.getM1().getRow() && m.getP().getColumn() == m.getM1().getColumn()
+		if (m.getP().getRow() == m.getM1().getRow() && m.getP().getColumn() == m.getM1().getColumn()//If at this place,player meet monster
 				&& m.getFloor() == 0) {
 			ba = new BattleA(m, m.getM1());
 			this.changeP(ba);
 			BattleControl(m, m.getM1());
-		} else if (m.getP().getRow() == m.getM2().getRow() && m.getP().getColumn() == m.getM2().getColumn()
+		} else if (m.getP().getRow() == m.getM2().getRow() && m.getP().getColumn() == m.getM2().getColumn()//If at this place,player meet monster
 				&& m.getFloor() == 0) {
 			bb = new BattleB(m, m.getM2());
 			this.getContentPane().removeAll();
 			this.getContentPane().add(bb);
 			this.repaint();
 			BattleControl(m, m.getM2());
-		} else if (m.getP().getRow() == m.getM3().getRow() && m.getP().getColumn() == m.getM3().getColumn()
+		} else if (m.getP().getRow() == m.getM3().getRow() && m.getP().getColumn() == m.getM3().getColumn()//If at this place,player meet monster
 				&& m.getFloor() == 0) {
 			bc = new BattleC(m, m.getM3());
 			this.getContentPane().removeAll();
 			this.getContentPane().add(bc);
 			this.repaint();
 			BattleControl(m, m.getM3());
-		} else if (m.getP().getRow() == m.getShop().getRow() && m.getP().getColumn() == m.getShop().getColumn()
+		} else if (m.getP().getRow() == m.getShop().getRow() && m.getP().getColumn() == m.getShop().getColumn()//If at this place player get into the store and also the store action listener are added here.
 				&& m.getFloor() == 0) {
 			sg = new ShopGUI(m);
 			Shopping sp = new Shopping();
@@ -100,30 +114,30 @@ public class GuiRunner extends JFrame {
 					
 				}
 			});
-			sg.search.addKeyListener(new KeyAdapter() {
+			sg.search.addKeyListener(new KeyAdapter() {//This is the search action to get the input in text field, and the scrollpane will renew for the search result.
 				public void keyReleased(KeyEvent e) {
 					sg.sch.setEnabled(!sg.search.getText().isEmpty());
 				}
 			});
-			sg.shopelist.addListSelectionListener(new ListSelectionListener() {
+			sg.shopelist.addListSelectionListener(new ListSelectionListener() {//This can make the confirm be used after user select any thing in scrollPane.
 				public void valueChanged(ListSelectionEvent e) {
 					sg.confirm.setEnabled(true);
 				}
 			});
-			sg.shopalist.addListSelectionListener(new ListSelectionListener() {
+			sg.shopalist.addListSelectionListener(new ListSelectionListener() {//This can make the confirm be used after user select any thing in scrollPane.
 				public void valueChanged(ListSelectionEvent e) {
 					sg.confirm.setEnabled(true);
 					sg.confirm.requestFocus();
 				}
 			});
-			sg.confirm.addActionListener(new ActionListener() {
+			sg.confirm.addActionListener(new ActionListener() {//This can let user buy the select thing
 				public void actionPerformed(ActionEvent e) {
 					if(sg.shopelist.getSelectedIndex()!=-1) {
 						int temp = sg.shopelist.getSelectedIndex();
 						sp.entitybuy(m, sg.model1.getentityList()[temp].getName());
 					} 
 					if(sg.shopalist.getSelectedIndex()!=-1) {
-						int temp = sg.shopelist.getSelectedIndex();
+						int temp = sg.shopalist.getSelectedIndex();
 						sp.abilitybuy(m, sg.model2.getAbilitylist()[temp].getName());
 					}
 				}
@@ -131,7 +145,7 @@ public class GuiRunner extends JFrame {
 			
 			this.resize(1615, 965);
 			this.changeP(sg);
-		} else if (m.getP().getRow() == 9 && m.getP().getColumn() == 1) {
+		} else if (m.getP().getRow() == 9 && m.getP().getColumn() == 1) {//when player at this place start door dependence, if condition is achieve player can get into the door and go upstair, else stay at the same floor.
 			BoyNextDoor bnd = new BoyNextDoor(m, md);
 			if (m.getFloor() == 1) {
 				changeP(md);
@@ -140,7 +154,7 @@ public class GuiRunner extends JFrame {
 				changeP(md);
 			}
 
-		} else if (m.getP().getRow() == m.getBoss().getRow() && m.getP().getColumn() == m.getBoss().getColumn()
+		} else if (m.getP().getRow() == m.getBoss().getRow() && m.getP().getColumn() == m.getBoss().getColumn()//when player at this place, player meet boss
 				&& m.getFloor() == 1) {
 			bd = new BattleD(m, m.getBoss());
 			this.getContentPane().removeAll();
@@ -149,7 +163,11 @@ public class GuiRunner extends JFrame {
 			BattleControl(m, m.getBoss());
 		}
 	}
-
+/**
+ * This class is used for battle control to depend which things will happen during the battle.
+ * @param m
+ * @param mon 
+ */
 	private void BattleControl(Map m, Monster mon) {
 		if(this.battle == null) {
 			this.battle = new Battle(m, mon);
@@ -502,6 +520,10 @@ public class GuiRunner extends JFrame {
 		}
 	}
 
+/**
+ * This class is used to control user to start a new game
+ * @param m 
+**/
 	public void eventHandleNewGame(Map m) {
 		NameEnter ne = new NameEnter();
 		this.resize(1611, 910);
@@ -520,10 +542,15 @@ public class GuiRunner extends JFrame {
 			}
 		});
 	}
-
+/**
+* This class is used to user to load game since last time.
+*
+**/
 	public void eventHandleLoadGame(Map m) {
 		try {
+//                        pdb.getinfo(m);
 			fc.loadfile(m.getP());
+                        
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -537,6 +564,10 @@ public class GuiRunner extends JFrame {
 			}
 		});
 	}
+/**
+* This class is to control whether player can go upstairs or not, once player defeatd all the 3 monsters at ground floor, it will be
+* able to allow the player to go upstairs.
+*/
 	private void defeatbyBoss(Map m) {
 		this.md = new MapDisplay(m, 1);
 		this.resize(1620, 935);
@@ -600,6 +631,9 @@ public class GuiRunner extends JFrame {
 		this.md.setFocusable(true);
 
 	}
+/**
+* In this method we call the database method
+*/
 	public void eventHandleSkip(Map m) {
 		this.md = new MapDisplay(m, m.getFloor()+1);
 		this.resize(1620, 935);
@@ -663,7 +697,11 @@ public class GuiRunner extends JFrame {
 		this.md.setFocusable(true);
 
 	}
-
+/**
+ * This class call the database
+ * @param m
+ * @param userInput 
+ */
 	public void eventHandleMove(Map m, KeyEvent userInput) {
 
 		if (keyVaildCheck(userInput)) {
@@ -686,6 +724,7 @@ public class GuiRunner extends JFrame {
 				break;
 			}
 			fc.savefile(m.getP());
+//                        pdb.addinfo(m);
 		}
 
 	}
@@ -865,7 +904,9 @@ public class GuiRunner extends JFrame {
 		}
 		
 	}
-
+/**
+ * 
+ */
 	public GuiRunner() {
 		StartMenu sm = new StartMenu();
 		sm.load.addActionListener(new ActionListener() {

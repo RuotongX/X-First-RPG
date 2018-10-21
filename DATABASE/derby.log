@@ -1,0 +1,20 @@
+Fri Oct 19 13:23:17 NZDT 2018 : Apache Derby Network Server - 10.11.1.2 - (1629631) started and ready to accept connections on port 1527
+----------------------------------------------------------------
+Fri Oct 19 13:23:17 NZDT 2018:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.11.1.2 - (1629631): instance a816c00e-0166-89b4-64c2-fffffa4ce406 
+on database directory C:\Users\pvf4908\Desktop\RPG game\DATABASE\PlayerDataBase with class loader sun.misc.Launcher$AppClassLoader@266474c2 
+Loaded from file:/C:/Program%20Files/Java/jdk/db/lib/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_152-b16
+user.dir=C:\Program Files\Java\jdk\db
+os.name=Windows 10
+os.arch=amd64
+os.version=10.0
+derby.system.home=C:\Users\pvf4908\Desktop\RPG game\DATABASE
+Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Fri Oct 19 13:24:21 NZDT 2018: Shutting down Derby engine
+----------------------------------------------------------------
+Fri Oct 19 13:24:21 NZDT 2018:
+Shutting down instance a816c00e-0166-89b4-64c2-fffffa4ce406 on database directory C:\Users\pvf4908\Desktop\RPG game\DATABASE\PlayerDataBase with class loader sun.misc.Launcher$AppClassLoader@266474c2 
+----------------------------------------------------------------

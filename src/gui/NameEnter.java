@@ -11,7 +11,7 @@ import javax.swing.JTextField;
 
 /**
  * 
- * @author RuotongXu
+ * @author RuotongXu QichangZhou
  *
  */
 public class NameEnter extends JPanel {

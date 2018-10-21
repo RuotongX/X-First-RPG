@@ -59,7 +59,7 @@ public class UsingEntity {
 		for(Entity e :p.enlist.getentityList()) {
     		if(e.getName().toLowerCase().equals(a)) {
     			if(p.getShield() == null) {
-    				p.setShield(e);;
+    				p.setShield(e);
     				hit = "You have equip "+e.getName();
     				p.setdefense(p.getdefense()+e.getdefense());
     				hit = hit+"\nYour defense value becomes to "+p.getdefense();
@@ -121,8 +121,6 @@ public class UsingEntity {
 	public UsingEntity(String temp,Player p) {
 	    temp = temp.toLowerCase();
 	    switch(temp) {
-	    case "e":
-	    	break;
 	    case "axe":
 	    	this.Weapondepender("axe", p);
 	    	break;
@@ -150,8 +148,8 @@ public class UsingEntity {
 	    case "wooden shield":
 	    	this.Shielddepender("wooden shield", p);
 	    	break;
-	    case "chicken thigth":
-	    	this.Consumableuse("chicken thigth", p);
+	    case "chinken thigth":
+	    	this.Consumableuse("chinken thigth", p);
 	    	break;
 	    case "chocolate cake":
 	    	this.Consumableuse("chocolate cake", p);
@@ -159,8 +157,8 @@ public class UsingEntity {
 	    case "crow bar":
 	    	this.Weapondepender("crow bar", p);
 	    	break;
-	    case "roastbeef":
-	    	this.Consumableuse("roastbeef", p);
+	    case "roast beef":
+	    	this.Consumableuse("roast beef", p);
 	    case "pp drink"://coz player have 4 ability so I need to use the switch case to depend which ability that player want to add pp.
 	    	for(int i = 0;i<p.enlist.getTotalnumber();i++) {
 				if(p.enlist.getentityList()[i].getName().toLowerCase().equals("pp drink")) {

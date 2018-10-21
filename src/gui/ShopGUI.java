@@ -16,7 +16,11 @@ import javax.swing.JViewport;
 import javax.swing.ListSelectionModel;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.JScrollPane;
-
+/**
+ * This is the control class which is a part of MVC.This class control the panel changes and event happen.
+ * @author RuotongXu QichangZhou
+ *
+ */
 public class ShopGUI extends JPanel {
 	JButton confirm;
 	JButton exit;

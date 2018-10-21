@@ -1,6 +1,8 @@
 package Ability;
 import start.*;
 import java.util.Scanner;
+
+import javax.swing.JOptionPane;
 /**
  * This class is used to avoid the ability amount of player hold, it also help user get the same ability many times when level up.
  * @author RuotongXu QiChangZhou
@@ -27,11 +29,16 @@ public class AbilityLimiter {
  */
 	public AbilityLimiter(AbilityList al) {
 		if(al.getTotalnumber() > 4) {
-			System.out.println("You can only master 4 ability , please delete one of your ability");
-			PlayerAbilityDisplay pad = new PlayerAbilityDisplay(al);
-			System.out.println("Type the name of the ability, if you do not want to forget any ablility just type 'e'.");
+			String hit;
+			hit = "You can only master 4 ability , please delete one of your ability";
+			hit = hit+"\nType the name of the ability, if you do not want to forget any ablility just type 'e'.";
+			hit = hit+"\n"+al.getAbilitylist()[0].toString();
+			hit = hit+"\n"+al.getAbilitylist()[1].toString();
+			hit = hit+"\n"+al.getAbilitylist()[2].toString();
+			hit = hit+"\n"+al.getAbilitylist()[3].toString();
+			String token = JOptionPane.showInputDialog(null, hit, "Message", JOptionPane.INFORMATION_MESSAGE);
 			try {
-			    String token = sc.nextLine().toLowerCase();
+				token = token.toLowerCase();
 			    if(token.equals("e")) {
 					this.setKeep(true);
 				}
@@ -39,15 +46,18 @@ public class AbilityLimiter {
 					for(int i = 0;i<al.getTotalnumber();i++) {
 						if(al.getAbilitylist()[i].getName().toLowerCase().contains(token)) {
 							al.removeAbility(i);
+                                                        break;
 						}
 					}
 					if(al.getTotalnumber() > 4) {
-						System.out.println("You do not have "+token+" Please type again.");
+						JOptionPane.showMessageDialog(null,
+								"You do not have "+token+" Please type again.", "",
+								JOptionPane.INFORMATION_MESSAGE);
 						return;
 					}
 				}
 			}catch(Exception e) {
-				
+				keep = true;
 			}
 		}
 	}

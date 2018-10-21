@@ -13,7 +13,10 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 import start.*;
-
+/**
+ * This is a class for battle view, which is a panel.
+ * @author RuotongXu
+ */
 public class BattleD extends JPanel{
 	private ImageIcon battle4;
 	JLabel background;

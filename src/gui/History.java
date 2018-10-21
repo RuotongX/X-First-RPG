@@ -8,7 +8,11 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
+/**
+ * This is the control class which is a part of MVC.This class control the panel changes and event happen.
+ * @author RuotongXu QichangZhou
+ *
+ */
 public class History extends JPanel{
 	private JLabel line0;
 	private JLabel line1;

@@ -177,7 +177,7 @@ public class Battle {
 	private void hi(Map m,Monster monster) {
 		String hit;
 		for(Ability ability:m.p.ablist.getAbilitylist()) {
-			 if(ability.getName().toLowerCase().equals("huge Impact")) {
+			 if(ability.getName().toLowerCase().equals("huge impact")) {
 				 if (ability.getPp() > 0) {
 					m.p.setTempattack(m.p.getAttack()*ability.getStrength());
 					ability.setPp(ability.getPp()-1);

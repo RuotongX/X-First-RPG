@@ -14,7 +14,10 @@ import javax.swing.JViewport;
 import javax.swing.ListSelectionModel;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.JScrollPane;
-
+/**
+ * This is a class for bag view, which is a panel.
+ * @author RuotongXu
+ */
 public class Bag extends JPanel{
 	JButton confirm;
 	JButton exit;

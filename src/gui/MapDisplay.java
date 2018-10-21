@@ -11,7 +11,11 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 import start.*;
-
+/**
+ * This is the control class which is a part of MVC.This class control the panel changes and event happen.
+ * @author RuotongXu QichangZhou
+ *
+ */
 public class MapDisplay extends JPanel {
 	private ImageIcon okb;
 	private ImageIcon imageback;
@@ -290,15 +294,15 @@ public class MapDisplay extends JPanel {
 		this.money.setFont(new Font("old English Text MT",0,35));
 		this.add(	this.money);
 		
-		this.weapon = new JLabel("Weapon: "+m.getP().getWeapon());
+		this.weapon = new JLabel("Weapon:"+m.getP().getWeapon());
 		this.weapon.setVisible(true);
 		this.weapon.setLocation(1245,320);
-		this.weapon.setSize(354,50);
+		this.weapon.setSize(400,50);
 		this.weapon.setForeground(Color.WHITE);
 		this.weapon.setFont(new Font("old English Text MT",0,35));
 		this.add(this.weapon);
 		
-		this.shield = new JLabel("Shield: "+m.getP().getShield());
+		this.shield = new JLabel("Shield:"+m.getP().getShield());
 		this.shield.setVisible(true);
 		this.shield.setLocation(1245,370);
 		this.shield.setSize(354,50);

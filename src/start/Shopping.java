@@ -4,6 +4,7 @@ import java.util.Scanner;
 import javax.swing.JOptionPane;
 
 import Ability.AbilityLimiter;
+import Ability.Tackle;
 /**
  * This class is used to show player all the entity in the shop also player can use 'search' function to find 
  *entity they want to buy when player finish shopping this class will minus player's money 
@@ -14,6 +15,7 @@ public class Shopping {
 	/**
 	 * Create a enum to store 4 types of the player choice.
 	 */
+	Tackle tk = new Tackle();
 	private enum Type {
 		Entity, Ability, Healing, goback;
 	}
@@ -121,11 +123,14 @@ public class Shopping {
 		for (int i = 0; i < m.shop.getAblist().getTotalnumber(); i++) {
 			if (m.shop.getAblist().getAbilitylist()[i].getName().toLowerCase().equals(token2)) {
 				if (m.shop.getAblist().getAbilitylist()[i].getMoney() <= m.p.getMoney()) {
+					m.p.ablist.addAbility(tk);
 					AbilityLimiter al = new AbilityLimiter(m.p.ablist);
 					if (al.isKeep() == true) {
+						m.p.ablist.removeAbility(4);
 						return;
 					}
 					m.p.setMoney(m.p.getMoney() - m.shop.getAblist().getAbilitylist()[i].getMoney());
+					m.p.ablist.removeAbility(3);
 					m.p.ablist.addAbility(m.shop.getAblist().getAbilitylist()[i]);
 					JOptionPane.showMessageDialog(null,"You have bought the " + token2+"\nYour money reduce "+ m.shop.getAblist().getAbilitylist()[i].getMoney(), "Info",
 							JOptionPane.INFORMATION_MESSAGE);

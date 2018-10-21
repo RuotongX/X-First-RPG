@@ -2,7 +2,7 @@ package start;
 import java.io.FileNotFoundException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-
+import database.*;
 import javax.swing.JFrame;
 
 import Ability.*;
@@ -19,7 +19,8 @@ public class MainClass {
 		JFrame mapd = new GuiRunner();
 		mapd.setSize(1620, 955);
 		mapd.setVisible(true);
-		
+        }
+}
 		
 //		FileControl fc = new FileControl();
 //		String order;
@@ -140,5 +141,4 @@ public class MainClass {
 //			fc.savefile(m.p);
 //		} while (!order.equals("0"));
 //		sc.close();
-	}
-}
+
