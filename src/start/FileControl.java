@@ -147,6 +147,7 @@ public class FileControl {
 			 p.setM3defeat(b);
 			 v2 = fileScan.nextDouble();
 			 p.setExp(v2);
+			 fileScan.nextLine();
 			 line = fileScan.nextLine();
 			 for(Entity e : enlist.getentityList()) {//used for loop to find the player weapen in the total list.
 				 if(e.getName().equals(line)) {
@@ -159,9 +160,9 @@ public class FileControl {
 					 p.setShield(e);
 				 }
 			 }
-			fileScan.nextLine();
-			value = fileScan.nextInt();//read how many abilities that player has.
-			for(int i = 0;i<value;i++) {//used the for loop to read each information that a attribute has(actually it just has the name and pp number)
+//			fileScan.nextLine();
+			int valuep = fileScan.nextInt();//read how many abilities that player has.
+			for(int i = 0;i<valuep;i++) {//used the for loop to read each information that a attribute has(actually it just has the name and pp number)
 				fileScan.nextLine();
 				line = fileScan.nextLine();
 				value = fileScan.nextInt();
@@ -189,9 +190,12 @@ public class FileControl {
 						
 					}
 				}
+                                if(p.ablist.getTotalnumber()==5){
+                                    p.ablist.removeAbility(0);
+                                }
 			}
-			value = fileScan.nextInt();//read how many entities that player has.
-			for(int i = 0;i<value;i++) {//used the for loop to read each information that a entity has(actually it just has the name and quantity number)
+			int valuee = fileScan.nextInt();//read how many entities that player has.
+			for(int i = 0;i<valuee;i++) {//used the for loop to read each information that a entity has(actually it just has the name and quantity number)
 				fileScan.nextLine();
 				line = fileScan.nextLine();
 				value = fileScan.nextInt();

@@ -1,21 +1,33 @@
-Jacky
-120
-45
-9
-210
-210.0
-139
-8
-8
+ADMIN
+155
+85
+7
+190
+190.0
+214746669
+6
+4
 true
 true
 true
-250.0
-null
-null
+610.0
+Axe
+Dimond Shield
+4
+Smash
+7
+Reversal
+1
+Become Huge
 2
-Tackle
-10
-TwoWay
-5
-0
+Leech Seed
+1
+4
+Axe
+1
+Dimond Shield
+1
+PP drink
+1
+Roast Beef
+3

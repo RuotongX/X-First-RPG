@@ -294,7 +294,11 @@ public class MapDisplay extends JPanel {
 		this.money.setFont(new Font("old English Text MT",0,35));
 		this.add(	this.money);
 		
-		this.weapon = new JLabel("Weapon:"+m.getP().getWeapon());
+		try {
+		this.weapon = new JLabel("Weapon:"+m.getP().getWeapon().getName());
+		} catch(Exception e){
+			this.weapon = new JLabel("Weapon: null");
+		}
 		this.weapon.setVisible(true);
 		this.weapon.setLocation(1245,320);
 		this.weapon.setSize(400,50);
@@ -302,7 +306,11 @@ public class MapDisplay extends JPanel {
 		this.weapon.setFont(new Font("old English Text MT",0,35));
 		this.add(this.weapon);
 		
-		this.shield = new JLabel("Shield:"+m.getP().getShield());
+		try {
+		this.shield = new JLabel("Shield:"+m.getP().getShield().getName());
+		} catch(Exception e) {
+			this.shield = new JLabel("Shield: null");
+		}
 		this.shield.setVisible(true);
 		this.shield.setLocation(1245,370);
 		this.shield.setSize(354,50);
